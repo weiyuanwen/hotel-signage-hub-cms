@@ -21,3 +21,7 @@ export function canManageStaff(user: CmsUser | null): boolean {
 export function canManageRooms(user: CmsUser | null): boolean {
   return Boolean(user?.roles.some((role) => role === "hotel-manager" || role === "super-admin"));
 }
+
+export function canManageTemplates(user: CmsUser | null): boolean {
+  return Boolean(user?.roles.some((role) => role === "hotel-manager" || role === "super-admin"));
+}

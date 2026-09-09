@@ -80,7 +80,22 @@ export type Room = {
     guest_display_name: string;
     message: string | null;
     locale: string;
+    template_key?: string | null;
   } | null;
+};
+
+export type WelcomeTemplate = {
+  key: string;
+  built_in_name: string;
+  display_name: string | null;
+  label: string;
+  is_enabled: boolean;
+  sort_order: number;
+};
+
+export type WelcomeTemplateList = {
+  default_key: string;
+  templates: WelcomeTemplate[];
 };
 
 export type Device = {

@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Buildings, MonitorPlay, SignOut, SquaresFour, UsersThree } from "@phosphor-icons/react";
+import { usePathname, useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
+import { Buildings, FrameCorners, MonitorPlay, SignOut, SquaresFour, UsersThree } from "@phosphor-icons/react";
 import { api, ApiError } from "@/lib/api";
-import { canManageStaff, isSuperAdmin } from "@/lib/roles";
+import { canManageStaff, canManageTemplates, isSuperAdmin } from "@/lib/roles";
 import { useSession } from "@/lib/session";
 import { DeskDialog } from "./DeskDialog";
 
@@ -32,6 +32,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   const links = [
     { href: "/rooms", label: "Phòng", icon: SquaresFour },
+    ...(canManageTemplates(user) ? [{ href: "/templates", label: "Mẫu chào", icon: FrameCorners }] : []),
     { href: "/devices", label: "Thiết bị", icon: MonitorPlay },
     ...(canManageStaff(user) ? [{ href: "/staff", label: "Nhân viên", icon: UsersThree }] : []),
   ];
