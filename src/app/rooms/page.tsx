@@ -28,23 +28,32 @@ export default function RoomsPage() {
   const [templateList, setTemplateList] = useState<WelcomeTemplateList | null>(null);
   const [templatesFailed, setTemplatesFailed] = useState(false);
   const templateTouchedRef = useRef(false);
+  const hotelIdRef = useRef(hotelId);
+  hotelIdRef.current = hotelId;
 
   const load = useCallback(async () => {
     if (!hotelId) return;
+    const requestedHotelId = hotelId;
     setError(null);
     try {
-      const res = await api<{ data: Room[] }>(`/cms/hotels/${hotelId}/rooms`);
+      const res = await api<{ data: Room[] }>(`/cms/hotels/${requestedHotelId}/rooms`);
+      if (hotelIdRef.current !== requestedHotelId) return;
       setRooms(res.data);
     } catch {
+      if (hotelIdRef.current !== requestedHotelId) return;
       setError("Không tải được danh sách phòng.");
       setRooms([]);
       return;
     }
     try {
-      const templates = await api<{ data: WelcomeTemplateList }>(`/cms/hotels/${hotelId}/welcome-templates`);
+      const templates = await api<{ data: WelcomeTemplateList }>(
+        `/cms/hotels/${requestedHotelId}/welcome-templates`,
+      );
+      if (hotelIdRef.current !== requestedHotelId) return;
       setTemplateList(templates.data);
       setTemplatesFailed(false);
     } catch {
+      if (hotelIdRef.current !== requestedHotelId) return;
       setTemplateList(null);
       setTemplatesFailed(true);
     }
@@ -360,14 +369,18 @@ export default function RoomsPage() {
                     className="w-full rounded-[10px] border border-line px-3 py-2"
                   />
                 </label>
-                <TemplatePicker
-                  templates={pickerTemplates()}
-                  value={templateKey}
-                  onChange={(key) => {
-                    templateTouchedRef.current = true;
-                    setTemplateKey(key);
-                  }}
-                />
+                {templatesFailed ? (
+                  <p className="text-sm text-muted">Không tải được mẫu — dùng mặc định khách sạn.</p>
+                ) : templateList ? (
+                  <TemplatePicker
+                    templates={pickerTemplates()}
+                    value={templateKey}
+                    onChange={(key) => {
+                      templateTouchedRef.current = true;
+                      setTemplateKey(key);
+                    }}
+                  />
+                ) : null}
               </>
             )}
           </DeskDialog>

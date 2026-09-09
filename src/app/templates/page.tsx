@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { TemplateThumb } from "@/components/TemplateThumb";
 import { api, ApiError, type WelcomeTemplate, type WelcomeTemplateList } from "@/lib/api";
@@ -13,14 +13,21 @@ export default function TemplatesPage() {
   const [list, setList] = useState<WelcomeTemplateList | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busyKey, setBusyKey] = useState<string | null>(null);
+  const hotelIdRef = useRef(hotelId);
+  hotelIdRef.current = hotelId;
 
   const load = useCallback(async () => {
     if (!hotelId || !allowed) return;
+    const requestedHotelId = hotelId;
     try {
-      const res = await api<{ data: WelcomeTemplateList }>(`/cms/hotels/${hotelId}/welcome-templates`);
+      const res = await api<{ data: WelcomeTemplateList }>(
+        `/cms/hotels/${requestedHotelId}/welcome-templates`,
+      );
+      if (hotelIdRef.current !== requestedHotelId) return;
       setList(res.data);
       setError(null);
     } catch {
+      if (hotelIdRef.current !== requestedHotelId) return;
       setError("Không tải được danh sách mẫu.");
       setList({ default_key: "dusk", templates: [] });
     }
