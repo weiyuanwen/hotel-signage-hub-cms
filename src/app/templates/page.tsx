@@ -27,6 +27,7 @@ export default function TemplatesPage() {
   }, [hotelId, allowed]);
 
   useEffect(() => {
+    setList(null);
     if (ready && user && hotelId && allowed) void load();
   }, [ready, user, hotelId, allowed, load]);
 
@@ -79,7 +80,7 @@ export default function TemplatesPage() {
             {(list?.templates ?? []).map((row: WelcomeTemplate) => {
               const isDefault = list?.default_key === row.key;
               return (
-                <li key={row.key} className="grid gap-4 py-4 md:grid-cols-[240px_minmax(0,1fr)_auto] md:items-center">
+                <li key={`${hotelId}-${row.key}`} className="grid gap-4 py-4 md:grid-cols-[240px_minmax(0,1fr)_auto] md:items-center">
                   <TemplateThumb templateKey={row.key} />
                   <div className="space-y-2">
                     <label className="block space-y-1.5">
