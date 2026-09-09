@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { DeskDialog } from "@/components/DeskDialog";
 import { TemplatePicker } from "@/components/TemplatePicker";
@@ -24,8 +24,10 @@ export default function RoomsPage() {
   const [roomName, setRoomName] = useState("");
   const [roomKind, setRoomKind] = useState<"guest" | "public">("guest");
   const [busy, setBusy] = useState(false);
-  const [templateKey, setTemplateKey] = useState("dusk");
+  const [templateKey, setTemplateKey] = useState("");
   const [templateList, setTemplateList] = useState<WelcomeTemplateList | null>(null);
+  const [templatesFailed, setTemplatesFailed] = useState(false);
+  const templateTouchedRef = useRef(false);
 
   const load = useCallback(async () => {
     if (!hotelId) return;
@@ -41,15 +43,31 @@ export default function RoomsPage() {
     try {
       const templates = await api<{ data: WelcomeTemplateList }>(`/cms/hotels/${hotelId}/welcome-templates`);
       setTemplateList(templates.data);
+      setTemplatesFailed(false);
     } catch {
       setTemplateList(null);
+      setTemplatesFailed(true);
     }
   }, [hotelId]);
 
   useEffect(() => {
-    if (ready && user && hotelId) void load();
+    if (ready && user && hotelId) {
+      setTemplateList(null);
+      setTemplatesFailed(false);
+      templateTouchedRef.current = false;
+      void load();
+    }
     if (ready && user && !hotelId) setRooms([]);
   }, [ready, user, hotelId, load]);
+
+  useEffect(() => {
+    if (!templateList || templateTouchedRef.current) return;
+    if (mode === "checkin") {
+      setTemplateKey(templateList.default_key);
+    } else if (mode === "rename") {
+      setTemplateKey(active?.current_welcome?.template_key ?? templateList.default_key);
+    }
+  }, [templateList, mode, active]);
 
   function open(next: Mode, room: Room) {
     setActive(room);
@@ -58,16 +76,17 @@ export default function RoomsPage() {
     setMessage(room.current_welcome?.message ?? "Chào mừng quý khách");
     setPin("");
     setError(null);
+    templateTouchedRef.current = false;
     if (next === "checkin") {
-      setTemplateKey(templateList?.default_key ?? "dusk");
+      if (templateList) setTemplateKey(templateList.default_key);
     } else if (next === "rename") {
-      const current = room.current_welcome?.template_key ?? templateList?.default_key ?? "dusk";
-      setTemplateKey(current);
+      const current = room.current_welcome?.template_key ?? templateList?.default_key;
+      if (current) setTemplateKey(current);
     }
   }
 
   function pickerTemplates(): WelcomeTemplate[] {
-    const rows = templateList?.templates ?? [];
+    const rows = (templateList?.templates ?? []).filter((r) => r.is_enabled);
     if (mode === "rename" && active?.current_welcome?.template_key) {
       const current = active.current_welcome.template_key;
       if (!rows.some((r) => r.key === current)) {
@@ -105,12 +124,21 @@ export default function RoomsPage() {
       } else if (active && mode === "checkin") {
         await api(`/cms/hotels/${hotelId}/rooms/${active.id}/check-in`, {
           method: "POST",
-          body: JSON.stringify({ guest_display_name: name, message, locale: "vi", template_key: templateKey }),
+          body: JSON.stringify({
+            guest_display_name: name,
+            message,
+            locale: "vi",
+            ...(templateList ? { template_key: templateKey } : {}),
+          }),
         });
       } else if (active && mode === "rename") {
         await api(`/cms/hotels/${hotelId}/rooms/${active.id}/welcome`, {
           method: "PATCH",
-          body: JSON.stringify({ guest_display_name: name, message, template_key: templateKey }),
+          body: JSON.stringify({
+            guest_display_name: name,
+            message,
+            ...(templateList ? { template_key: templateKey } : {}),
+          }),
         });
       } else if (active && mode === "pair") {
         await api(`/cms/hotels/${hotelId}/pairing-codes/claim`, {
@@ -152,6 +180,8 @@ export default function RoomsPage() {
           : mode === "pair"
             ? `Ghép TV vào ${active?.code}`
             : "";
+
+  const templatesPending = templateList === null && !templatesFailed;
 
   return (
     <AppShell>
@@ -234,7 +264,7 @@ export default function RoomsPage() {
                   <div className="flex flex-wrap gap-2">
                     {occupied ? (
                       <>
-                        <button type="button" onClick={() => open("rename", room)} className="rounded-[10px] border border-line px-3 py-1.5 text-sm">
+                        <button type="button" disabled={templatesPending} onClick={() => open("rename", room)} className="rounded-[10px] border border-line px-3 py-1.5 text-sm disabled:opacity-50">
                           Đổi tên
                         </button>
                         <button type="button" disabled={busy} onClick={() => void checkout(room)} className="rounded-[10px] border border-line px-3 py-1.5 text-sm">
@@ -242,7 +272,7 @@ export default function RoomsPage() {
                         </button>
                       </>
                     ) : (
-                      <button type="button" onClick={() => open("checkin", room)} className="rounded-[10px] bg-primary px-3 py-1.5 text-sm text-primary-ink">
+                      <button type="button" disabled={templatesPending} onClick={() => open("checkin", room)} className="rounded-[10px] bg-primary px-3 py-1.5 text-sm text-primary-ink disabled:opacity-50">
                         Nhận phòng
                       </button>
                     )}
@@ -330,7 +360,14 @@ export default function RoomsPage() {
                     className="w-full rounded-[10px] border border-line px-3 py-2"
                   />
                 </label>
-                <TemplatePicker templates={pickerTemplates()} value={templateKey} onChange={setTemplateKey} />
+                <TemplatePicker
+                  templates={pickerTemplates()}
+                  value={templateKey}
+                  onChange={(key) => {
+                    templateTouchedRef.current = true;
+                    setTemplateKey(key);
+                  }}
+                />
               </>
             )}
           </DeskDialog>
