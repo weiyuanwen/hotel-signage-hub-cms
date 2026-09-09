@@ -3,9 +3,11 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { DeskDialog } from "@/components/DeskDialog";
-import { api, ApiError, type Room } from "@/lib/api";
+import { TemplatePicker } from "@/components/TemplatePicker";
+import { api, ApiError, type Room, type WelcomeTemplate, type WelcomeTemplateList } from "@/lib/api";
 import { canManageRooms, isSuperAdmin } from "@/lib/roles";
 import { useSession } from "@/lib/session";
+import { templateLabel } from "@/lib/welcomeTemplates";
 
 type Mode = "idle" | "checkin" | "rename" | "pair" | "create";
 
@@ -22,6 +24,8 @@ export default function RoomsPage() {
   const [roomName, setRoomName] = useState("");
   const [roomKind, setRoomKind] = useState<"guest" | "public">("guest");
   const [busy, setBusy] = useState(false);
+  const [templateKey, setTemplateKey] = useState("dusk");
+  const [templateList, setTemplateList] = useState<WelcomeTemplateList | null>(null);
 
   const load = useCallback(async () => {
     if (!hotelId) return;
@@ -32,6 +36,13 @@ export default function RoomsPage() {
     } catch {
       setError("Không tải được danh sách phòng.");
       setRooms([]);
+      return;
+    }
+    try {
+      const templates = await api<{ data: WelcomeTemplateList }>(`/cms/hotels/${hotelId}/welcome-templates`);
+      setTemplateList(templates.data);
+    } catch {
+      setTemplateList(null);
     }
   }, [hotelId]);
 
@@ -47,6 +58,33 @@ export default function RoomsPage() {
     setMessage(room.current_welcome?.message ?? "Chào mừng quý khách");
     setPin("");
     setError(null);
+    if (next === "checkin") {
+      setTemplateKey(templateList?.default_key ?? "dusk");
+    } else if (next === "rename") {
+      const current = room.current_welcome?.template_key ?? templateList?.default_key ?? "dusk";
+      setTemplateKey(current);
+    }
+  }
+
+  function pickerTemplates(): WelcomeTemplate[] {
+    const rows = templateList?.templates ?? [];
+    if (mode === "rename" && active?.current_welcome?.template_key) {
+      const current = active.current_welcome.template_key;
+      if (!rows.some((r) => r.key === current)) {
+        return [
+          ...rows,
+          {
+            key: current,
+            built_in_name: templateLabel(current, []),
+            display_name: null,
+            label: templateLabel(current, []),
+            is_enabled: false,
+            sort_order: 99,
+          },
+        ];
+      }
+    }
+    return rows;
   }
 
   async function submit(e: FormEvent) {
@@ -67,12 +105,12 @@ export default function RoomsPage() {
       } else if (active && mode === "checkin") {
         await api(`/cms/hotels/${hotelId}/rooms/${active.id}/check-in`, {
           method: "POST",
-          body: JSON.stringify({ guest_display_name: name, message, locale: "vi" }),
+          body: JSON.stringify({ guest_display_name: name, message, locale: "vi", template_key: templateKey }),
         });
       } else if (active && mode === "rename") {
         await api(`/cms/hotels/${hotelId}/rooms/${active.id}/welcome`, {
           method: "PATCH",
-          body: JSON.stringify({ guest_display_name: name, message }),
+          body: JSON.stringify({ guest_display_name: name, message, template_key: templateKey }),
         });
       } else if (active && mode === "pair") {
         await api(`/cms/hotels/${hotelId}/pairing-codes/claim`, {
@@ -181,7 +219,14 @@ export default function RoomsPage() {
                   </div>
                   <div>
                     {occupied ? (
-                      <p className="text-lg tracking-tight">{room.current_welcome?.guest_display_name}</p>
+                      <>
+                        <p className="text-lg tracking-tight">{room.current_welcome?.guest_display_name}</p>
+                        {room.current_welcome?.template_key ? (
+                          <p className="text-xs text-muted">
+                            {templateLabel(room.current_welcome.template_key, templateList?.templates ?? [])}
+                          </p>
+                        ) : null}
+                      </>
                     ) : (
                       <p className="text-muted">Trống — branding khách sạn</p>
                     )}
@@ -216,6 +261,7 @@ export default function RoomsPage() {
             title={dialogTitle}
             error={error}
             busy={busy}
+            wide={mode === "checkin" || mode === "rename"}
             submitLabel={mode === "create" ? "Tạo" : "Lưu"}
             onClose={() => setMode("idle")}
             onSubmit={submit}
@@ -284,6 +330,7 @@ export default function RoomsPage() {
                     className="w-full rounded-[10px] border border-line px-3 py-2"
                   />
                 </label>
+                <TemplatePicker templates={pickerTemplates()} value={templateKey} onChange={setTemplateKey} />
               </>
             )}
           </DeskDialog>

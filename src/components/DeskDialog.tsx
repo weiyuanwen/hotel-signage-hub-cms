@@ -7,6 +7,7 @@ type Props = {
   children: ReactNode;
   error?: string | null;
   busy?: boolean;
+  wide?: boolean;
   submitLabel?: string;
   onClose: () => void;
   onSubmit?: (event: FormEvent) => void;
@@ -17,6 +18,7 @@ export function DeskDialog({
   children,
   error,
   busy,
+  wide,
   submitLabel = "Lưu",
   onClose,
   onSubmit,
@@ -46,11 +48,16 @@ export function DeskDialog({
   return (
     <div className="fixed inset-0 z-20 grid place-items-end bg-ink/40 p-4 md:place-items-center">
       {onSubmit ? (
-        <form onSubmit={onSubmit} className="w-full max-w-md space-y-4 rounded-[10px] bg-bg p-5">
+        <form
+          onSubmit={onSubmit}
+          className={`w-full space-y-4 rounded-[10px] bg-bg p-5 ${wide ? "max-w-2xl" : "max-w-md"}`}
+        >
           {inner}
         </form>
       ) : (
-        <div className="w-full max-w-md space-y-4 rounded-[10px] bg-bg p-5">{inner}</div>
+        <div className={`w-full space-y-4 rounded-[10px] bg-bg p-5 ${wide ? "max-w-2xl" : "max-w-md"}`}>
+          {inner}
+        </div>
       )}
     </div>
   );
