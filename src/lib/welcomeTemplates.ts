@@ -65,9 +65,12 @@ export function isWelcomeTemplateKey(value: string): value is WelcomeTemplateKey
 
 export function templateLabel(
   key: string,
-  templates: { key: string; label: string }[],
+  templates: { key: string; display_name?: string | null; label: string }[],
+  named?: (key: WelcomeTemplateKey) => string,
 ): string {
   const row = templates.find((t) => t.key === key);
+  if (row?.display_name?.trim()) return row.display_name;
+  if (isWelcomeTemplateKey(key) && named) return named(key);
   if (row) return row.label;
   if (isWelcomeTemplateKey(key)) return BUILTIN_LABELS[key];
   return key;

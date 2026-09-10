@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Be_Vietnam_Pro, Geist, Geist_Mono } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import { SessionProvider } from "@/lib/session";
 import "./globals.css";
 
@@ -13,14 +14,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin", "latin-ext"],
 });
 
+const beVietnam = Be_Vietnam_Pro({
+  variable: "--font-be-vietnam",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
-  title: "Signage Desk",
-  description: "Quầy lễ tân Hotel Signage Hub",
+  title: {
+    default: "Signage Desk",
+    template: "%s · Signage Desk",
+  },
+  description: "TV chào khách 16:9 cho quầy lễ tân. Hotel Signage Hub.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const locale = await getLocale();
+
   return (
-    <html lang="vi" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
+    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} ${beVietnam.variable} h-full`}>
       <body className="min-h-full bg-bg text-ink antialiased">
         <SessionProvider>{children}</SessionProvider>
       </body>

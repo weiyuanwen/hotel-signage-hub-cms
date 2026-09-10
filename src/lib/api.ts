@@ -35,6 +35,13 @@ export class ApiError extends Error {
   }
 }
 
+export function apiErrorMessage(err: unknown, fallback: string): string {
+  if (!(err instanceof ApiError) || !err.body || typeof err.body !== "object") return fallback;
+  const body = err.body as { message?: string; errors?: Record<string, string[]> };
+  const first = body.errors ? Object.values(body.errors).flat()[0] : undefined;
+  return first || body.message || fallback;
+}
+
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const token = getToken();
   const headers = new Headers(init.headers);
@@ -61,11 +68,52 @@ export type CmsUser = {
   hotels: { id: number; name: string; slug: string }[];
 };
 
+export type HotelPlan = "trial" | "free" | "standard" | "premium";
+
 export type Hotel = {
   id: number;
   name: string;
   slug: string;
   default_locale: string;
+  plan?: HotelPlan;
+  plan_label?: string;
+  device_limit?: number | null;
+  pairing_mode?: "pin" | "link";
+  paired_device_count?: number;
+};
+
+export function hotelQuotaLabel(
+  hotel: Hotel | undefined,
+  copy: {
+    plan: (plan: HotelPlan) => string;
+    limited: (values: { plan: string; used: number; limit: number }) => string;
+    open: (values: { plan: string; used: number }) => string;
+  },
+): string | null {
+  if (!hotel?.plan) return null;
+  const used = hotel.paired_device_count ?? 0;
+  const plan = copy.plan(hotel.plan);
+  if (hotel.device_limit == null) return copy.open({ plan, used });
+  return copy.limited({ plan, used, limit: hotel.device_limit });
+}
+
+export type WeatherRegion = {
+  key: string;
+  label: string;
+  latitude: number;
+  longitude: number;
+};
+
+export type HotelBranding = {
+  id: number;
+  name: string;
+  weather_region: string | null;
+  weather: WeatherRegion | null;
+  logo_url: string | null;
+  background_url: string | null;
+  background_kind: "image" | "video" | null;
+  wifi_ssid: string | null;
+  wifi_password: string | null;
 };
 
 export type Room = {
@@ -76,6 +124,9 @@ export type Room = {
   kind: "guest" | "public";
   current_welcome_id: number | null;
   content_revision: number;
+  paired_tv_count?: number;
+  background_url?: string | null;
+  background_kind?: "image" | "video" | null;
   current_welcome?: {
     guest_display_name: string;
     message: string | null;
@@ -91,6 +142,8 @@ export type WelcomeTemplate = {
   label: string;
   is_enabled: boolean;
   sort_order: number;
+  layout?: import("./welcomeLayout").WelcomeLayout;
+  background_url?: string | null;
 };
 
 export type WelcomeTemplateList = {
@@ -98,12 +151,41 @@ export type WelcomeTemplateList = {
   templates: WelcomeTemplate[];
 };
 
+export type DeviceScreen = {
+  hotel: {
+    id: number;
+    name: string;
+    logo_url: string | null;
+    wifi?: { ssid: string; password: string | null } | null;
+  };
+  room: {
+    id: number;
+    code: string;
+    kind: "guest" | "public";
+  };
+  guest: {
+    display_name: string;
+    message: string | null;
+    locale: string;
+  } | null;
+  template: { key: string; mode?: "look" | "video"; layout?: import("./welcomeLayout").WelcomeLayout | null } | null;
+  media: {
+    background_url: string | null;
+    kind?: "image" | "video" | null;
+  };
+};
+
 export type Device = {
   id: number;
   name: string | null;
   status: string;
   room_id: number | null;
+  room_code?: string | null;
+  room_name?: string | null;
+  room_kind?: "guest" | "public" | null;
+  room_guest?: string | null;
   online: boolean;
+  screen?: DeviceScreen | null;
 };
 
 export type StaffMember = {
