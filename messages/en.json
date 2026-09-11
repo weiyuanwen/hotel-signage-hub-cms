@@ -260,6 +260,9 @@
       "defaultWelcome": "Welcome",
       "createSubmit": "Create",
       "pairPin": "Pair TV",
+      "pairMethodPin": "Enter PIN",
+      "pairMethodLink": "Copy link",
+      "pairMethodLabel": "Pairing method",
       "copyLink": "Copy link",
       "linkHint": "Open this link on the TV (player browser). No PIN. Every TV in this room shows the same content{count}.",
       "linkHintCount": " ({count} TVs now)",
@@ -304,7 +307,7 @@
       "online": "Online",
       "offline": "Offline",
       "unpair": "Unpair",
-      "emptyLink": "No TVs paired. Open Rooms, tap Pair TV, copy the link, then open it on the screen.",
+      "emptyLink": "No TVs paired. Open Rooms → Pair TV: enter the PIN on the TV, or copy the link and open it on the screen.",
       "emptyPin": "No TVs paired. Open the player, read the PIN, then Pair TV on Rooms."
     },
     "hotelPage": {
@@ -460,7 +463,15 @@
       "unpair": "Unpair TV",
       "saveError": "Could not save the device.",
       "unpairError": "Could not unpair the TV.",
-      "network": "Network error."
+      "network": "Network error.",
+      "bgTitle": "Background for this TV",
+      "bgBody": "This TV only. Image, video, or YouTube — same as the room screen menu. Other TVs in the room stay as they are.",
+      "bgUse": "Use on this TV",
+      "bgRoom": "Use room background",
+      "bgEmpty": "No own background. This TV follows the room or hotel default.",
+      "bgUpgrade": "Per-TV backgrounds are on Plus and Premium. Current plan: {plan}.",
+      "bgPreview": "TV background preview",
+      "open": "Details"
     },
     "roomBg": {
       "title": "TV background for {code}",

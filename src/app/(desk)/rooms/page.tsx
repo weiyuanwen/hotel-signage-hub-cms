@@ -49,12 +49,14 @@ function RoomsBody() {
   hotelIdRef.current = hotelId;
   const [notice, setNotice] = useState<string | null>(null);
   const [pairLink, setPairLink] = useState<string | null>(null);
+  const [pairMethod, setPairMethod] = useState<"pin" | "link">("pin");
   const [query, setQuery] = useState("");
   const [occupancy, setOccupancy] = useState<"all" | "occupied" | "vacant">("all");
   const [simTarget, setSimTarget] = useState<0 | 50 | 100>(0);
   const [roomPage, setRoomPage] = useState(1);
   const hotel = hotels.find((item) => item.id === hotelId);
   const pairingMode = hotel?.pairing_mode ?? "pin";
+  const canCopyLink = pairingMode === "link";
   const quota = hotelQuotaLabel(hotel, {
     plan: (plan) => t(`plans.${plan}`),
     limited: (values) => t("quotaLimited", values),
@@ -131,7 +133,7 @@ function RoomsBody() {
   }, [templateList, mode, active]);
 
   useEffect(() => {
-    if (mode !== "pair" || pairingMode !== "link" || !hotelId || !active) return;
+    if (mode !== "pair" || pairMethod !== "link" || !canCopyLink || !hotelId || !active) return;
     let cancelled = false;
     setPairLink(null);
     setBusy(true);
@@ -152,7 +154,7 @@ function RoomsBody() {
     return () => {
       cancelled = true;
     };
-  }, [mode, pairingMode, hotelId, active, t]);
+  }, [mode, pairMethod, canCopyLink, hotelId, active, t]);
 
   function open(next: Mode, room: Room) {
     if (room.id < 0) {
@@ -167,6 +169,7 @@ function RoomsBody() {
     setMessage(room.current_welcome?.message ?? t("rooms.defaultWelcome"));
     setPin("");
     setPairLink(null);
+    setPairMethod("pin");
     setError(null);
     setNotice(null);
     templateTouchedRef.current = false;
@@ -247,7 +250,7 @@ function RoomsBody() {
           }),
         });
       } else if (active && mode === "pair") {
-        if (pairingMode === "link") {
+        if (pairMethod === "link") {
           if (!pairLink) return;
           await navigator.clipboard.writeText(pairLink);
           setNotice(t("rooms.copied", { code: active.code }));
@@ -579,7 +582,7 @@ function RoomsBody() {
             mode === "create"
               ? t("rooms.createSubmit")
               : mode === "pair"
-                ? pairingMode === "link"
+                ? pairMethod === "link"
                   ? t("rooms.copyLink")
                   : t("rooms.pairPin")
                 : t("save")
@@ -621,33 +624,63 @@ function RoomsBody() {
               </label>
             </>
           ) : mode === "pair" ? (
-            pairingMode === "link" ? (
-              <>
-                <p className="text-sm text-muted">{t("rooms.linkHint", { count: pairCountHint })}</p>
-                <label className="block space-y-1.5">
-                  <span className="text-sm font-medium">{t("rooms.linkLabel")}</span>
-                  <input
-                    value={pairLink ?? (busy ? t("rooms.linkBusy") : "")}
-                    readOnly
-                    className="desk-field font-mono text-sm"
-                  />
-                </label>
-              </>
-            ) : (
-              <>
-                <p className="text-sm text-muted">{t("rooms.pinHint", { count: pairCountHint })}</p>
-                <label className="block space-y-1.5">
-                  <span className="text-sm font-medium">{t("rooms.pinLabel")}</span>
-                  <input
-                    value={pin}
-                    onChange={(e) => setPin(e.target.value.toUpperCase())}
-                    className="desk-field font-mono tracking-[0.2em]"
-                    maxLength={8}
-                    required
-                  />
-                </label>
-              </>
-            )
+            <>
+              {canCopyLink ? (
+                <div className="flex flex-wrap gap-1" role="tablist" aria-label={t("rooms.pairMethodLabel")}>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={pairMethod === "pin"}
+                    onClick={() => {
+                      setError(null);
+                      setPairMethod("pin");
+                    }}
+                    className={pairMethod === "pin" ? "desk-btn-primary !px-2.5 !py-1 text-xs" : "desk-btn-ghost !px-2.5 !py-1 text-xs"}
+                  >
+                    {t("rooms.pairMethodPin")}
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={pairMethod === "link"}
+                    onClick={() => {
+                      setError(null);
+                      setPairMethod("link");
+                    }}
+                    className={pairMethod === "link" ? "desk-btn-primary !px-2.5 !py-1 text-xs" : "desk-btn-ghost !px-2.5 !py-1 text-xs"}
+                  >
+                    {t("rooms.pairMethodLink")}
+                  </button>
+                </div>
+              ) : null}
+              {pairMethod === "link" && canCopyLink ? (
+                <>
+                  <p className="text-sm text-muted">{t("rooms.linkHint", { count: pairCountHint })}</p>
+                  <label className="block space-y-1.5">
+                    <span className="text-sm font-medium">{t("rooms.linkLabel")}</span>
+                    <input
+                      value={pairLink ?? (busy ? t("rooms.linkBusy") : "")}
+                      readOnly
+                      className="desk-field font-mono text-sm"
+                    />
+                  </label>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm text-muted">{t("rooms.pinHint", { count: pairCountHint })}</p>
+                  <label className="block space-y-1.5">
+                    <span className="text-sm font-medium">{t("rooms.pinLabel")}</span>
+                    <input
+                      value={pin}
+                      onChange={(e) => setPin(e.target.value.toUpperCase())}
+                      className="desk-field font-mono tracking-[0.2em]"
+                      maxLength={8}
+                      required
+                    />
+                  </label>
+                </>
+              )}
+            </>
           ) : (
             <>
               <label className="block space-y-1.5">
@@ -685,6 +718,7 @@ function RoomsBody() {
       {editingDevice && hotelId ? (
         <DeviceEditDialog
           hotelId={hotelId}
+          hotel={hotel}
           device={editingDevice}
           rooms={rooms ?? []}
           canUnpair={canManageRooms(user)}

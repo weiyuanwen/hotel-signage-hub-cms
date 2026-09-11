@@ -260,6 +260,9 @@
       "defaultWelcome": "Chào mừng quý khách",
       "createSubmit": "Tạo",
       "pairPin": "Ghép TV",
+      "pairMethodPin": "Nhập mã",
+      "pairMethodLink": "Sao chép link",
+      "pairMethodLabel": "Cách ghép TV",
       "copyLink": "Sao chép link",
       "linkHint": "Mở link này trên TV (trình duyệt player). Không cần gõ mã. Mọi TV cùng phòng hiện chung nội dung{count}.",
       "linkHintCount": " (hiện {count} TV)",
@@ -304,7 +307,7 @@
       "online": "Online",
       "offline": "Offline",
       "unpair": "Gỡ ghép",
-      "emptyLink": "Chưa ghép TV. Vào Phòng, bấm Ghép TV, sao chép link rồi mở trên màn hình.",
+      "emptyLink": "Chưa ghép TV. Vào Phòng, bấm Ghép TV: nhập mã trên TV, hoặc sao chép link rồi mở trên màn hình.",
       "emptyPin": "Chưa ghép TV. Mở player, lấy PIN, rồi Ghép TV ở trang Phòng."
     },
     "hotelPage": {
@@ -460,7 +463,15 @@
       "unpair": "Gỡ ghép TV",
       "saveError": "Không lưu được thiết bị.",
       "unpairError": "Không gỡ được TV.",
-      "network": "Lỗi mạng."
+      "network": "Lỗi mạng.",
+      "bgTitle": "Nền riêng TV này",
+      "bgBody": "Chỉ TV này. Ảnh/video/YouTube như nền phòng. TV khác trong cùng phòng không đổi.",
+      "bgUse": "Dùng trên TV này",
+      "bgRoom": "Dùng nền phòng",
+      "bgEmpty": "Chưa có nền riêng. TV đang theo nền phòng hoặc khách sạn.",
+      "bgUpgrade": "Nền riêng từng TV dành cho gói Plus và Cao cấp. Gói hiện tại: {plan}.",
+      "bgPreview": "Xem trước nền TV",
+      "open": "Chi tiết"
     },
     "roomBg": {
       "title": "Nền TV phòng {code}",

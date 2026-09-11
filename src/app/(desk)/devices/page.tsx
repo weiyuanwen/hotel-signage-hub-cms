@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { DeviceEditDialog } from "@/components/DeviceEditDialog";
 import { DeskEmpty, DeskHeader, DeskMain, DeskSkeleton } from "@/components/desk/ui";
-import { api, hotelQuotaLabel, type Device } from "@/lib/api";
+import { api, hotelQuotaLabel, type Device, type Room } from "@/lib/api";
 import { canManageRooms } from "@/lib/roles";
 import { useSession } from "@/lib/session";
 
@@ -17,12 +18,19 @@ export default function DevicesPage() {
     open: (values) => t("quotaOpen", values),
   });
   const [devices, setDevices] = useState<Device[] | null>(null);
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [editing, setEditing] = useState<Device | null>(null);
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
     if (!hotelId) return;
-    const res = await api<{ data: Device[] }>(`/cms/hotels/${hotelId}/devices`);
-    setDevices(res.data);
+    const [deviceRes, roomRes] = await Promise.all([
+      api<{ data: Device[] }>(`/cms/hotels/${hotelId}/devices`),
+      api<{ data: Room[] }>(`/cms/hotels/${hotelId}/rooms`).catch(() => ({ data: [] as Room[] })),
+    ]);
+    setDevices(deviceRes.data);
+    setRooms(roomRes.data);
+    setEditing((current) => current ? deviceRes.data.find((item) => item.id === current.id) ?? null : null);
   }, [hotelId]);
 
   useEffect(() => {
@@ -97,16 +105,23 @@ export default function DevicesPage() {
                       : d.status}
                   </td>
                   <td className="px-4 py-4 align-top text-right">
-                    {canUnpair && d.status === "paired" ? (
-                      <button
-                        type="button"
-                        disabled={busy}
-                        onClick={() => void unpair(d)}
-                        className="desk-btn-danger"
-                      >
-                        {t("devices.unpair")}
-                      </button>
-                    ) : null}
+                    <div className="flex flex-wrap justify-end gap-2">
+                      {d.status === "paired" ? (
+                        <button type="button" onClick={() => setEditing(d)} className="desk-btn-ghost">
+                          {t("deviceEdit.open")}
+                        </button>
+                      ) : null}
+                      {canUnpair && d.status === "paired" ? (
+                        <button
+                          type="button"
+                          disabled={busy}
+                          onClick={() => void unpair(d)}
+                          className="desk-btn-danger"
+                        >
+                          {t("devices.unpair")}
+                        </button>
+                      ) : null}
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -114,6 +129,17 @@ export default function DevicesPage() {
           </table>
         </div>
       )}
+      {editing && hotelId ? (
+        <DeviceEditDialog
+          hotelId={hotelId}
+          hotel={hotel}
+          device={editing}
+          rooms={rooms}
+          canUnpair={canUnpair}
+          onClose={() => setEditing(null)}
+          onSaved={() => load()}
+        />
+      ) : null}
     </DeskMain>
   );
 }

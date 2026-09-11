@@ -2,7 +2,11 @@ const TOKEN_KEY = "hsh.token";
 const HOTEL_KEY = "hsh.hotel";
 
 export function apiBase(): string {
-  return process.env.NEXT_PUBLIC_API_URL ?? "http://hubback.test/api";
+  const configured = process.env.NEXT_PUBLIC_API_URL?.trim();
+  if (process.env.NODE_ENV === "production") {
+    return "";
+  }
+  return (configured || "http://hubback.test/api").replace(/\/$/, "");
 }
 
 export function getToken(): string | null {
@@ -80,6 +84,7 @@ export type Hotel = {
   device_limit?: number | null;
   pairing_mode?: "pin" | "link";
   paired_device_count?: number;
+  allows_device_backgrounds?: boolean;
 };
 
 export function hotelQuotaLabel(
@@ -184,6 +189,8 @@ export type Device = {
   room_name?: string | null;
   room_kind?: "guest" | "public" | null;
   room_guest?: string | null;
+  background_url?: string | null;
+  background_kind?: "image" | "video" | null;
   online: boolean;
   screen?: DeviceScreen | null;
 };
