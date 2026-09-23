@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getPathname } from "@/i18n/navigation";
 import { routing, type AppLocale, type AppPathname } from "@/i18n/routing";
+import { photos } from "@/lib/marketing";
 
 const sectionPath = {
   home: "/",
@@ -69,13 +70,13 @@ export async function marketingMetadata(locale: AppLocale, section: MarketingSec
       siteName,
       title,
       description,
-      images: [{ url: "/brand/og.png", width: 1200, height: 630, alt: "SignageHub" }],
+      images: [{ url: photos.lounge, width: 1400, height: 788, alt: "SignageHub" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/brand/og.png"],
+      images: [photos.lounge],
     },
     robots: {
       index: section !== "login",

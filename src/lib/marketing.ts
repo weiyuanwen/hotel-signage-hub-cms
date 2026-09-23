@@ -1,12 +1,11 @@
+import { R2_PUBLIC } from "@/lib/r2Public";
 import type { WelcomeTemplateKey } from "@/lib/welcomeTemplates";
 
 export const photos = {
-  lobby:
-    "https://images.unsplash.com/photo-1759038086403-c607d67bb245?auto=format&fit=crop&w=1800&q=80",
-  lounge:
-    "https://images.unsplash.com/photo-1756392740252-7bbb3ef8d521?auto=format&fit=crop&w=1400&q=80",
-  bar: "https://images.unsplash.com/photo-1759038085935-b2f14c2c04a7?auto=format&fit=crop&w=1400&q=80",
-  room: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=80",
+  lobby: `${R2_PUBLIC}/landing/lobby.jpg`,
+  lounge: `${R2_PUBLIC}/landing/lounge.jpg`,
+  bar: `${R2_PUBLIC}/landing/bar.jpg`,
+  room: `${R2_PUBLIC}/landing/room.jpg`,
 };
 
 export const templateScenes: Record<WelcomeTemplateKey, string> = {
@@ -15,7 +14,7 @@ export const templateScenes: Record<WelcomeTemplateKey, string> = {
   harbor: photos.bar,
   garden: photos.lobby,
   stone: photos.room,
-  vista: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1800&q=80",
+  vista: `${R2_PUBLIC}/landing/vista.jpg`,
 };
 
 export const TV_OVERLAY: Record<string, string> = {

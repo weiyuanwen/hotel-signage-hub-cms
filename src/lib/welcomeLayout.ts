@@ -1,3 +1,5 @@
+import { R2_PUBLIC } from "@/lib/r2Public";
+
 export const TEMPLATE_TONES = ["neutral", "warm", "cool", "soft", "contrast"] as const;
 export type TemplateTone = (typeof TEMPLATE_TONES)[number];
 
@@ -84,15 +86,15 @@ export const COPY_LIMITS = {
 } as const;
 
 export const GALLERY: Record<GalleryId, { url: string }> = {
-  sunlit: { url: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1920&q=80" },
-  pool: { url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80" },
-  cafe: { url: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1920&q=80" },
-  garden: { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80" },
-  coastal: { url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1920&q=80" },
-  lobby: { url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80" },
-  terrace: { url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1920&q=80" },
-  spa: { url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80" },
-  suite: { url: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1920&q=80" },
+  sunlit: { url: `${R2_PUBLIC}/landing/gallery/sunlit.jpg` },
+  pool: { url: `${R2_PUBLIC}/landing/gallery/pool.jpg` },
+  cafe: { url: `${R2_PUBLIC}/landing/gallery/cafe.jpg` },
+  garden: { url: `${R2_PUBLIC}/landing/gallery/garden.jpg` },
+  coastal: { url: `${R2_PUBLIC}/landing/gallery/coastal.jpg` },
+  lobby: { url: `${R2_PUBLIC}/landing/gallery/lobby.jpg` },
+  terrace: { url: `${R2_PUBLIC}/landing/gallery/terrace.jpg` },
+  spa: { url: `${R2_PUBLIC}/landing/gallery/spa.jpg` },
+  suite: { url: `${R2_PUBLIC}/landing/gallery/suite.jpg` },
 };
 
 export const TONE_FILTER: Record<TemplateTone, string> = {

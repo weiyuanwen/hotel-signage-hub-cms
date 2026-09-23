@@ -12,6 +12,7 @@ import { DeskEmpty, DeskError, DeskHeader, DeskMain, DeskNotice, DeskPager, Desk
 import { useDeskLocale } from "@/components/desk/desk-i18n";
 import { api, apiErrorMessage, hotelQuotaLabel, type Device, type Room, type WelcomeTemplate, type WelcomeTemplateList } from "@/lib/api";
 import { canManageRooms } from "@/lib/roles";
+import { R2_PUBLIC } from "@/lib/r2Public";
 import { useSession } from "@/lib/session";
 import { templateLabel, type WelcomeTemplateKey } from "@/lib/welcomeTemplates";
 
@@ -799,7 +800,7 @@ function mergeSimulatedDevices(
             ? { key: room.current_welcome.template_key, mode: "look", layout: null }
             : { key: "dusk", mode: "look", layout: null },
           media: {
-            background_url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=960&q=60",
+            background_url: `${R2_PUBLIC}/landing/gallery/garden.jpg`,
             kind: "image",
           },
         },

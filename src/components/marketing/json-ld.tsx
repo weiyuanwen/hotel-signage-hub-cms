@@ -48,7 +48,7 @@ export async function MarketingJsonLd({
     "@type": "Organization",
     name: "SignageHub",
     url: base,
-    logo: `${base}/brand/logo.png`,
+    logo: `${base}/brand/logo.svg`,
     email: SUPPORT_EMAIL,
     contactPoint: {
       "@type": "ContactPoint",

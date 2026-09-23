@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 type BrandMarkProps = {
   variant?: "lockup" | "onDark" | "mark";
   className?: string;
@@ -8,12 +6,11 @@ type BrandMarkProps = {
 export function BrandMark({ variant = "lockup", className = "" }: BrandMarkProps) {
   if (variant === "mark") {
     return (
-      <Image
-        src="/brand/app-icon.png"
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src="/brand/mark.svg"
         alt="SignageHub"
-        width={36}
-        height={36}
-        className={`size-8 rounded-[9px] ${className}`.trim()}
+        className={`size-8 ${className}`.trim()}
       />
     );
   }
@@ -31,13 +28,11 @@ export function BrandMark({ variant = "lockup", className = "" }: BrandMarkProps
   }
 
   return (
-    <Image
-      src="/brand/logo.png"
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/brand/logo.svg"
       alt="SignageHub"
-      width={238}
-      height={80}
       className={`h-7 w-auto ${className}`.trim()}
-      priority
     />
   );
 }

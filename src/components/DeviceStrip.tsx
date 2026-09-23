@@ -6,11 +6,11 @@ import type { Device, DeviceScreen } from "@/lib/api";
 import { WelcomeCanvas } from "@/components/WelcomeCanvas";
 import { DeskPager } from "@/components/desk/ui";
 import { useDeskLocale } from "@/components/desk/desk-i18n";
+import { R2_PUBLIC } from "@/lib/r2Public";
 import { embedSrc, parseVideoUrl } from "@/lib/videoSource";
 import { normalizeLayout, resolveBackgroundUrl } from "@/lib/welcomeLayout";
 
-const FALLBACK_GROUNDS =
-  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=960&q=60";
+const FALLBACK_GROUNDS = `${R2_PUBLIC}/landing/gallery/garden.jpg`;
 
 const OVERLAY: Record<string, string> = {
   dusk: "rgb(18 10 4 / 0.38)",
