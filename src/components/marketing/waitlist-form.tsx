@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { CheckCircle } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
@@ -35,6 +35,12 @@ export function WaitlistForm({
   const [pay, setPay] = useState<{ email: string; hotelName?: string; plan: PaidPlan } | null>(null);
 
   const paid = plan === "standard" || plan === "premium";
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("celebrate") !== "1") return;
+    const next: PaidPlan = plan === "premium" ? "premium" : "standard";
+    setPay({ email: "preview@signagehub.online", plan: next });
+  }, [plan]);
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();

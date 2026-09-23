@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { CheckCircle, Copy, X } from "@phosphor-icons/react";
 import { MailSpamNotice } from "@/components/marketing/mail-spam-notice";
+import { PaySuccessFireworks } from "@/components/marketing/pay-success-fireworks";
 import { Button } from "@/components/ui/button";
 import { api, apiErrorMessage } from "@/lib/api";
 import { Link } from "@/i18n/navigation";
@@ -44,6 +45,20 @@ export function PaymentDialog({
   useEffect(() => {
     if (started.current) return;
     started.current = true;
+    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("celebrate") === "1") {
+      setOrder({
+        order_code: "SHUBPREVIEW00",
+        status: "paid",
+        plan,
+        method: "bank",
+        amount_vnd: 0,
+        transfer_content: null,
+        qr_image_url: null,
+        bank: null,
+        expires_at: null,
+      });
+      return;
+    }
     setBusy(true);
     void api<Checkout>("/cms/billing/checkout", {
       method: "POST",
@@ -72,7 +87,8 @@ export function PaymentDialog({
 
   return (
     <div className="fixed inset-0 z-[80] grid place-items-center bg-black/65 p-4" role="dialog" aria-modal="true" aria-labelledby="pay-title">
-      <div className="relative w-full max-w-[440px] rounded-3xl bg-[var(--ivory)] p-6 text-[var(--night)] shadow-[0_24px_80px_rgb(0_0_0/0.4)]">
+      <PaySuccessFireworks active={paid} />
+      <div className="relative z-[82] w-full max-w-[440px] rounded-3xl bg-[var(--ivory)] p-6 text-[var(--night)] shadow-[0_24px_80px_rgb(0_0_0/0.4)]">
         <button type="button" onClick={onClose} className="absolute top-4 right-4 text-[var(--night)]/50 hover:text-[var(--night)]" aria-label={t("close")}>
           <X className="size-5" />
         </button>

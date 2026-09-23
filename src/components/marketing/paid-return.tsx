@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { CheckCircle } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 import { MailSpamNotice } from "@/components/marketing/mail-spam-notice";
+import { PaySuccessFireworks } from "@/components/marketing/pay-success-fireworks";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { api } from "@/lib/api";
@@ -61,6 +62,7 @@ export function PaidReturn({ code }: { code: string }) {
 
   return (
     <div className="grid gap-4 text-white" role="status">
+      <PaySuccessFireworks active={paid} />
       <p className="flex items-center gap-2 text-sm">
         <CheckCircle className="size-4 shrink-0" weight="fill" />
         {paid ? t("returnReady") : missing ? t("returnMissing") : t("returnPending")}
