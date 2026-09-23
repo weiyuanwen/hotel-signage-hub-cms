@@ -122,7 +122,7 @@
   },
   "pricing": {
     "title": "Một TV miễn phí. Trả tháng khi cần thêm.",
-    "body": "Miễn phí 1 TV. 3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ. Thanh toán chuyển khoản Việt Nam hoặc thẻ Stripe.",
+    "body": "Miễn phí 1 TV. 3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ. Thanh toán chuyển khoản Việt Nam.",
     "freeName": "1 TV miễn phí",
     "freePrice": "0đ",
     "freePairing": "Thử một màn. Ghép bằng mã PIN. Không hết hạn.",
@@ -131,7 +131,7 @@
     "threeName": "3 thiết bị",
     "threePrice": "15.000đ/tháng",
     "threePairing": "Sảnh và vài phòng. Ghép bằng mã PIN trên TV.",
-    "threeNote": "Thanh toán chuyển khoản hoặc Stripe. Hết hạn thì TV ngừng chiếu.",
+    "threeNote": "Thanh toán chuyển khoản Việt Nam. Hết hạn thì TV ngừng chiếu.",
     "threeCta": "Mua 3 TV",
     "manyName": "Nhiều thiết bị",
     "manyPrice": "50.000đ/tháng",
@@ -197,8 +197,8 @@
   },
   "pay": {
     "title": "Thanh toán gói",
-    "body": "Chuyển khoản nội địa hoặc thẻ quốc tế. Nội dung CK là mã đơn, đừng sửa.",
-    "pick": "Chọn cách thanh toán.",
+    "body": "Chuyển khoản Việt Nam. Nội dung CK là mã đơn, đừng sửa.",
+    "pick": "Đang tạo mã chuyển khoản.",
     "creating": "Đang tạo đơn…",
     "bank": "Chuyển khoản VN",
     "card": "Thẻ / Stripe",

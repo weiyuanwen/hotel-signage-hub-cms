@@ -122,7 +122,7 @@
   },
   "pricing": {
     "title": "One TV free. Pay monthly when you need more.",
-    "body": "Free for 1 TV. 3 screens at $3 a month. Many screens at $5. Pay by Vietnam bank transfer or Stripe card.",
+    "body": "Free for 1 TV. 3 screens at $3 a month. Many screens at $5. Pay by Vietnam bank transfer.",
     "freeName": "1 TV free",
     "freePrice": "$0",
     "freePairing": "Try one screen. Pair with a PIN. No expiry.",
@@ -131,7 +131,7 @@
     "threeName": "3 screens",
     "threePrice": "$3/month",
     "threePairing": "Lobby and a few rooms. Pair with the PIN on the TV.",
-    "threeNote": "Pay by bank transfer or Stripe. TVs stop when the month ends.",
+    "threeNote": "Pay by Vietnam bank transfer. TVs stop when the month ends.",
     "threeCta": "Buy 3 TVs",
     "manyName": "Many screens",
     "manyPrice": "$5/month",
@@ -197,8 +197,8 @@
   },
   "pay": {
     "title": "Pay for the plan",
-    "body": "Vietnam bank transfer or international card. Keep the transfer note exactly as shown.",
-    "pick": "Choose how to pay.",
+    "body": "Vietnam bank transfer. Keep the transfer note exactly as shown.",
+    "pick": "Creating the transfer order.",
     "creating": "Creating the order…",
     "bank": "Vietnam transfer",
     "card": "Card / Stripe",

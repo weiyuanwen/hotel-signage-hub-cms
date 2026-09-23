@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { CheckCircle, Copy, X } from "@phosphor-icons/react";
 import { MailSpamNotice } from "@/components/marketing/mail-spam-notice";
@@ -16,10 +16,8 @@ type Checkout = {
   plan: PaidPlan;
   method: "bank" | "stripe";
   amount_vnd: number;
-  amount_usd_cents: number;
   transfer_content: string | null;
   qr_image_url: string | null;
-  stripe_url: string | null;
   bank: { bank_id: string; bank_name?: string; account_no: string; account_name: string } | null;
   expires_at: string | null;
 };
@@ -38,30 +36,23 @@ export function PaymentDialog({
   onClose: () => void;
 }) {
   const t = useTranslations("pay");
-  const [method, setMethod] = useState<"bank" | "stripe">("bank");
   const [order, setOrder] = useState<Checkout | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const started = useRef(false);
 
-  async function start(next: "bank" | "stripe") {
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
     setBusy(true);
-    setError(null);
-    try {
-      const created = await api<Checkout>("/cms/billing/checkout", {
-        method: "POST",
-        body: JSON.stringify({ email, hotel_name: hotelName, plan, method: next, locale }),
-      });
-      setMethod(next);
-      setOrder(created);
-      if (next === "stripe" && created.stripe_url) {
-        window.open(created.stripe_url, "signagehub-stripe", "popup,width=480,height=720");
-      }
-    } catch (err) {
-      setError(apiErrorMessage(err, t("failed")));
-    } finally {
-      setBusy(false);
-    }
-  }
+    void api<Checkout>("/cms/billing/checkout", {
+      method: "POST",
+      body: JSON.stringify({ email, hotel_name: hotelName, plan, method: "bank", locale }),
+    })
+      .then(setOrder)
+      .catch((err) => setError(apiErrorMessage(err, t("failed"))))
+      .finally(() => setBusy(false));
+  }, [email, hotelName, locale, plan, t]);
 
   useEffect(() => {
     if (!order || order.status !== "pending") return;
@@ -72,9 +63,9 @@ export function PaymentDialog({
       } catch {
         /* keep last */
       }
-    }, (order.method === "bank" ? 8000 : 3000));
+    }, 8000);
     return () => window.clearInterval(id);
-  }, [order?.order_code, order?.status, order?.method]);
+  }, [order?.order_code, order?.status]);
 
   const paid = order?.status === "paid";
   const expired = order?.status === "expired";
@@ -103,85 +94,53 @@ export function PaymentDialog({
               <Link href="/login">{t("signIn")}</Link>
             </Button>
           </div>
+        ) : !order ? (
+          <p className="mt-5 text-sm text-[var(--night)]/60">{busy ? t("creating") : t("failed")}</p>
         ) : (
-          <>
-            <div className="mt-5 grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => void start("bank")}
-                disabled={busy}
-                className={`rounded-full px-3 py-2 text-sm ${method === "bank" && order ? "bg-[var(--night)] text-[var(--ivory)]" : "border border-[var(--night)]/15"}`}
-              >
-                {t("bank")}
-              </button>
-              <button
-                type="button"
-                onClick={() => void start("stripe")}
-                disabled={busy}
-                className={`rounded-full px-3 py-2 text-sm ${method === "stripe" && order ? "bg-[var(--night)] text-[var(--ivory)]" : "border border-[var(--night)]/15"}`}
-              >
-                {t("card")}
-              </button>
-            </div>
-
-            {!order ? (
-              <p className="mt-5 text-sm text-[var(--night)]/60">{busy ? t("creating") : t("pick")}</p>
-            ) : method === "bank" ? (
-              <div className="mt-5 grid gap-3">
-                {order.qr_image_url ? (
-                  <img src={order.qr_image_url} alt={t("qrAlt")} width={224} height={224} className="mx-auto rounded-2xl bg-white p-2" />
-                ) : null}
-                <dl className="grid gap-1.5 rounded-2xl bg-white/70 px-3 py-3 text-sm">
-                  {order.bank?.bank_id || order.bank?.bank_name ? (
-                    <div className="flex justify-between gap-3">
-                      <dt className="text-[var(--night)]/50">{t("bankName")}</dt>
-                      <dd>{order.bank.bank_name || order.bank.bank_id}</dd>
-                    </div>
-                  ) : null}
-                  {order.bank?.account_no ? (
-                    <div className="flex justify-between gap-3">
-                      <dt className="text-[var(--night)]/50">{t("accountNo")}</dt>
-                      <dd className="font-mono">{order.bank.account_no}</dd>
-                    </div>
-                  ) : null}
-                  {order.bank?.account_name ? (
-                    <div className="flex justify-between gap-3">
-                      <dt className="text-[var(--night)]/50">{t("accountName")}</dt>
-                      <dd className="text-right">{order.bank.account_name}</dd>
-                    </div>
-                  ) : null}
-                  <div className="flex justify-between gap-3">
-                    <dt className="text-[var(--night)]/50">{t("amount")}</dt>
-                    <dd className="font-heading text-base">{order.amount_vnd.toLocaleString(locale)}đ</dd>
-                  </div>
-                  <div className="flex items-center justify-between gap-3">
-                    <dt className="text-[var(--night)]/50">{t("content")}</dt>
-                    <dd className="flex min-w-0 items-center gap-2">
-                      <span className="truncate font-mono">{order.transfer_content}</span>
-                      <button
-                        type="button"
-                        onClick={() => void navigator.clipboard.writeText(order.transfer_content ?? "")}
-                        className="shrink-0 text-[var(--night)]/55 hover:text-[var(--night)]"
-                        aria-label={t("copy")}
-                      >
-                        <Copy className="size-4" />
-                      </button>
-                    </dd>
-                  </div>
-                </dl>
-                <p className="text-center text-xs text-[var(--night)]/50">{expired ? t("expired") : t("waiting")}</p>
+          <div className="mt-5 grid gap-3">
+            {order.qr_image_url ? (
+              <img src={order.qr_image_url} alt={t("qrAlt")} width={224} height={224} className="mx-auto rounded-2xl bg-white p-2" />
+            ) : null}
+            <dl className="grid gap-1.5 rounded-2xl bg-white/70 px-3 py-3 text-sm">
+              {order.bank?.bank_id || order.bank?.bank_name ? (
+                <div className="flex justify-between gap-3">
+                  <dt className="text-[var(--night)]/50">{t("bankName")}</dt>
+                  <dd>{order.bank.bank_name || order.bank.bank_id}</dd>
+                </div>
+              ) : null}
+              {order.bank?.account_no ? (
+                <div className="flex justify-between gap-3">
+                  <dt className="text-[var(--night)]/50">{t("accountNo")}</dt>
+                  <dd className="font-mono">{order.bank.account_no}</dd>
+                </div>
+              ) : null}
+              {order.bank?.account_name ? (
+                <div className="flex justify-between gap-3">
+                  <dt className="text-[var(--night)]/50">{t("accountName")}</dt>
+                  <dd className="text-right">{order.bank.account_name}</dd>
+                </div>
+              ) : null}
+              <div className="flex justify-between gap-3">
+                <dt className="text-[var(--night)]/50">{t("amount")}</dt>
+                <dd className="font-heading text-base">{order.amount_vnd.toLocaleString(locale)}đ</dd>
               </div>
-            ) : (
-              <div className="mt-5 grid gap-3">
-                <p className="text-sm text-[var(--night)]/65">{t("stripeHint", { amount: `$${(order.amount_usd_cents / 100).toFixed(0)}` })}</p>
-                {order.stripe_url ? (
-                  <Button type="button" onClick={() => window.open(order.stripe_url!, "signagehub-stripe", "popup,width=480,height=720")} className="h-11 bg-[var(--night)] text-[var(--ivory)]">
-                    {t("openStripe")}
-                  </Button>
-                ) : null}
+              <div className="flex items-center justify-between gap-3">
+                <dt className="text-[var(--night)]/50">{t("content")}</dt>
+                <dd className="flex min-w-0 items-center gap-2">
+                  <span className="truncate font-mono">{order.transfer_content}</span>
+                  <button
+                    type="button"
+                    onClick={() => void navigator.clipboard.writeText(order.transfer_content ?? "")}
+                    className="shrink-0 text-[var(--night)]/55 hover:text-[var(--night)]"
+                    aria-label={t("copy")}
+                  >
+                    <Copy className="size-4" />
+                  </button>
+                </dd>
               </div>
-            )}
-          </>
+            </dl>
+            <p className="text-center text-xs text-[var(--night)]/50">{expired ? t("expired") : t("waiting")}</p>
+          </div>
         )}
         {error ? <p className="mt-4 text-sm text-red-700">{error}</p> : null}
       </div>
