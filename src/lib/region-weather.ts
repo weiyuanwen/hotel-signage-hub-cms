@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import type { WeatherRegion } from "@/lib/api";
 
 export function useRegionWeather(place: WeatherRegion | null): number | null {
-  const [celsius, setCelsius] = useState<number | null>(null);
+  const [celsius, setCelsius] = useState<number | null>(place?.celsius ?? null);
 
   useEffect(() => {
     if (!place) {
       setCelsius(null);
+      return;
+    }
+
+    if (typeof place.celsius === "number") {
+      setCelsius(place.celsius);
       return;
     }
 
@@ -26,7 +31,7 @@ export function useRegionWeather(place: WeatherRegion | null): number | null {
     return () => {
       cancelled = true;
     };
-  }, [place?.key, place?.latitude, place?.longitude]);
+  }, [place?.key, place?.latitude, place?.longitude, place?.celsius]);
 
   return celsius;
 }

@@ -26,6 +26,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "img.vietqr.io",
       },
+      {
+        protocol: "https",
+        hostname: "media.signagehub.online",
+      },
+      {
+        protocol: "https",
+        hostname: "**.r2.dev",
+      },
     ],
   },
   async headers() {

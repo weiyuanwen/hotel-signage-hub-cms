@@ -113,6 +113,8 @@ export type WeatherRegion = {
   label: string;
   latitude: number;
   longitude: number;
+  celsius?: number;
+  code?: number;
 };
 
 export type HotelBranding = {
