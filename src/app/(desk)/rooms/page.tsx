@@ -55,8 +55,7 @@ function RoomsBody() {
   const [simTarget, setSimTarget] = useState<0 | 50 | 100>(0);
   const [roomPage, setRoomPage] = useState(1);
   const hotel = hotels.find((item) => item.id === hotelId);
-  const pairingMode = hotel?.pairing_mode ?? "pin";
-  const canCopyLink = pairingMode === "link";
+  const canCopyLink = Boolean(hotel?.allows_pairing_links ?? hotel?.pairing_mode === "link");
   const quota = hotelQuotaLabel(hotel, {
     plan: (plan) => t(`plans.${plan}`),
     limited: (values) => t("quotaLimited", values),
@@ -731,7 +730,7 @@ function RoomsBody() {
 }
 
 const SIM_GUESTS = ["Nguyễn Lan", "Trần Minh", "Phạm Hương", "Lê Khoa", "Võ An", "Đặng My", "Bùi Phong", "Hoàng Hà"];
-const SIM_KEYS = ["dusk", "linen", "harbor", "garden", "stone"] as const;
+const SIM_KEYS = ["dusk", "linen", "harbor", "garden", "stone", "vista"] as const;
 
 function padSimulatedRooms(real: Room[], target: number): Room[] {
   if (real.length >= target) return real;

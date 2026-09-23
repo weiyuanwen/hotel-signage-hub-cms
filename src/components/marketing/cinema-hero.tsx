@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useTranslations } from "next-intl";
+import { BrandMark } from "@/components/brand-mark";
 import { TvStage } from "@/components/marketing/tv-stage";
 import { WaitlistForm } from "@/components/marketing/waitlist-form";
 import { WELCOME_TEMPLATE_KEYS } from "@/lib/welcomeTemplates";
 
-const rooms = ["1204", "0712", "1508", "0903", "1811"] as const;
+const rooms = ["1204", "0712", "1508", "0903", "1811", "2106"] as const;
 
 export function CinemaHero() {
   const t = useTranslations();
@@ -84,14 +85,12 @@ export function CinemaHero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pt-40"
         style={{ y: dockY, opacity: dockFade }}
       >
-        <div className="pointer-events-auto mx-auto flex max-w-[1400px] flex-col gap-5 px-5 pb-7 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-12 lg:pb-10">
-          <div>
-            <p className="text-[13px] font-medium tracking-[0.18em] text-white/70 uppercase">Signage Desk</p>
-            <p className="mt-2 max-w-[24ch] font-heading text-2xl leading-tight font-medium tracking-tight sm:text-3xl">
-              {t("hero.headline")}
-            </p>
-          </div>
-          <div className="w-full max-w-lg">
+        <div className="pointer-events-auto mx-auto grid max-w-[1400px] grid-cols-1 items-center justify-items-center gap-5 px-5 pb-7 text-center sm:px-8 lg:grid-cols-[1fr_auto_1fr] lg:items-end lg:gap-8 lg:px-12 lg:pb-10 lg:text-left">
+          <p className="max-w-[24ch] font-heading text-2xl leading-tight font-medium tracking-tight sm:text-3xl lg:justify-self-start">
+            {t("hero.headline")}
+          </p>
+          <BrandMark variant="onDark" className="opacity-90 lg:mb-1" />
+          <div className="w-full max-w-lg lg:justify-self-end">
             <WaitlistForm />
           </div>
         </div>

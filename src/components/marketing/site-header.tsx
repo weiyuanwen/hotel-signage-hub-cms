@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { BrandMark } from "@/components/brand-mark";
 import { LanguageSwitch } from "@/components/marketing/language-switch";
 import { Link } from "@/i18n/navigation";
 import { useSession } from "@/lib/session";
@@ -34,8 +35,8 @@ export function SiteHeader() {
   return (
     <header className="pointer-events-none sticky top-0 z-[var(--z-nav)] -mb-[4.25rem] px-3 pt-3 sm:px-5">
       <div className="pointer-events-auto mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-3 rounded-2xl border border-white/12 bg-[var(--night)]/55 px-4 shadow-[0_12px_40px_rgb(0_0_0/0.22)] backdrop-blur-xl backdrop-saturate-150 sm:px-5">
-        <Link href="/" className="text-[13px] font-medium tracking-[0.16em] uppercase">
-          Signage Desk
+        <Link href="/" className="flex items-center" aria-label="SignageHub">
+          <BrandMark variant="onDark" />
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-white/75 lg:flex">
           {links.map((link) => (
@@ -83,7 +84,9 @@ export function SiteHeader() {
           </SheetTrigger>
           <SheetContent side="right" className="bg-background">
             <SheetHeader>
-              <SheetTitle>Signage Desk</SheetTitle>
+              <SheetTitle>
+                <BrandMark />
+              </SheetTitle>
             </SheetHeader>
             <nav className="grid gap-1 px-4">
               {links.map((link) => (

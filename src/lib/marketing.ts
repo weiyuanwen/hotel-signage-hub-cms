@@ -15,6 +15,7 @@ export const templateScenes: Record<WelcomeTemplateKey, string> = {
   harbor: photos.bar,
   garden: photos.lobby,
   stone: photos.room,
+  vista: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1800&q=80",
 };
 
 export const TV_OVERLAY: Record<string, string> = {
@@ -23,11 +24,12 @@ export const TV_OVERLAY: Record<string, string> = {
   harbor: "rgb(4 12 22 / 0.34)",
   garden: "rgb(6 14 10 / 0.4)",
   stone: "rgb(16 12 8 / 0.3)",
+  vista: "rgb(22 18 14 / 0.12)",
 };
 
 export const faqs = [
   {
-    q: "Signage Desk khác màn hình quảng cáo thế nào?",
+    q: "SignageHub khác màn hình quảng cáo thế nào?",
     a: "Đây là lời chào theo phòng, theo khách. Lễ tân nhận phòng trên CMS, TV trong phòng đổi tên và mẫu ngay, không xếp lịch slide.",
   },
   {
@@ -40,7 +42,7 @@ export const faqs = [
   },
   {
     q: "Mẫu chào có những gì?",
-    a: "Năm preset: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm. Quản lý bật/tắt và đặt mặc định. Lễ tân chọn lúc nhận phòng.",
+    a: "Sáu preset: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm, Tầm nhìn. Quản lý bật/tắt và đặt mặc định. Lễ tân chọn lúc nhận phòng.",
   },
   {
     q: "Ghép TV mất bao lâu?",

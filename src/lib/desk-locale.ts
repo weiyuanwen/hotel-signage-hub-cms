@@ -16,5 +16,5 @@ export function setDeskLocale(locale: DeskLocale) {
 }
 
 export function deskLoginHref(locale: DeskLocale = getDeskLocale()) {
-  return locale === "en" ? "/en/login" : "/dang-nhap";
+  return locale === "en" ? "/login" : "/vi/dang-nhap";
 }

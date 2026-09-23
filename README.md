@@ -10,8 +10,6 @@ npm run dev
 
 Mở http://localhost:3000. API backend (Herd): http://hubback.test/api
 
-Tài khoản demo (sau `php artisan migrate --seed` ở backend):
+Tài khoản local nằm trong `DemoSeeder` của backend. Không hiện trên trang đăng nhập production.
 
-- `desk@saigon-pearl.test` / `password` (lễ tân)
-- `manager@saigon-pearl.test` / `password` (quản lý — nhân viên + thêm phòng)
-- `admin@hub.test` / `password` (thêm khách sạn, tạo quản lý)
+Production: `https://signagehub.online`. Push `main` → runner trên VPS pull và `docker compose up -d --build` trong `deploy/`.

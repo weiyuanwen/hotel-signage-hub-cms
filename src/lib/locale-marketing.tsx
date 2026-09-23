@@ -13,9 +13,16 @@ export function localeMetadata(section: Section) {
 }
 
 export function LocaleMarketingPage(section?: string) {
-  return async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  return async function Page({
+    params,
+    searchParams,
+  }: {
+    params: Promise<{ locale: string }>;
+    searchParams: Promise<{ paid?: string }>;
+  }) {
     const { locale } = await params;
+    const query = await searchParams;
     setRequestLocale(locale as AppLocale);
-    return <MarketingPage section={section} />;
+    return <MarketingPage section={section} paid={query.paid} />;
   };
 }

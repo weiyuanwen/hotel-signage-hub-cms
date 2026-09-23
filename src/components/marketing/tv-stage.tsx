@@ -46,6 +46,7 @@ export function TvStage({
   const overlay = TV_OVERLAY[template] ?? TV_OVERLAY.dusk;
   const src = photo ?? templateScenes[template];
   const chrome = !fill && !bare;
+  const split = template === "vista";
 
   return (
     <div
@@ -62,45 +63,71 @@ export function TvStage({
           exit={{ opacity: 0 }}
           transition={{ duration: reduce ? 0 : 0.55, ease }}
         >
-          <Image src={src} alt="" fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
-          <div className="absolute inset-0 bg-black/25" />
-          <div className="absolute inset-0" style={{ background: overlay }} />
+          {split ? (
+            <>
+              <div className="absolute inset-y-0 right-0 w-[58%]">
+                <Image src={src} alt="" fill sizes="(max-width: 1024px) 60vw, 40vw" className="object-cover" />
+                <div className="absolute inset-0 bg-black/12" />
+              </div>
+              <div className="absolute inset-y-0 left-0 w-[42%] bg-[rgb(22_18_14)]" />
+              <div className="absolute inset-y-0 left-[42%] w-px bg-[rgb(212_176_122/0.22)]" />
+            </>
+          ) : (
+            <>
+              <Image src={src} alt="" fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
+              <div className="absolute inset-0 bg-black/25" />
+              <div className="absolute inset-0" style={{ background: overlay }} />
+            </>
+          )}
         </motion.div>
       </AnimatePresence>
       <AnimatePresence initial={false}>
         {compact ? null : (
+          <>
           <motion.div
             key={`${template}-${guest}-copy`}
-            className={`absolute inset-0 flex flex-col justify-between text-white ${
-              tone === "cinema" ? "p-[6.5%] md:p-[7%]" : "p-[5.5%]"
+            className={`absolute flex flex-col justify-between text-white ${
+              split
+                ? "inset-y-0 left-0 w-[42%] p-[5.5%]"
+                : `inset-0 ${tone === "cinema" ? "p-[6.5%] md:p-[7%]" : "p-[5.5%]"}`
             }`}
             initial={reduce ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.4, ease, delay: reduce ? 0 : 0.08 }}
           >
-            <header
-              className={`flex items-start justify-between text-white/90 ${
-                tone === "cinema"
-                  ? "text-[clamp(0.85rem,1.6vw,1.15rem)]"
-                  : "text-[clamp(0.7rem,1.5vw,0.95rem)]"
-              }`}
-            >
-              {live ? <LiveClock /> : <span>19:42</span>}
-              <span>28°</span>
-            </header>
-            <div className="min-w-0">
-              <p
-                className={`text-white/90 ${
+            {split ? (
+              <p className="text-[clamp(0.65rem,1.1vw,0.85rem)] tracking-[0.14em] text-[#c4b8a6] uppercase">{hotel}</p>
+            ) : (
+              <header
+                className={`flex items-start justify-between text-white/90 ${
                   tone === "cinema"
-                    ? "text-[clamp(0.85rem,1.5vw,1.15rem)]"
-                    : "text-[clamp(0.7rem,1.3vw,0.95rem)]"
+                    ? "text-[clamp(0.85rem,1.6vw,1.15rem)]"
+                    : "text-[clamp(0.7rem,1.5vw,0.95rem)]"
                 }`}
               >
-                {hotel}
-              </p>
+                {live ? <LiveClock /> : <span>19:42</span>}
+                <span>28°</span>
+              </header>
+            )}
+            <div className="min-w-0">
+              {split ? null : (
+                <p
+                  className={`text-white/90 ${
+                    tone === "cinema"
+                      ? "text-[clamp(0.85rem,1.5vw,1.15rem)]"
+                      : "text-[clamp(0.7rem,1.3vw,0.95rem)]"
+                  }`}
+                >
+                  {hotel}
+                </p>
+              )}
               <p
-                className={`mt-1 font-heading leading-[1.1] font-medium tracking-tight text-white text-wrap-balance drop-shadow-[0_2px_18px_rgb(0_0_0/0.55)] ${
+                className={`font-heading leading-[1.1] font-medium tracking-tight text-wrap-balance ${
+                  split
+                    ? "italic text-[#d4b07a]"
+                    : "mt-1 text-white drop-shadow-[0_2px_18px_rgb(0_0_0/0.55)]"
+                } ${
                   tone === "cinema"
                     ? "max-w-[14ch] text-[clamp(2.1rem,6.4vw,5.6rem)]"
                     : "text-[clamp(1.35rem,3.4vw,2.75rem)]"
@@ -108,9 +135,11 @@ export function TvStage({
               >
                 {guest}
               </p>
-                <p className="mt-2 text-[clamp(0.65rem,1.1vw,0.8rem)] text-white/85">{t(template)}</p>
+              <p className={`mt-2 text-[clamp(0.65rem,1.1vw,0.8rem)] ${split ? "text-[#c4b8a6]" : "text-white/85"}`}>
+                {t(template)}
+              </p>
             </div>
-            {showFooter ? (
+            {showFooter && !split ? (
               <footer
                 className={`flex items-end justify-between gap-3 text-white/90 ${
                   tone === "cinema"
@@ -128,6 +157,24 @@ export function TvStage({
               <span />
             )}
           </motion.div>
+          {split ? (
+            <>
+              <div className="pointer-events-none absolute top-[5.5%] right-[5.5%] flex items-start gap-4 text-white drop-shadow-[0_1px_10px_rgb(0_0_0/0.45)]">
+                <span>28°</span>
+                {live ? <LiveClock /> : <span>19:42</span>}
+              </div>
+              {showFooter ? (
+                <footer className="absolute right-[5.5%] bottom-[5.5%] left-[46%] flex items-end justify-between gap-3 text-[clamp(0.65rem,1.2vw,0.85rem)] text-white/90 drop-shadow-[0_1px_8px_rgb(0_0_0/0.45)]">
+                  <span className="flex min-w-0 items-center gap-1.5">
+                    <WifiHigh className="size-[1em] shrink-0" />
+                    <span className="truncate">{wifi}</span>
+                  </span>
+                  <span className="shrink-0 tracking-[0.14em] uppercase opacity-70">{room}</span>
+                </footer>
+              ) : null}
+            </>
+          ) : null}
+          </>
         )}
       </AnimatePresence>
     </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Geist, Geist_Mono } from "next/font/google";
 import { getLocale } from "next-intl/server";
+import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/google-tag-manager";
 import { SessionProvider } from "@/lib/session";
 import "./globals.css";
 
@@ -21,11 +22,18 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://signagehub.online"),
   title: {
-    default: "Signage Desk",
-    template: "%s · Signage Desk",
+    default: "Hotel welcome TV software | SignageHub",
+    template: "%s · SignageHub",
   },
-  description: "TV chào khách 16:9 cho quầy lễ tân. Hotel Signage Hub.",
+  description:
+    "Hotel welcome TV software. Front desk types a guest name; the room TV updates greeting and Wi-Fi instantly. 3 screens at $3 a month.",
+  applicationName: "SignageHub",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
@@ -33,7 +41,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 
   return (
     <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} ${beVietnam.variable} h-full`}>
+      <head>
+        <GoogleTagManager />
+      </head>
       <body className="min-h-full bg-bg text-ink antialiased">
+        <GoogleTagManagerNoscript />
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

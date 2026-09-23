@@ -20,8 +20,11 @@ export function TemplateThumb({ templateKey, selected = false, className = "" }:
       style={{ aspectRatio: "16 / 9", background: t.bg, color: t.ink }}
       aria-hidden
     >
-      {key === "harbor" ? (
+      {key === "harbor" || key === "vista" ? (
         <div className="absolute inset-y-0 left-0 w-[42%]" style={{ background: t.panel }} />
+      ) : null}
+      {key === "vista" ? (
+        <div className="absolute inset-y-0 right-0 w-[58%]" style={{ background: "oklch(0.42 0.04 220)" }} />
       ) : null}
       {key === "stone" ? (
         <div className="absolute inset-x-0 bottom-0 h-[32%]" style={{ background: t.band }} />

@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, createContext, useContext, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Buildings, FrameCorners, ImageSquare, MonitorPlay, SignOut, SquaresFour, UsersThree } from "@phosphor-icons/react";
+import { BrandMark } from "@/components/brand-mark";
 import { DeskLangSwitch } from "@/components/desk/lang-switch";
 import { DeskDialog } from "./DeskDialog";
 import { api, ApiError, hotelQuotaLabel } from "@/lib/api";
@@ -83,7 +84,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between gap-3 px-5 py-4">
             <div className="min-w-0">
-              <p className="text-sm font-medium tracking-tight">{t("brand")}</p>
+              <BrandMark className="h-6" />
               <p className="mt-0.5 truncate text-xs text-muted lg:hidden">{user.name}</p>
             </div>
             <div className="flex items-center gap-2 lg:hidden">

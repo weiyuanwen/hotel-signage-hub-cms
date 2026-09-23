@@ -66,7 +66,7 @@ export default function DevicesPage() {
         <DeskSkeleton rows={3} />
       ) : devices.length === 0 ? (
         <DeskEmpty>
-          {hotel?.pairing_mode === "link" ? t("devices.emptyLink") : t("devices.emptyPin")}
+          {hotel?.allows_pairing_links || hotel?.pairing_mode === "link" ? t("devices.emptyLink") : t("devices.emptyPin")}
         </DeskEmpty>
       ) : (
         <div className="overflow-x-auto rounded-2xl border border-line">

@@ -5,6 +5,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import en from "../../../messages/en.json";
 import vi from "../../../messages/vi.json";
 import { getDeskLocale, setDeskLocale, type DeskLocale } from "@/lib/desk-locale";
+import { APP_TIME_ZONE } from "@/i18n/routing";
 
 const DeskLocaleContext = createContext<{
   locale: DeskLocale;
@@ -37,7 +38,7 @@ export function DeskI18n({
 
   return (
     <DeskLocaleContext.Provider value={{ locale, setLocale }}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+      <NextIntlClientProvider locale={locale} messages={messages} timeZone={APP_TIME_ZONE}>
         {children}
       </NextIntlClientProvider>
     </DeskLocaleContext.Provider>

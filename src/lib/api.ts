@@ -83,8 +83,11 @@ export type Hotel = {
   plan_label?: string;
   device_limit?: number | null;
   pairing_mode?: "pin" | "link";
+  allows_pairing_links?: boolean;
   paired_device_count?: number;
   allows_device_backgrounds?: boolean;
+  subscription_active?: boolean;
+  subscription_expires_at?: string | null;
 };
 
 export function hotelQuotaLabel(

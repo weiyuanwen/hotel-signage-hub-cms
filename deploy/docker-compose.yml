@@ -1,0 +1,23 @@
+name: hotel-hub-cms
+
+services:
+  cms:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    environment:
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: http://app:80/api
+      NEXT_PUBLIC_SITE_URL: https://signagehub.online
+    ports:
+      - "127.0.0.1:9082:3000"
+    networks:
+      - hotel-hub
+    restart: unless-stopped
+
+networks:
+  hotel-hub:
+    name: hotel-hub_default
+    external: true

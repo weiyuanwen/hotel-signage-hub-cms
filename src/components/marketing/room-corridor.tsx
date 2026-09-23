@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { TvStage } from "@/components/marketing/tv-stage";
 import { WELCOME_TEMPLATE_KEYS } from "@/lib/welcomeTemplates";
 
-const rooms = ["1204", "0712", "1508", "0903", "1811"] as const;
+const rooms = ["1204", "0712", "1508", "0903", "1811", "2106"] as const;
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function RoomCorridor() {

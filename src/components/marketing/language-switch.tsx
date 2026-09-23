@@ -1,7 +1,8 @@
 "use client";
 
+import NextLink from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { getPathname, usePathname } from "@/i18n/navigation";
 import type { AppLocale, AppPathname } from "@/i18n/routing";
 
 export function LanguageSwitch() {
@@ -11,20 +12,21 @@ export function LanguageSwitch() {
 
   return (
     <div className="flex items-center gap-1 text-[13px]" aria-label={t("langLabel")}>
-      {(["vi", "en"] as const).map((code) => {
+      {(["en", "vi"] as const).map((code) => {
         const active = locale === code;
+        const href = getPathname({ locale: code as AppLocale, href: pathname as AppPathname });
         return (
-          <Link
+          <NextLink
             key={code}
-            href={pathname as AppPathname}
-            locale={code as AppLocale}
+            href={href}
+            hrefLang={code}
             replace
             className={`rounded-full px-2 py-1 transition-colors ${
               active ? "bg-white/15 text-white" : "text-white/55 hover:text-white"
             }`}
           >
             {code === "vi" ? t("langVi") : t("langEn")}
-          </Link>
+          </NextLink>
         );
       })}
     </div>

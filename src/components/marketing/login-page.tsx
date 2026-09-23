@@ -9,10 +9,12 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { BrandMark } from "@/components/brand-mark";
 import { SiteFrame } from "@/components/marketing/site-frame";
 import { LanguageSwitch } from "@/components/marketing/language-switch";
 import { Link } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api";
+import { SUPPORT_EMAIL, supportMailto } from "@/lib/contact";
 import { photos } from "@/lib/marketing";
 import { useSession } from "@/lib/session";
 
@@ -56,8 +58,8 @@ export function LoginPage() {
         />
         <div className="absolute inset-0 bg-[var(--night)]/45 lg:bg-gradient-to-r lg:from-transparent lg:via-[var(--night)]/20 lg:to-[var(--night)]/55" />
         <div className="absolute top-5 left-5 z-20 flex items-center gap-4 sm:left-8">
-          <Link href="/" className="text-[13px] font-medium tracking-[0.18em] text-white uppercase">
-            Signage Desk
+          <Link href="/" className="inline-flex" aria-label="SignageHub">
+            <BrandMark variant="onDark" />
           </Link>
           <LanguageSwitch />
         </div>
@@ -110,12 +112,15 @@ export function LoginPage() {
             >
               {busy ? t("busy") : t("submit")}
             </Button>
-            <p className="mt-4 text-xs leading-relaxed text-[var(--night)]/55">{t("demo")}</p>
-            <p className="mt-2 text-xs text-[var(--night)]/55">
+            <p className="mt-4 text-xs text-[var(--night)]/55">
               {t("noAccount")}{" "}
               <Link href="/join" className="text-[var(--night)] underline-offset-4 hover:underline">
                 {t("openDesk")}
               </Link>
+              . {t("support")}:{" "}
+              <a href={supportMailto} className="text-[var(--night)] underline-offset-4 hover:underline">
+                {SUPPORT_EMAIL}
+              </a>
               .
             </p>
           </div>

@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState } from
 import { useTranslations } from "next-intl";
 import { DeskEmpty, DeskError, DeskHeader, DeskMain, DeskPanel, DeskSkeleton, DeskToast } from "@/components/desk/ui";
 import { api, ApiError, type HotelBranding, type WeatherRegion } from "@/lib/api";
+import { useRegionWeather } from "@/lib/region-weather";
 import { canManageRooms } from "@/lib/roles";
 import { useSession } from "@/lib/session";
 import { embedSrc, parseVideoUrl, remoteLinkFrom, type VideoPlayback } from "@/lib/videoSource";
@@ -68,7 +69,10 @@ export default function HotelPage() {
   }, [ready, user, hotelId, allowed, load]);
 
   async function saveRegion(key: string) {
-    if (!hotelId) return;
+    if (!hotelId || !branding) return;
+    const previous = branding;
+    const nextWeather = regions.find((row) => row.key === key) ?? branding.weather;
+    setBranding({ ...branding, weather_region: key, weather: nextWeather });
     setBusy("region");
     try {
       const res = await api<{ data: HotelBranding }>(`/cms/hotels/${hotelId}`, {
@@ -79,6 +83,7 @@ export default function HotelPage() {
       setError(null);
       flashSaved();
     } catch {
+      remember(previous);
       setError(t("hotelPage.regionError"));
     } finally {
       setBusy(null);
@@ -185,6 +190,9 @@ export default function HotelPage() {
 
   const parsedLink = parseVideoUrl(videoLink);
   const linkDirty = videoLink.trim() !== remoteLinkFrom(branding?.background_url ?? null);
+  const weatherPlace =
+    branding?.weather ?? regions.find((row) => row.key === branding?.weather_region) ?? null;
+  const weatherNow = useRegionWeather(weatherPlace);
 
   return (
     <DeskMain tight>
@@ -232,6 +240,7 @@ export default function HotelPage() {
 
             <DeskPanel compact>
               <h2 className="text-sm font-medium">{t("hotelPage.weatherTitle")}</h2>
+              <p className="text-xs text-muted">{t("hotelPage.weatherBody")}</p>
               <label className="block space-y-1">
                 <span className="text-xs font-medium">{t("hotelPage.region")}</span>
                 <select
@@ -250,6 +259,13 @@ export default function HotelPage() {
                   ))}
                 </select>
               </label>
+              <p className="text-sm tabular-nums text-ink">
+                {weatherNow != null
+                  ? t("hotelPage.weatherNow", { temp: weatherNow })
+                  : branding.weather_region
+                    ? t("hotelPage.weatherLoading")
+                    : t("hotelPage.regionPick")}
+              </p>
             </DeskPanel>
 
             <DeskPanel compact>

@@ -1,10 +1,13 @@
 import { defineRouting } from "next-intl/routing";
 
+export const APP_TIME_ZONE = "Asia/Ho_Chi_Minh";
+
 export const routing = defineRouting({
-  locales: ["vi", "en"],
-  defaultLocale: "vi",
+  locales: ["en", "vi"],
+  defaultLocale: "en",
   localePrefix: "as-needed",
   localeDetection: false,
+  localeCookie: false,
   pathnames: {
     "/": "/",
     "/product": {
@@ -30,6 +33,10 @@ export const routing = defineRouting({
     "/login": {
       vi: "/dang-nhap",
       en: "/login",
+    },
+    "/directory": {
+      vi: "/so-do-trang",
+      en: "/site-map",
     },
   },
 });

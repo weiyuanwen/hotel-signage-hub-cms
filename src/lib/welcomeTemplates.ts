@@ -1,4 +1,4 @@
-export const WELCOME_TEMPLATE_KEYS = ["dusk", "linen", "harbor", "garden", "stone"] as const;
+export const WELCOME_TEMPLATE_KEYS = ["dusk", "linen", "harbor", "garden", "stone", "vista"] as const;
 export type WelcomeTemplateKey = (typeof WELCOME_TEMPLATE_KEYS)[number];
 
 export const BUILTIN_LABELS: Record<WelcomeTemplateKey, string> = {
@@ -7,6 +7,7 @@ export const BUILTIN_LABELS: Record<WelcomeTemplateKey, string> = {
   harbor: "Cảng đêm",
   garden: "Vườn trà",
   stone: "Đá ấm",
+  vista: "Tầm nhìn",
 };
 
 export type TemplateTokens = {
@@ -56,6 +57,14 @@ export const TEMPLATE_TOKENS: Record<WelcomeTemplateKey, TemplateTokens> = {
     name: "oklch(0.91 0.025 85)",
     accent: "oklch(0.72 0.08 75)",
     band: "oklch(0.15 0.016 55)",
+  },
+  vista: {
+    bg: "oklch(0.14 0.016 50)",
+    ink: "oklch(0.93 0.02 85)",
+    muted: "oklch(0.72 0.03 80)",
+    name: "oklch(0.78 0.08 80)",
+    accent: "oklch(0.72 0.09 78)",
+    panel: "oklch(0.16 0.016 50)",
   },
 };
 

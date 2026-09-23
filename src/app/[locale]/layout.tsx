@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { HtmlLang } from "@/i18n/html-lang";
-import { routing, type AppLocale } from "@/i18n/routing";
+import { APP_TIME_ZONE, routing, type AppLocale } from "@/i18n/routing";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -24,7 +24,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider key={locale} locale={locale} messages={messages}>
+    <NextIntlClientProvider key={locale} locale={locale} messages={messages} timeZone={APP_TIME_ZONE}>
       <HtmlLang locale={locale} />
       {children}
     </NextIntlClientProvider>

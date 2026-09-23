@@ -1,20 +1,22 @@
 {
   "meta": {
-    "title": "Signage Desk",
-    "titleTemplate": "%s · Signage Desk",
-    "description": "TV chào khách 16:9 cho quầy lễ tân. 3 thiết bị 15.000đ/tháng, nhiều thiết bị 50.000đ/tháng.",
-    "homeTitle": "Signage Desk",
-    "productTitle": "Sản phẩm",
-    "productDescription": "Lễ tân gõ tên, TV phòng đổi lời chào, Wi-Fi và mẫu ngay.",
-    "galleryTitle": "Mẫu chào",
-    "galleryDescription": "Năm mẫu chào 16:9: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm.",
-    "pricingTitle": "Bảng giá",
-    "pricingDescription": "3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ một tháng.",
-    "faqTitle": "Hỏi đáp",
-    "faqDescription": "Ghép TV, gói cước, nền MP4/YouTube và tài khoản quầy Signage Desk.",
-    "joinTitle": "Mở quầy",
-    "joinDescription": "Gửi email để mở quầy Signage Desk. 3 thiết bị 15.000đ một tháng.",
-    "loginTitle": "Đăng nhập"
+    "title": "Phần mềm TV chào khách khách sạn | SignageHub",
+    "titleTemplate": "%s · SignageHub",
+    "description": "Phần mềm TV chào khách 16:9 cho khách sạn. Lễ tân gõ tên, TV phòng đổi lời chào và Wi-Fi ngay. 3 thiết bị 15.000đ/tháng.",
+    "homeTitle": "SignageHub",
+    "productTitle": "Phần mềm TV chào khách 16:9 cho lễ tân",
+    "productDescription": "Phần mềm TV chào khách khách sạn: lễ tân gõ tên trên CMS, mọi TV trong phòng đổi lời chào, Wi-Fi và mẫu 16:9 ngay.",
+    "galleryTitle": "Mẫu chào khách trên TV phòng khách sạn",
+    "galleryDescription": "Sáu mẫu chào 16:9 cho TV phòng: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm, Tầm nhìn. Lễ tân chọn lúc nhận phòng.",
+    "pricingTitle": "Giá phần mềm TV chào khách khách sạn",
+    "pricingDescription": "Bảng giá SignageHub: 3 thiết bị 15.000đ/tháng, nhiều thiết bị 50.000đ/tháng. Player chạy trên Android TV, Chrome, Windows.",
+    "faqTitle": "Hỏi đáp TV chào khách và ghép màn hình",
+    "faqDescription": "Giải đáp phần mềm TV chào khách: khác màn quảng cáo, ghép PIN hoặc link, nền MP4/YouTube, giá và tài khoản quầy.",
+    "joinTitle": "Mở quầy TV chào khách cho khách sạn",
+    "joinDescription": "Gửi email để mở quầy SignageHub. Bắt đầu 3 TV chào khách với 15.000đ một tháng.",
+    "directoryTitle": "Sơ đồ trang",
+    "directoryDescription": "Cây thư mục website SignageHub: sản phẩm, mẫu chào, bảng giá, hỏi đáp và mở quầy TV chào khách.",
+    "loginTitle": "Đăng nhập quầy SignageHub"
   },
   "nav": {
     "product": "Sản phẩm",
@@ -27,17 +29,48 @@
     "menu": "Mở menu",
     "langVi": "VI",
     "langEn": "EN",
-    "langLabel": "Ngôn ngữ"
+    "langLabel": "Ngôn ngữ",
+    "directory": "Sơ đồ trang",
+    "home": "Trang chủ",
+    "support": "Hỗ trợ"
+  },
+  "pages": {
+    "relatedTitle": "Mục liên quan",
+    "product": {
+      "h1": "Phần mềm TV chào khách cho quầy lễ tân",
+      "lead": "SignageHub là phần mềm TV chào khách 16:9 cho khách sạn. Lễ tân gõ tên trên CMS, mọi màn ghép cùng phòng hiện lời chào, Wi-Fi và mẫu đã chọn."
+    },
+    "gallery": {
+      "h1": "Mẫu chào khách trên TV phòng",
+      "lead": "Sáu mẫu chào 16:9 cho TV trong phòng: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm, Tầm nhìn. Quản lý bật tắt, lễ tân chọn lúc nhận phòng."
+    },
+    "pricing": {
+      "h1": "Giá phần mềm TV chào khách",
+      "lead": "Hai gói theo tháng. 3 thiết bị 15.000đ. Nhiều thiết bị 50.000đ. Player mở trên Android TV, Chrome, Windows hoặc Raspberry Pi."
+    },
+    "faq": {
+      "h1": "Hỏi đáp TV chào khách khách sạn",
+      "lead": "Khác màn quảng cáo, ghép PIN hoặc link, nền ảnh và video, giá gói, và ai được vào quầy."
+    },
+    "join": {
+      "h1": "Mở quầy TV chào khách",
+      "lead": "Gửi email khách sạn. SignageHub tạo tài khoản quản lý và gửi về hộp thư. Bắt đầu với 3 TV, 15.000đ một tháng."
+    },
+    "directory": {
+      "h1": "Sơ đồ trang SignageHub",
+      "lead": "Cây thư mục để Google và người đọc đi từ trang chủ xuống từng mục: sản phẩm, mẫu chào, bảng giá, hỏi đáp, mở quầy."
+    }
   },
   "hero": {
-    "srTitle": "3 thiết bị, 15.000đ một tháng. Tên khách lên TV ngay.",
+    "srTitle": "Phần mềm TV chào khách khách sạn. 3 thiết bị, 15.000đ một tháng. Tên khách lên TV ngay.",
     "headline": "3 TV, 15.000đ một tháng.",
     "guests": [
       "Chào mừng, chị Lan.",
       "Chào mừng, anh Minh.",
       "Chào mừng, cô Hạnh.",
       "Chào mừng, chị Mai.",
-      "Chào mừng, anh Khoa."
+      "Chào mừng, anh Khoa.",
+      "Chào mừng, chị Hà."
     ]
   },
   "templates": {
@@ -45,14 +78,15 @@
     "linen": "Sáng nhẹ",
     "harbor": "Cảng đêm",
     "garden": "Vườn trà",
-    "stone": "Đá ấm"
+    "stone": "Đá ấm",
+    "vista": "Tầm nhìn"
   },
   "gallery": {
-    "title": "Năm phòng. Vuốt ngang.",
+    "title": "Sáu phòng. Vuốt ngang.",
     "body": "Mỗi mẫu là một đêm khác nhau trên cùng một TV 16:9."
   },
   "proof": {
-    "label": "Khách sạn đang dùng Signage Desk",
+    "label": "Khách sạn đang dùng SignageHub",
     "title": "Đang mở trên TV tại",
     "cities": {
       "song-han": "Đà Nẵng",
@@ -87,24 +121,29 @@
     "by": "Trần Hạnh, quản lý ca, Saigon Pearl (demo)"
   },
   "pricing": {
-    "title": "Hai gói, giá theo tháng.",
-    "body": "Tiếng Việt tính bằng đồng. 3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ một tháng.",
+    "title": "Một TV miễn phí. Trả tháng khi cần thêm.",
+    "body": "Miễn phí 1 TV. 3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ. Thanh toán chuyển khoản Việt Nam hoặc thẻ Stripe.",
+    "freeName": "1 TV miễn phí",
+    "freePrice": "0đ",
+    "freePairing": "Thử một màn. Ghép bằng mã PIN. Không hết hạn.",
+    "freeNote": "Đủ cho một quầy hoặc một phòng. Nâng cấp khi cần thêm TV.",
+    "freeCta": "Mở 1 TV",
     "threeName": "3 thiết bị",
     "threePrice": "15.000đ/tháng",
     "threePairing": "Sảnh và vài phòng. Ghép bằng mã PIN trên TV.",
-    "threeNote": "Player chạy trên trình duyệt: Android TV, Chrome, Windows, Raspberry Pi.",
-    "threeCta": "Mở 3 TV",
+    "threeNote": "Thanh toán chuyển khoản hoặc Stripe. Hết hạn thì TV ngừng chiếu.",
+    "threeCta": "Mua 3 TV",
     "manyName": "Nhiều thiết bị",
     "manyPrice": "50.000đ/tháng",
     "manyPairing": "Bao nhiêu màn cũng được. Ghép bằng link, không gõ mã.",
     "manyNote": "Cùng nền MP4 hoặc YouTube. Không trần số TV.",
-    "manyCta": "Mở nhiều TV"
+    "manyCta": "Mua nhiều TV"
   },
   "faq": {
     "title": "Hỏi đáp",
     "items": [
       {
-        "q": "Signage Desk khác màn hình quảng cáo thế nào?",
+        "q": "SignageHub khác màn hình quảng cáo thế nào?",
         "a": "Đây là lời chào theo phòng, theo khách. Lễ tân nhận phòng trên CMS, TV trong phòng đổi tên và mẫu ngay, không xếp lịch slide."
       },
       {
@@ -117,7 +156,7 @@
       },
       {
         "q": "Mẫu chào có những gì?",
-        "a": "Năm preset: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm. Quản lý bật/tắt và đặt mặc định. Lễ tân chọn lúc nhận phòng."
+        "a": "Sáu preset: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm, Tầm nhìn. Quản lý bật/tắt và đặt mặc định. Lễ tân chọn lúc nhận phòng."
       },
       {
         "q": "Ghép TV mất bao lâu?",
@@ -125,11 +164,15 @@
       },
       {
         "q": "Giá thế nào?",
-        "a": "3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ một tháng. Bản tiếng Anh hiện $3 và $5 cho cùng hai gói."
+        "a": "1 TV miễn phí. 3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ. Tiếng Anh hiện $3 và $5 cho hai gói trả phí."
       },
       {
         "q": "Ai được đăng nhập?",
         "a": "Form mở quầy gửi tài khoản quản lý tới email vừa nhập. Lễ tân do quản lý thêm sau."
+      },
+      {
+        "q": "Liên hệ hỗ trợ thế nào?",
+        "a": "Gửi email tới nguyenduy0170@gmail.com. Đó là hộp thư hỗ trợ SignageHub."
       }
     ]
   },
@@ -143,13 +186,41 @@
     "emailPlaceholder": "ban.le.tan@khachsan.vn",
     "invalidEmail": "Nhập email làm việc của khách sạn.",
     "sending": "Đang gửi…",
-    "submit": "Mở 3 TV",
+    "submit": "Mở 1 TV miễn phí",
     "existing": "Email này đã có quầy. Đăng nhập để tiếp tục.",
     "failed": "Không gửi được. Thử lại sau một lát.",
     "sent": "Đã gửi tài khoản tới {email}.",
-    "sentHint": "Mở hộp thư, rồi vào quầy bằng email đó. Kiểm tra cả mục spam.",
+    "sentHint": "Mở hộp thư, rồi vào quầy bằng email đó.",
+    "spamNotice": "Thư có thể vào mục Spam / Thư rác. Hãy kiểm tra cả hộp thư chính và spam, rồi đánh dấu không phải thư rác.",
     "demo": "Vào quầy demo",
     "signIn": "Đăng nhập"
+  },
+  "pay": {
+    "title": "Thanh toán gói",
+    "body": "Chuyển khoản nội địa hoặc thẻ quốc tế. Nội dung CK là mã đơn, đừng sửa.",
+    "pick": "Chọn cách thanh toán.",
+    "creating": "Đang tạo đơn…",
+    "bank": "Chuyển khoản VN",
+    "card": "Thẻ / Stripe",
+    "qrAlt": "Mã VietQR chuyển khoản SignageHub",
+    "copy": "Sao chép nội dung chuyển khoản",
+    "bankName": "Ngân hàng",
+    "accountNo": "Số tài khoản",
+    "accountName": "Chủ tài khoản",
+    "amount": "Số tiền",
+    "content": "Nội dung CK",
+    "waiting": "Đang chờ tiền vào. Giữ nguyên nội dung CK.",
+    "expired": "Hết giờ. Tạo lại mã QR.",
+    "stripeHint": "Thanh toán {amount} bằng thẻ. Cửa sổ Stripe sẽ mở.",
+    "openStripe": "Mở Stripe",
+    "paidTitle": "Đã nhận thanh toán",
+    "paidBody": "Gói đã cộng một tháng. Đăng nhập quầy bằng email vừa dùng.",
+    "returnPending": "Đang xác nhận thanh toán thẻ…",
+    "returnReady": "Đã cộng một tháng vào quầy.",
+    "returnMissing": "Không thấy đơn này. Nếu đã trả thì đăng nhập quầy.",
+    "signIn": "Đăng nhập quầy",
+    "close": "Đóng",
+    "failed": "Không tạo được đơn. Thử lại."
   },
   "deskPreview": {
     "rooms": "Phòng",
@@ -170,9 +241,10 @@
     "errorTitle": "Không vào được",
     "badCredentials": "Email hoặc mật khẩu không đúng.",
     "network": "Không kết nối được máy chủ API.",
-    "demo": "Demo lễ tân: desk@saigon-pearl.test / password. Quản lý: manager@saigon-pearl.test.",
+    "demo": "",
     "noAccount": "Chưa có tài khoản?",
     "openDesk": "Gửi email mở quầy",
+    "support": "Hỗ trợ",
     "photoAlt": "Sảnh khách sạn gỗ cong, ánh đèn ấm"
   },
   "notFound": {
@@ -183,7 +255,7 @@
   },
   "desk": {
     "loading": "Đang tải ca làm việc…",
-    "brand": "Signage Desk",
+    "brand": "SignageHub",
     "shift": "Ca làm việc",
     "nav": {
       "rooms": "Phòng",
@@ -215,8 +287,8 @@
     "reload": "Tải lại",
     "plans": {
       "trial": "Dùng thử",
-      "free": "3 thiết bị",
-      "standard": "Plus",
+      "free": "1 TV miễn phí",
+      "standard": "3 TV",
       "premium": "Nhiều thiết bị"
     },
     "quotaLimited": "{plan} · {used}/{limit} TV",
@@ -317,7 +389,9 @@
       "noHotel": "Chưa chọn khách sạn.",
       "loadError": "Không tải được thông tin khách sạn.",
       "weatherTitle": "Thời tiết trên TV",
-      "weatherBody": "Nhiệt độ lấy từ Open-Meteo theo tọa độ khu vực này, cập nhật mỗi 30 phút.",
+      "weatherBody": "Nhiệt độ lấy từ Open-Meteo theo tọa độ khu vực này. TV cập nhật sau khi lưu, hoặc khi tải lại màn hình.",
+      "weatherNow": "Đang {temp}°C",
+      "weatherLoading": "Đang lấy nhiệt độ…",
       "region": "Khu vực",
       "regionPick": "Chọn khu vực",
       "regionError": "Không lưu được khu vực thời tiết.",
@@ -379,6 +453,12 @@
       "sizeSlogan": "Slogan",
       "sizeMessage": "Thông điệp",
       "sizeRoom": "Số phòng",
+      "sizeLogo": "Logo",
+      "sizeWifi": "Tên Wi-Fi",
+      "sizeWifiPassword": "Mật khẩu Wi-Fi",
+      "sizeTime": "Đồng hồ",
+      "sizeClock": "Ngày",
+      "sizeWeather": "Nhiệt độ",
       "sizeSmall": "Nhỏ",
       "sizeLarge": "Lớn",
       "colorsTitle": "Màu chữ",
@@ -387,7 +467,16 @@
       "colorSlogan": "Màu slogan",
       "colorMuted": "Màu dòng phụ",
       "slogan": "Slogan trên mẫu",
-      "sloganHint": "Tối đa 80 ký tự. Lễ tân vẫn gõ tên và thông điệp lúc nhận phòng.",
+      "sloganHint": "Tối đa 80 ký tự. Lễ tân vẫn gõ tên lúc nhận phòng.",
+      "copyTitle": "Dòng chào trên TV",
+      "leadLabel": "Dòng chào",
+      "wishLabel": "Lời chúc",
+      "lead": "Chào mừng quý khách",
+      "wish": "Chúc quý khách có những trải nghiệm tuyệt vời.",
+      "hideCopy": "Ẩn dòng chào và lời chúc",
+      "showCopy": "Hiện dòng chào và lời chúc",
+      "hide": "Ẩn",
+      "show": "Hiện",
       "dragHint": "Kéo logo và chữ. Wi-Fi, đồng hồ cố định góc.",
       "wifiFixed": "Wi-Fi và đồng hồ/thời tiết cố định góc để dễ đọc trên TV.",
       "showLogo": "Hiện logo",
@@ -416,7 +505,8 @@
         "coastal": "Biển",
         "lobby": "Sảnh",
         "terrace": "Sân thượng",
-        "spa": "Spa"
+        "spa": "Spa",
+        "suite": "Phòng suite"
       }
     },
     "staffPage": {

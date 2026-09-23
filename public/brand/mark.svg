@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 52" fill="none">
+  <defs>
+    <linearGradient id="sh-mark" x1="4" y1="2" x2="58" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="42" height="30" rx="7" stroke="url(#sh-mark)" stroke-width="3.2"/>
+  <path d="M10 40h28" stroke="url(#sh-mark)" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="24" cy="18" r="4.2" fill="url(#sh-mark)"/>
+  <circle cx="44" cy="6" r="4.2" fill="url(#sh-mark)"/>
+  <circle cx="44" cy="40" r="4.2" fill="url(#sh-mark)"/>
+  <path d="M27.2 20.4L40.6 8.6M27.2 20.2L40.6 37.2" stroke="url(#sh-mark)" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

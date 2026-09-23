@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { WifiHigh, CloudSun, ImageSquare } from "@phosphor-icons/react/dist/ssr";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { CinemaHero } from "@/components/marketing/cinema-hero";
 import { DeskPreview } from "@/components/marketing/desk-preview";
 import { HotelProof } from "@/components/marketing/hotel-proof";
@@ -9,19 +9,28 @@ import { ParallaxFill } from "@/components/marketing/parallax-fill";
 import { PricingMenu } from "@/components/marketing/pricing-menu";
 import { RoomCorridor } from "@/components/marketing/room-corridor";
 import { ScrollRise } from "@/components/marketing/scroll-rise";
-import { ScrollToSection } from "@/components/marketing/scroll-to-section";
+import { RelatedTopics } from "@/components/marketing/related-topics";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { SiteFrame } from "@/components/marketing/site-frame";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { WaitlistForm } from "@/components/marketing/waitlist-form";
+import { MarketingJsonLd } from "@/components/marketing/json-ld";
+import { SectionPage } from "@/components/marketing/section-page";
+import type { AppLocale } from "@/i18n/routing";
 import { photos } from "@/lib/marketing";
+import type { MarketingSection } from "@/lib/marketing-metadata";
 
-export async function MarketingPage({ section }: { section?: string }) {
+export async function MarketingPage({ section, paid }: { section?: string; paid?: string }) {
+  if (section && section !== "home") {
+    return <SectionPage section={section as Exclude<MarketingSection, "login" | "home">} paid={paid} />;
+  }
+
   const t = await getTranslations();
+  const locale = (await getLocale()) as AppLocale;
 
   return (
     <SiteFrame>
-      <ScrollToSection id={section} />
+      <MarketingJsonLd section="home" locale={locale} />
       <SiteHeader />
       <main>
         <CinemaHero />
@@ -111,6 +120,7 @@ export async function MarketingPage({ section }: { section?: string }) {
           </ScrollRise>
         </section>
       </main>
+      <RelatedTopics section="home" />
       <SiteFooter />
     </SiteFrame>
   );

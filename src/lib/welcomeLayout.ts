@@ -4,8 +4,17 @@ export type TemplateTone = (typeof TEMPLATE_TONES)[number];
 export const TEMPLATE_FONTS = ["geist", "be-vietnam", "outfit", "cormorant"] as const;
 export type TemplateFont = (typeof TEMPLATE_FONTS)[number];
 
-export const GALLERY_IDS = ["sunlit", "pool", "cafe", "garden", "coastal", "lobby", "terrace", "spa"] as const;
+export const TEMPLATE_COMPOSITIONS = ["full", "split"] as const;
+export type TemplateComposition = (typeof TEMPLATE_COMPOSITIONS)[number];
+
+export const GALLERY_IDS = ["sunlit", "pool", "cafe", "garden", "coastal", "lobby", "terrace", "spa", "suite"] as const;
 export type GalleryId = (typeof GALLERY_IDS)[number];
+
+export const SPLIT_PANEL = {
+  width: 42,
+  color: "rgb(22 18 14)",
+  edge: "rgb(212 176 122 / 0.22)",
+} as const;
 
 export const SLOT_KEYS = ["logo", "name", "slogan", "message", "room"] as const;
 export type SlotKey = (typeof SLOT_KEYS)[number];
@@ -21,6 +30,7 @@ export type WelcomeLayout = {
     source: "gallery" | "upload";
     gallery_id: string;
   };
+  composition: TemplateComposition;
   tone: TemplateTone;
   font: TemplateFont;
   colors: {
@@ -33,8 +43,16 @@ export type WelcomeLayout = {
     slogan: number;
     message: number;
     room: number;
+    wifi: number;
+    wifiPassword: number;
+    time: number;
+    clock: number;
+    weather: number;
+    logo: number;
   };
   slogan: string;
+  lead: string;
+  wish: string;
   slots: Record<SlotKey, TemplateSlot>;
 };
 
@@ -43,11 +61,27 @@ export const SIZE_LIMITS = {
   slogan: { min: 1.2, max: 4.5 },
   message: { min: 1, max: 3.5 },
   room: { min: 0.8, max: 3 },
+  wifi: { min: 0.8, max: 3.5 },
+  wifiPassword: { min: 0.6, max: 3 },
+  time: { min: 1.5, max: 6 },
+  clock: { min: 0.7, max: 2.4 },
+  weather: { min: 1.5, max: 6 },
+  logo: { min: 4, max: 28 },
 } as const;
 
 export function cqw(n: number): string {
   return `${n}cqw`;
 }
+
+export function cqh(n: number): string {
+  return `${n}cqh`;
+}
+
+export const COPY_LIMITS = {
+  slogan: 80,
+  lead: 120,
+  wish: 120,
+} as const;
 
 export const GALLERY: Record<GalleryId, { url: string }> = {
   sunlit: { url: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1920&q=80" },
@@ -58,6 +92,7 @@ export const GALLERY: Record<GalleryId, { url: string }> = {
   lobby: { url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80" },
   terrace: { url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1920&q=80" },
   spa: { url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80" },
+  suite: { url: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1920&q=80" },
 };
 
 export const TONE_FILTER: Record<TemplateTone, string> = {
@@ -92,7 +127,12 @@ export function defaultGalleryId(key: string): GalleryId {
   if (key === "harbor") return "coastal";
   if (key === "garden") return "garden";
   if (key === "stone") return "lobby";
+  if (key === "vista") return "suite";
   return "terrace";
+}
+
+export function isSplitLayout(layout: WelcomeLayout): boolean {
+  return layout.composition === "split";
 }
 
 export function defaultLayout(key: string): WelcomeLayout {
@@ -106,9 +146,19 @@ export function defaultLayout(key: string): WelcomeLayout {
           ? { name: "#f4efe4", slogan: "#e4ddd0", muted: "#c8c2b4" }
           : key === "stone"
             ? { name: "#f3eadc", slogan: "#e2d6c4", muted: "#c4b8a6" }
-            : { name: "#f4efe6", slogan: "#e8dfd0", muted: "#cfc4b4" };
+            : key === "vista"
+              ? { name: "#d4b07a", slogan: "#e8dfd0", muted: "#c4b8a6" }
+              : { name: "#f4efe6", slogan: "#e8dfd0", muted: "#cfc4b4" };
   const slots =
-    key === "harbor"
+    key === "vista"
+      ? {
+          logo: { x: 6, y: 12, visible: true },
+          name: { x: 6, y: 30 },
+          slogan: { x: 6, y: 66, visible: true },
+          message: { x: 6, y: 50, visible: true },
+          room: { x: 6, y: 86 },
+        }
+      : key === "harbor"
       ? {
           logo: { x: 8, y: 16, visible: true },
           name: { x: 8, y: 38 },
@@ -142,21 +192,30 @@ export function defaultLayout(key: string): WelcomeLayout {
 
   return {
     background: { source: "gallery", gallery_id: galleryId },
-    tone: key === "linen" ? "soft" : key === "harbor" ? "cool" : key === "garden" ? "warm" : key === "stone" ? "contrast" : "warm",
-    font: key === "linen" ? "be-vietnam" : key === "harbor" ? "outfit" : key === "garden" || key === "stone" ? "cormorant" : "geist",
+    composition: key === "vista" ? "split" : "full",
+    tone: key === "linen" ? "soft" : key === "harbor" ? "cool" : key === "garden" ? "warm" : key === "stone" || key === "vista" ? "contrast" : "warm",
+    font: key === "linen" ? "be-vietnam" : key === "harbor" ? "outfit" : key === "garden" || key === "stone" || key === "vista" ? "cormorant" : "geist",
     colors,
     sizes: defaultSizes(key),
     slogan: "",
+    lead: key === "vista" ? "Chúng tôi rất hân hạnh chào đón quý khách." : "Chào mừng quý khách",
+    wish: key === "vista" ? "Chúc quý khách kỳ nghỉ thư thái và đáng nhớ." : "Chúc quý khách có những trải nghiệm tuyệt vời.",
     slots,
   };
 }
 
 export function defaultSizes(key: string): WelcomeLayout["sizes"] {
   return {
-    name: key === "garden" || key === "stone" ? 5.4 : 4.5,
-    slogan: 2.2,
+    name: key === "garden" || key === "stone" ? 5.4 : key === "vista" ? 3.8 : 4.5,
+    slogan: key === "vista" ? 1.8 : 2.2,
     message: 1.7,
     room: 1.4,
+    wifi: 1.5,
+    wifiPassword: 1.2,
+    time: 3.4,
+    clock: 1.2,
+    weather: 3.4,
+    logo: key === "vista" ? 8 : 11,
   };
 }
 
@@ -166,6 +225,16 @@ function isTone(value: unknown): value is TemplateTone {
 
 function isFont(value: unknown): value is TemplateFont {
   return typeof value === "string" && (TEMPLATE_FONTS as readonly string[]).includes(value);
+}
+
+function isComposition(value: unknown): value is TemplateComposition {
+  return typeof value === "string" && (TEMPLATE_COMPOSITIONS as readonly string[]).includes(value);
+}
+
+function copyLine(value: unknown, fallback: string, max: number, present: boolean): string {
+  if (!present) return fallback;
+  if (typeof value !== "string") return fallback;
+  return value.trim().slice(0, max);
 }
 
 function color(value: unknown, fallback: string): string {
@@ -212,6 +281,7 @@ export function normalizeLayout(raw: unknown, key: string): WelcomeLayout {
       source: bg.source === "upload" ? "upload" : "gallery",
       gallery_id: galleryId,
     },
+    composition: isComposition(input.composition) ? input.composition : base.composition,
     tone: isTone(input.tone) ? input.tone : base.tone,
     font: isFont(input.font) ? input.font : base.font,
     colors: {
@@ -224,8 +294,16 @@ export function normalizeLayout(raw: unknown, key: string): WelcomeLayout {
       slogan: size(sizesIn.slogan, base.sizes.slogan, SIZE_LIMITS.slogan.min, SIZE_LIMITS.slogan.max),
       message: size(sizesIn.message, base.sizes.message, SIZE_LIMITS.message.min, SIZE_LIMITS.message.max),
       room: size(sizesIn.room, base.sizes.room, SIZE_LIMITS.room.min, SIZE_LIMITS.room.max),
+      wifi: size(sizesIn.wifi, base.sizes.wifi, SIZE_LIMITS.wifi.min, SIZE_LIMITS.wifi.max),
+      wifiPassword: size(sizesIn.wifiPassword, base.sizes.wifiPassword, SIZE_LIMITS.wifiPassword.min, SIZE_LIMITS.wifiPassword.max),
+      time: size(sizesIn.time, base.sizes.time, SIZE_LIMITS.time.min, SIZE_LIMITS.time.max),
+      clock: size(sizesIn.clock, base.sizes.clock, SIZE_LIMITS.clock.min, SIZE_LIMITS.clock.max),
+      weather: size(sizesIn.weather, base.sizes.weather, SIZE_LIMITS.weather.min, SIZE_LIMITS.weather.max),
+      logo: size(sizesIn.logo, base.sizes.logo, SIZE_LIMITS.logo.min, SIZE_LIMITS.logo.max),
     },
-    slogan: typeof input.slogan === "string" ? input.slogan.trim().slice(0, 80) : base.slogan,
+    slogan: typeof input.slogan === "string" ? input.slogan.trim().slice(0, COPY_LIMITS.slogan) : base.slogan,
+    lead: copyLine(input.lead, base.lead, COPY_LIMITS.lead, "lead" in input),
+    wish: copyLine(input.wish, base.wish, COPY_LIMITS.wish, "wish" in input),
     slots: {
       logo: slot(slotsIn.logo, base.slots.logo, true),
       name: slot(slotsIn.name, base.slots.name, false),

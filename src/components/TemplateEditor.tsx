@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { useTranslations } from "next-intl";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 import { WelcomeCanvas } from "@/components/WelcomeCanvas";
 import { api, ApiError, type HotelBranding, type WelcomeTemplate, type WelcomeTemplateList } from "@/lib/api";
 import {
+  COPY_LIMITS,
   GALLERY,
   GALLERY_IDS,
   SIZE_LIMITS,
@@ -135,11 +137,16 @@ export function TemplateEditor({ hotelId, branding, row, busy, onUpdated, onErro
             logoUrl={branding?.logo_url}
             hotelName={branding?.name ?? ""}
             guestName="Nguyễn Văn A"
-            message="Chúc quý khách nghỉ ngơi thật thoải mái."
             roomCode="101"
             wifi={wifi}
             interactive
             onSlotChange={onSlotChange}
+            onCopyVisibleChange={(visible) =>
+              queueSave({
+                ...layout,
+                slots: { ...layout.slots, message: { ...layout.slots.message, visible } },
+              })
+            }
           />
         </div>
         <p className="mt-1.5 text-xs text-muted">{t("editor.dragHint")}</p>
@@ -218,12 +225,71 @@ export function TemplateEditor({ hotelId, branding, row, busy, onUpdated, onErro
           <span className="text-xs font-medium">{t("editor.slogan")}</span>
           <input
             className="desk-field !py-1.5"
-            maxLength={80}
+            maxLength={COPY_LIMITS.slogan}
             value={layout.slogan}
             disabled={busy}
-            onChange={(e) => patch({ slogan: e.target.value.slice(0, 80) })}
+            onChange={(e) => patch({ slogan: e.target.value.slice(0, COPY_LIMITS.slogan) })}
           />
         </label>
+
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-medium">{t("editor.copyTitle")}</p>
+            <button
+              type="button"
+              disabled={busy}
+              aria-pressed={layout.slots.message.visible === false}
+              aria-label={layout.slots.message.visible === false ? t("editor.showCopy") : t("editor.hideCopy")}
+              title={layout.slots.message.visible === false ? t("editor.showCopy") : t("editor.hideCopy")}
+              onClick={() =>
+                queueSave({
+                  ...layout,
+                  slots: {
+                    ...layout.slots,
+                    message: { ...layout.slots.message, visible: layout.slots.message.visible === false },
+                  },
+                })
+              }
+              className="inline-flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-muted transition-colors hover:bg-line/60 hover:text-ink disabled:opacity-50"
+            >
+              {layout.slots.message.visible === false ? (
+                <>
+                  <Eye size={16} weight="regular" />
+                  <span>{t("editor.show")}</span>
+                </>
+              ) : (
+                <>
+                  <EyeSlash size={16} weight="regular" />
+                  <span>{t("editor.hide")}</span>
+                </>
+              )}
+            </button>
+          </div>
+          <label className="block space-y-1">
+            <span className="text-xs text-muted">{t("editor.leadLabel")}</span>
+            <input
+              className={`desk-field !py-1.5 ${layout.slots.message.visible === false ? "opacity-50" : ""}`}
+              maxLength={COPY_LIMITS.lead}
+              value={layout.lead}
+              disabled={busy}
+              placeholder={t("editor.lead")}
+              aria-label={t("editor.leadLabel")}
+              onChange={(e) => patch({ lead: e.target.value.slice(0, COPY_LIMITS.lead) })}
+            />
+          </label>
+          <label className="block space-y-1">
+            <span className="text-xs text-muted">{t("editor.wishLabel")}</span>
+            <input
+              className={`desk-field !py-1.5 ${layout.slots.message.visible === false ? "opacity-50" : ""}`}
+              maxLength={COPY_LIMITS.wish}
+              value={layout.wish}
+              disabled={busy}
+              placeholder={t("editor.wish")}
+              aria-label={t("editor.wishLabel")}
+              onChange={(e) => patch({ wish: e.target.value.slice(0, COPY_LIMITS.wish) })}
+            />
+          </label>
+        </div>
 
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs">
           <VisibilityBox
@@ -240,20 +306,18 @@ export function TemplateEditor({ hotelId, branding, row, busy, onUpdated, onErro
               queueSave({ ...layout, slots: { ...layout.slots, slogan: { ...layout.slots.slogan, visible } } })
             }
           />
-          <VisibilityBox
-            label={t("editor.showMessage")}
-            checked={layout.slots.message.visible !== false}
-            onChange={(visible) =>
-              queueSave({
-                ...layout,
-                slots: { ...layout.slots, message: { ...layout.slots.message, visible } },
-              })
-            }
-          />
         </div>
 
         <div className="space-y-1.5">
           <p className="text-xs font-medium">{t("editor.sizesTitle")}</p>
+          <SizeField
+            label={t("editor.sizeLogo")}
+            value={layout.sizes.logo}
+            min={SIZE_LIMITS.logo.min}
+            max={SIZE_LIMITS.logo.max}
+            disabled={busy}
+            onChange={(logo) => patch({ sizes: { ...layout.sizes, logo } })}
+          />
           <SizeField
             label={t("editor.sizeName")}
             value={layout.sizes.name}
@@ -285,6 +349,46 @@ export function TemplateEditor({ hotelId, branding, row, busy, onUpdated, onErro
             max={SIZE_LIMITS.room.max}
             disabled={busy}
             onChange={(room) => patch({ sizes: { ...layout.sizes, room } })}
+          />
+          <SizeField
+            label={t("editor.sizeWifi")}
+            value={layout.sizes.wifi}
+            min={SIZE_LIMITS.wifi.min}
+            max={SIZE_LIMITS.wifi.max}
+            disabled={busy}
+            onChange={(wifi) => patch({ sizes: { ...layout.sizes, wifi } })}
+          />
+          <SizeField
+            label={t("editor.sizeWifiPassword")}
+            value={layout.sizes.wifiPassword}
+            min={SIZE_LIMITS.wifiPassword.min}
+            max={SIZE_LIMITS.wifiPassword.max}
+            disabled={busy}
+            onChange={(wifiPassword) => patch({ sizes: { ...layout.sizes, wifiPassword } })}
+          />
+          <SizeField
+            label={t("editor.sizeTime")}
+            value={layout.sizes.time}
+            min={SIZE_LIMITS.time.min}
+            max={SIZE_LIMITS.time.max}
+            disabled={busy}
+            onChange={(time) => patch({ sizes: { ...layout.sizes, time } })}
+          />
+          <SizeField
+            label={t("editor.sizeClock")}
+            value={layout.sizes.clock}
+            min={SIZE_LIMITS.clock.min}
+            max={SIZE_LIMITS.clock.max}
+            disabled={busy}
+            onChange={(clock) => patch({ sizes: { ...layout.sizes, clock } })}
+          />
+          <SizeField
+            label={t("editor.sizeWeather")}
+            value={layout.sizes.weather}
+            min={SIZE_LIMITS.weather.min}
+            max={SIZE_LIMITS.weather.max}
+            disabled={busy}
+            onChange={(weather) => patch({ sizes: { ...layout.sizes, weather } })}
           />
         </div>
 
@@ -336,7 +440,7 @@ function SizeField({
 }) {
   return (
     <label className="flex items-center gap-2">
-      <span className="w-[4.75rem] shrink-0 text-xs text-muted">{label}</span>
+      <span className="w-[7.25rem] shrink-0 text-xs text-muted">{label}</span>
       <input
         type="range"
         min={min}

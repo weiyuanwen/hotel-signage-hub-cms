@@ -1,0 +1,14 @@
+.git
+.gitattributes
+.gitignore
+.worktrees
+.cursor
+.idea
+.vscode
+.next
+.vercel
+node_modules
+*.md
+.env
+.env.*
+!.env.example

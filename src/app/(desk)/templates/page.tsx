@@ -142,7 +142,6 @@ export default function TemplatesPage() {
                     logoUrl={branding?.logo_url}
                     hotelName={branding?.name ?? ""}
                     guestName="Nguyễn Văn A"
-                    message={layout.slogan || undefined}
                     roomCode="101"
                     compact
                   />

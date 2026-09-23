@@ -7,11 +7,19 @@ import type { HotelPlan } from "@/lib/api";
 
 export function PricingMenu() {
   const t = useTranslations("pricing");
-  const [plan, setPlan] = useState<Extract<HotelPlan, "free" | "premium">>("free");
+  const [plan, setPlan] = useState<HotelPlan>("free");
 
   const plans = [
     {
       key: "free" as const,
+      name: t("freeName"),
+      devices: t("freePrice"),
+      pairing: t("freePairing"),
+      note: t("freeNote"),
+      cta: t("freeCta"),
+    },
+    {
+      key: "standard" as const,
       name: t("threeName"),
       devices: t("threePrice"),
       pairing: t("threePairing"),

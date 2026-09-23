@@ -1,20 +1,22 @@
 {
   "meta": {
-    "title": "Signage Desk",
-    "titleTemplate": "%s · Signage Desk",
-    "description": "16:9 in-room welcome TVs for the front desk. 3 screens at $3 a month, many screens at $5 a month.",
-    "homeTitle": "Signage Desk",
-    "productTitle": "Product",
-    "productDescription": "Front desk types a name. The room TV updates the greeting, Wi-Fi, and template at once.",
-    "galleryTitle": "Welcome templates",
-    "galleryDescription": "Five 16:9 welcome looks: Golden night, Soft morning, Harbor night, Tea garden, Warm stone.",
-    "pricingTitle": "Pricing",
-    "pricingDescription": "3 screens at $3 a month. Many screens at $5 a month.",
-    "faqTitle": "FAQ",
-    "faqDescription": "TV pairing, plans, MP4/YouTube backgrounds, and Signage Desk accounts.",
-    "joinTitle": "Open a desk",
-    "joinDescription": "Email us to open a Signage Desk. 3 screens at $3 a month.",
-    "loginTitle": "Sign in"
+    "title": "Hotel welcome TV software | SignageHub",
+    "titleTemplate": "%s · SignageHub",
+    "description": "Hotel welcome TV software. Front desk types a guest name; the room TV updates greeting and Wi-Fi instantly. 3 screens at $3 a month.",
+    "homeTitle": "SignageHub",
+    "productTitle": "16:9 hotel welcome TV software for the front desk",
+    "productDescription": "Hotel welcome TV software: type the guest name in the CMS and every paired room TV updates the greeting, Wi-Fi, and 16:9 template.",
+    "galleryTitle": "In-room hotel welcome TV templates",
+    "galleryDescription": "Six 16:9 welcome looks for room TVs: Golden night, Soft morning, Harbor night, Tea garden, Warm stone, Vista. Pick one at check-in.",
+    "pricingTitle": "Hotel welcome TV software pricing",
+    "pricingDescription": "SignageHub pricing: 3 screens at $3 a month, many screens at $5. Player runs on Android TV, Chrome, or Windows.",
+    "faqTitle": "Hotel welcome TV and pairing FAQ",
+    "faqDescription": "Answers on welcome TVs vs ad screens, PIN or link pairing, MP4/YouTube backgrounds, plans, and desk accounts.",
+    "joinTitle": "Open a hotel welcome TV desk",
+    "joinDescription": "Email us to open a SignageHub desk. Start 3 welcome TVs at $3 a month.",
+    "directoryTitle": "Site map",
+    "directoryDescription": "Directory of SignageHub: product, welcome templates, pricing, FAQ, and how to open a hotel desk.",
+    "loginTitle": "Sign in to the SignageHub desk"
   },
   "nav": {
     "product": "Product",
@@ -27,17 +29,48 @@
     "menu": "Open menu",
     "langVi": "VI",
     "langEn": "EN",
-    "langLabel": "Language"
+    "langLabel": "Language",
+    "directory": "Site map",
+    "home": "Home",
+    "support": "Support"
+  },
+  "pages": {
+    "relatedTitle": "Related pages",
+    "product": {
+      "h1": "Welcome TV software for the hotel desk",
+      "lead": "SignageHub is 16:9 hotel welcome TV software. Front desk types a name in the CMS. Every screen paired to that room shows the greeting, Wi-Fi, and template."
+    },
+    "gallery": {
+      "h1": "In-room hotel welcome TV templates",
+      "lead": "Six 16:9 looks for the room TV: Golden night, Soft morning, Harbor night, Tea garden, Warm stone, Vista. Managers enable them. Desk picks one at check-in."
+    },
+    "pricing": {
+      "h1": "Hotel welcome TV software pricing",
+      "lead": "Two monthly plans. 3 screens at $3. Many screens at $5. The player opens on Android TV, Chrome, Windows, or Raspberry Pi."
+    },
+    "faq": {
+      "h1": "Hotel welcome TV questions",
+      "lead": "How this differs from ad screens, PIN or link pairing, photo and video backgrounds, plan prices, and who can sign in."
+    },
+    "join": {
+      "h1": "Open a hotel welcome TV desk",
+      "lead": "Send a hotel email. SignageHub creates a manager account and mails it over. Start with 3 TVs at $3 a month."
+    },
+    "directory": {
+      "h1": "SignageHub site map",
+      "lead": "The public directory Google and readers follow from the home page: product, templates, pricing, FAQ, and opening a desk."
+    }
   },
   "hero": {
-    "srTitle": "3 screens, $3 a month. Guest names on the TV at once.",
+    "srTitle": "Hotel welcome TV software. 3 screens, $3 a month. Guest names on the TV at once.",
     "headline": "3 TVs, $3 a month.",
     "guests": [
       "Welcome, Ms. Lan.",
       "Welcome, Mr. Minh.",
       "Welcome, Ms. Hanh.",
       "Welcome, Ms. Mai.",
-      "Welcome, Mr. Khoa."
+      "Welcome, Mr. Khoa.",
+      "Welcome, Ms. Ha."
     ]
   },
   "templates": {
@@ -45,14 +78,15 @@
     "linen": "Soft morning",
     "harbor": "Harbor night",
     "garden": "Tea garden",
-    "stone": "Warm stone"
+    "stone": "Warm stone",
+    "vista": "Vista"
   },
   "gallery": {
-    "title": "Five rooms. Swipe across.",
+    "title": "Six rooms. Swipe across.",
     "body": "Each template is a different night on the same 16:9 TV."
   },
   "proof": {
-    "label": "Hotels running Signage Desk",
+    "label": "Hotels running SignageHub",
     "title": "On room TVs in",
     "cities": {
       "song-han": "Da Nang",
@@ -87,24 +121,29 @@
     "by": "Tran Hanh, shift manager, Saigon Pearl (demo)"
   },
   "pricing": {
-    "title": "Two plans, billed monthly.",
-    "body": "English pricing is in US dollars. 3 screens at $3 a month. Many screens at $5 a month.",
+    "title": "One TV free. Pay monthly when you need more.",
+    "body": "Free for 1 TV. 3 screens at $3 a month. Many screens at $5. Pay by Vietnam bank transfer or Stripe card.",
+    "freeName": "1 TV free",
+    "freePrice": "$0",
+    "freePairing": "Try one screen. Pair with a PIN. No expiry.",
+    "freeNote": "Enough for one desk or one room. Upgrade when you add TVs.",
+    "freeCta": "Start 1 TV",
     "threeName": "3 screens",
     "threePrice": "$3/month",
     "threePairing": "Lobby and a few rooms. Pair with the PIN on the TV.",
-    "threeNote": "The player runs in a browser: Android TV, Chrome, Windows, Raspberry Pi.",
-    "threeCta": "Start 3 TVs",
+    "threeNote": "Pay by bank transfer or Stripe. TVs stop when the month ends.",
+    "threeCta": "Buy 3 TVs",
     "manyName": "Many screens",
     "manyPrice": "$5/month",
     "manyPairing": "No screen cap. Pair with a link. No PIN to type.",
     "manyNote": "Same MP4 or YouTube backgrounds. No TV limit.",
-    "manyCta": "Open many TVs"
+    "manyCta": "Buy many TVs"
   },
   "faq": {
     "title": "FAQ",
     "items": [
       {
-        "q": "How is Signage Desk different from ad screens?",
+        "q": "How is SignageHub different from ad screens?",
         "a": "This is a per-room, per-guest welcome. Front desk checks in on the CMS and the room TV updates the name and template at once. No slide playlist."
       },
       {
@@ -117,7 +156,7 @@
       },
       {
         "q": "Which welcome templates ship?",
-        "a": "Five presets: Golden night, Soft morning, Harbor night, Tea garden, Warm stone. Managers enable or hide them and set a default. Front desk picks at check-in."
+        "a": "Six presets: Golden night, Soft morning, Harbor night, Tea garden, Warm stone, Vista. Managers enable or hide them and set a default. Front desk picks at check-in."
       },
       {
         "q": "How long does TV pairing take?",
@@ -125,11 +164,15 @@
       },
       {
         "q": "What does it cost?",
-        "a": "3 screens at $3 a month. Many screens at $5 a month. The Vietnamese site shows 15,000 dong and 50,000 dong for the same two plans."
+        "a": "1 TV is free. 3 screens at $3 a month. Many screens at $5. The Vietnamese site shows 15,000 dong and 50,000 dong for the paid plans."
       },
       {
         "q": "Who can sign in?",
         "a": "The join form emails a hotel-manager account to the address you enter. Front desk staff are added later by that manager."
+      },
+      {
+        "q": "How do I contact support?",
+        "a": "Email nguyenduy0170@gmail.com. That is the SignageHub support inbox."
       }
     ]
   },
@@ -143,13 +186,41 @@
     "emailPlaceholder": "front.desk@hotel.com",
     "invalidEmail": "Enter a working hotel email.",
     "sending": "Sending…",
-    "submit": "Start 3 TVs",
+    "submit": "Start 1 free TV",
     "existing": "This email already has a desk. Sign in to continue.",
     "failed": "Could not send. Try again in a moment.",
     "sent": "Account mailed to {email}.",
-    "sentHint": "Open the inbox, then sign in with that email. Check spam too.",
+    "sentHint": "Open the inbox, then sign in with that email.",
+    "spamNotice": "The email may land in Spam. Check your inbox and spam folder, then mark it as not spam.",
     "demo": "Open the demo desk",
     "signIn": "Sign in"
+  },
+  "pay": {
+    "title": "Pay for the plan",
+    "body": "Vietnam bank transfer or international card. Keep the transfer note exactly as shown.",
+    "pick": "Choose how to pay.",
+    "creating": "Creating the order…",
+    "bank": "Vietnam transfer",
+    "card": "Card / Stripe",
+    "qrAlt": "VietQR code for SignageHub",
+    "copy": "Copy transfer content",
+    "bankName": "Bank",
+    "accountNo": "Account number",
+    "accountName": "Account name",
+    "amount": "Amount",
+    "content": "Transfer note",
+    "waiting": "Waiting for the transfer. Do not change the note.",
+    "expired": "Timed out. Create a new QR.",
+    "stripeHint": "Pay {amount} by card. A Stripe window will open.",
+    "openStripe": "Open Stripe",
+    "paidTitle": "Payment received",
+    "paidBody": "Your plan is extended by a month. Sign in with the email you used.",
+    "returnPending": "Confirming the card payment…",
+    "returnReady": "The month is on the account.",
+    "returnMissing": "We could not find that order. Sign in if you already paid.",
+    "signIn": "Sign in",
+    "close": "Close",
+    "failed": "Could not create the order. Try again."
   },
   "deskPreview": {
     "rooms": "Rooms",
@@ -170,9 +241,10 @@
     "errorTitle": "Could not sign in",
     "badCredentials": "Email or password is wrong.",
     "network": "Could not reach the API host.",
-    "demo": "Front desk demo: desk@saigon-pearl.test / password. Manager: manager@saigon-pearl.test.",
+    "demo": "",
     "noAccount": "No account yet?",
     "openDesk": "Email to open a desk",
+    "support": "Support",
     "photoAlt": "Hotel lobby with curved wood and warm light"
   },
   "notFound": {
@@ -183,7 +255,7 @@
   },
   "desk": {
     "loading": "Opening the desk…",
-    "brand": "Signage Desk",
+    "brand": "SignageHub",
     "shift": "On shift",
     "nav": {
       "rooms": "Rooms",
@@ -215,8 +287,8 @@
     "reload": "Reload",
     "plans": {
       "trial": "Trial",
-      "free": "3 screens",
-      "standard": "Plus",
+      "free": "1 TV free",
+      "standard": "3 TVs",
       "premium": "Many screens"
     },
     "quotaLimited": "{plan} · {used}/{limit} TVs",
@@ -317,7 +389,9 @@
       "noHotel": "No hotel selected.",
       "loadError": "Could not load hotel details.",
       "weatherTitle": "Weather on TV",
-      "weatherBody": "Temperature comes from Open-Meteo for this region, refreshed every 30 minutes.",
+      "weatherBody": "Temperature comes from Open-Meteo for this region. The TV updates after you save, or when the screen reloads.",
+      "weatherNow": "{temp}°C now",
+      "weatherLoading": "Fetching temperature…",
       "region": "Region",
       "regionPick": "Choose a region",
       "regionError": "Could not save the weather region.",
@@ -379,6 +453,12 @@
       "sizeSlogan": "Slogan",
       "sizeMessage": "Message",
       "sizeRoom": "Room number",
+      "sizeLogo": "Logo",
+      "sizeWifi": "Wi-Fi name",
+      "sizeWifiPassword": "Wi-Fi password",
+      "sizeTime": "Clock",
+      "sizeClock": "Date",
+      "sizeWeather": "Temperature",
       "sizeSmall": "Smaller",
       "sizeLarge": "Larger",
       "colorsTitle": "Text color",
@@ -387,7 +467,16 @@
       "colorSlogan": "Slogan color",
       "colorMuted": "Secondary color",
       "slogan": "Slogan on this look",
-      "sloganHint": "Up to 80 characters. The desk still types the guest name and message at check-in.",
+      "sloganHint": "Up to 80 characters. The desk still types the guest name at check-in.",
+      "copyTitle": "Welcome lines on TV",
+      "leadLabel": "Welcome line",
+      "wishLabel": "Wish line",
+      "lead": "Welcome, dear guest",
+      "wish": "We wish you a wonderful stay.",
+      "hideCopy": "Hide the welcome lines",
+      "showCopy": "Show the welcome lines",
+      "hide": "Hide",
+      "show": "Show",
       "dragHint": "Drag logo and type. Wi-Fi and clock stay in the corners.",
       "wifiFixed": "Wi-Fi, clock and weather stay in the corners so they stay readable on TV.",
       "showLogo": "Show logo",
@@ -416,7 +505,8 @@
         "coastal": "Coast",
         "lobby": "Lobby",
         "terrace": "Terrace",
-        "spa": "Spa"
+        "spa": "Spa",
+        "suite": "Suite"
       }
     },
     "staffPage": {

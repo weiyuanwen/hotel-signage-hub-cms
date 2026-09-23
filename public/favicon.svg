@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="hubGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="50%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Khung màn hình bo góc (Signage Screen) -->
+  <rect x="6" y="8" width="52" height="38" rx="8" fill="url(#hubGrad)" />
+  <rect x="10" y="12" width="44" height="30" rx="5" fill="#0F172A" />
+
+  <!-- Nút tín hiệu & sóng kết nối (Hub / Broadcast) -->
+  <circle cx="32" cy="27" r="5" fill="#38BDF8" />
+  <circle cx="32" cy="27" r="9" stroke="#38BDF8" stroke-width="2" stroke-dasharray="3 3" opacity="0.8" />
+  <circle cx="32" cy="27" r="13" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" />
+
+  <!-- Chân đế màn hình TV -->
+  <path d="M26 46H38L42 54H22L26 46Z" fill="url(#hubGrad)" />
+  <rect x="18" y="54" width="28" height="3" rx="1.5" fill="#38BDF8" />
+</svg>

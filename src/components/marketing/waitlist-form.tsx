@@ -3,11 +3,13 @@
 import { FormEvent, useState } from "react";
 import { CheckCircle } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "@/i18n/navigation";
+import { MailSpamNotice } from "@/components/marketing/mail-spam-notice";
+import { PaymentDialog, type PaidPlan } from "@/components/marketing/payment-dialog";
 import { api, ApiError, apiErrorMessage, type HotelPlan } from "@/lib/api";
 
 export function WaitlistForm({
@@ -22,6 +24,7 @@ export function WaitlistForm({
   submitLabel?: string;
 }) {
   const t = useTranslations("waitlist");
+  const locale = useLocale();
   const reduceMotion = useReducedMotion();
   const [email, setEmail] = useState("");
   const [hotelName, setHotelName] = useState("");
@@ -29,6 +32,9 @@ export function WaitlistForm({
   const [existing, setExisting] = useState(false);
   const [done, setDone] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [pay, setPay] = useState<{ email: string; hotelName?: string; plan: PaidPlan } | null>(null);
+
+  const paid = plan === "standard" || plan === "premium";
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -49,9 +55,17 @@ export function WaitlistForm({
           hotel_name: hotelName.trim() || undefined,
         }),
       });
+      if (paid) {
+        setPay({ email: value, hotelName: hotelName.trim() || undefined, plan });
+        return;
+      }
       setDone(true);
     } catch (err) {
       if (err instanceof ApiError && err.status === 409) {
+        if (paid) {
+          setPay({ email: value, hotelName: hotelName.trim() || undefined, plan });
+          return;
+        }
         setExisting(true);
         setError(apiErrorMessage(err, t("existing")));
         return;
@@ -60,6 +74,18 @@ export function WaitlistForm({
     } finally {
       setBusy(false);
     }
+  }
+
+  if (pay) {
+    return (
+      <PaymentDialog
+        email={pay.email}
+        hotelName={pay.hotelName}
+        plan={pay.plan}
+        locale={locale === "en" ? "en" : "vi"}
+        onClose={() => setPay(null)}
+      />
+    );
   }
 
   if (done) {
@@ -76,8 +102,9 @@ export function WaitlistForm({
           {t("sent", { email: email.trim().toLowerCase() })}
         </p>
         <p className="text-white/70">{t("sentHint")}</p>
+        <MailSpamNotice />
         <Link href="/login" className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">
-          {t("demo")}
+          {t("signIn")}
         </Link>
       </motion.div>
     );
@@ -123,14 +150,17 @@ export function WaitlistForm({
         </Button>
       </div>
       {error ? (
-        <p className="text-sm text-white">
-          {error}{" "}
-          {existing ? (
-            <Link href="/login" className="underline decoration-white/40 underline-offset-4 hover:decoration-white">
-              {t("signIn")}
-            </Link>
-          ) : null}
-        </p>
+        <div className="grid gap-2">
+          <p className="text-sm text-white">
+            {error}{" "}
+            {existing ? (
+              <Link href="/login" className="underline decoration-white/40 underline-offset-4 hover:decoration-white">
+                {t("signIn")}
+              </Link>
+            ) : null}
+          </p>
+          {existing ? <MailSpamNotice /> : null}
+        </div>
       ) : null}
     </form>
   );

@@ -18,6 +18,7 @@ const OVERLAY: Record<string, string> = {
   harbor: "rgb(4 12 22 / 0.4)",
   garden: "rgb(6 14 10 / 0.38)",
   stone: "rgb(16 12 8 / 0.36)",
+  vista: "rgb(22 18 14 / 0.28)",
 };
 
 const PAGE_SIZE = 8;
@@ -139,7 +140,6 @@ function TvCard({ device, onSelect, lite }: { device: Device; onSelect: (device:
               logoUrl={screen.hotel.logo_url}
               hotelName={screen.hotel.name}
               guestName={screen.guest?.display_name ?? ""}
-              message={screen.guest?.message}
               roomCode={screen.room.code}
               wifi={screen.hotel.wifi}
               compact

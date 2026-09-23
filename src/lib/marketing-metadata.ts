@@ -10,6 +10,7 @@ const sectionPath = {
   pricing: "/pricing",
   faq: "/faq",
   join: "/join",
+  directory: "/directory",
   login: "/login",
 } as const;
 
@@ -20,6 +21,7 @@ const sectionMetaKey = {
   pricing: { title: "pricingTitle", description: "pricingDescription" },
   faq: { title: "faqTitle", description: "faqDescription" },
   join: { title: "joinTitle", description: "joinDescription" },
+  directory: { title: "directoryTitle", description: "directoryDescription" },
   login: { title: "loginTitle", description: "description" },
 } as const;
 
@@ -27,7 +29,7 @@ export type MarketingSection = keyof typeof sectionPath;
 
 function absoluteUrl(locale: AppLocale, href: AppPathname): string {
   const path = getPathname({ locale, href });
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://signagehub.online";
   return `${base.replace(/\/$/, "")}${path}`;
 }
 
@@ -39,14 +41,45 @@ export async function marketingMetadata(locale: AppLocale, section: MarketingSec
   for (const loc of routing.locales) {
     languages[loc] = absoluteUrl(loc, href);
   }
-  languages["x-default"] = absoluteUrl("vi", href);
+  languages["x-default"] = absoluteUrl(routing.defaultLocale, href);
+
+  const title = t(keys.title);
+  const description = t(keys.description);
+  const url = absoluteUrl(locale, href);
+  const siteName = "SignageHub";
 
   return {
-    title: section === "home" ? { absolute: t(keys.title) } : t(keys.title),
-    description: t(keys.description),
+    metadataBase: new URL((process.env.NEXT_PUBLIC_SITE_URL ?? "https://signagehub.online").replace(/\/$/, "")),
+    title: section === "home" ? { absolute: title } : title,
+    description,
+    applicationName: siteName,
+    icons: {
+      icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+      apple: "/apple-icon.png",
+    },
     alternates: {
-      canonical: absoluteUrl(locale, href),
+      canonical: url,
       languages,
+    },
+    openGraph: {
+      type: "website",
+      locale: locale === "vi" ? "vi_VN" : "en_US",
+      alternateLocale: locale === "vi" ? ["en_US"] : ["vi_VN"],
+      url,
+      siteName,
+      title,
+      description,
+      images: [{ url: "/brand/og.png", width: 1200, height: 630, alt: "SignageHub" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/brand/og.png"],
+    },
+    robots: {
+      index: section !== "login",
+      follow: section !== "login",
     },
   };
 }
