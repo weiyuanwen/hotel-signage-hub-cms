@@ -56,6 +56,9 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   if (token) headers.set("Authorization", `Bearer ${token}`);
 
   const res = await fetch(`${apiBase()}${path}`, { ...init, headers });
+  if (res.status === 401) {
+    setToken(null);
+  }
   if (res.status === 204 || res.status === 304) {
     return undefined as T;
   }
