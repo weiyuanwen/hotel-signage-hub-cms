@@ -21,7 +21,7 @@ export function ParallaxFill({
 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div className="absolute inset-0 scale-125 will-change-transform" style={{ y }}>
+      <motion.div className="absolute inset-0 scale-125" style={{ y }}>
         {children}
       </motion.div>
     </div>

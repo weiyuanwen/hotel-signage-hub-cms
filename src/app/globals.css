@@ -180,9 +180,12 @@ html:has(.site) {
   animation-play-state: paused;
 }
 
+/* No scroll-behavior: smooth here. It fights scroll-snap-type: x mandatory —
+   the snap engine re-targets every frame while the smooth animation is still
+   running, so cards get dragged past the target and yanked back. */
 .site-corridor {
   scrollbar-width: none;
-  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
 }
 
 .site-corridor::-webkit-scrollbar {

@@ -32,17 +32,67 @@ export function CinemaHero() {
   const y = useMotionValue(38);
   const spotlight = useMotionTemplate`radial-gradient(46vw circle at ${x}% ${y}%, rgb(255 255 255 / 0.16), transparent 58%)`;
 
+  // The spotlight is a hover effect. On touch, pointermove keeps firing for the
+  // whole duration of a scroll gesture, and each one repaints a full-viewport
+  // mix-blend-soft-light layer — that is what makes the hero judder while
+  // scrolling. Only fine pointers drive it, and off a native passive listener
+  // so no React render happens per move.
   useEffect(() => {
     if (reduce) return;
+    const section = root.current;
+    if (!section) return;
+    const host = section;
+    function onMove(event: PointerEvent) {
+      if (event.pointerType !== "mouse") return;
+      const rect = host.getBoundingClientRect();
+      x.set(((event.clientX - rect.left) / rect.width) * 100);
+      y.set(((event.clientY - rect.top) / rect.height) * 100);
+    }
+    section.addEventListener("pointermove", onMove, { passive: true });
+    return () => section.removeEventListener("pointermove", onMove);
+  }, [reduce, x, y]);
+
+  // The auto-cycle re-mounts a full-viewport AnimatePresence every 5.2s, which
+  // repaints whatever the user is currently scrolling past. So it runs only
+  // once the visitor has actually touched the page.
+  //
+  // That gate is also what keeps LCP honest. Each cycle swaps the guest name,
+  // and that name is the largest contentful element — an unattended swap records
+  // a fresh LCP, which measured 5.4s instead of ~90ms on the built site. But a
+  // scroll, wheel or tap finalises LCP in the browser, so from the first
+  // interaction onward the turns are free. A visitor who never interacts is
+  // exactly the case worth protecting, since that is what a crawler looks like.
+  const held = useRef(false);
+  const engaged = useRef(false);
+  useEffect(() => {
+    if (reduce || held.current) return;
     const timer = window.setInterval(() => {
-      if (locked.current) return;
+      if (locked.current || document.hidden) return;
+      if (!engaged.current) return;
       setIndex((current) => (current + 1) % WELCOME_TEMPLATE_KEYS.length);
     }, 5200);
     return () => window.clearInterval(timer);
   }, [reduce]);
 
+  useEffect(() => {
+    const host = root.current;
+    if (!host || reduce) return;
+    function onEngage() {
+      engaged.current = true;
+    }
+    host.addEventListener("pointerdown", onEngage, { passive: true });
+    host.addEventListener("wheel", onEngage, { passive: true });
+    host.addEventListener("keydown", onEngage, { passive: true });
+    return () => {
+      host.removeEventListener("pointerdown", onEngage);
+      host.removeEventListener("wheel", onEngage);
+      host.removeEventListener("keydown", onEngage);
+    };
+  }, [reduce]);
+
   function pick(next: number) {
     locked.current = true;
+    held.current = true;
     setIndex(next);
   }
 
@@ -51,15 +101,9 @@ export function CinemaHero() {
       ref={root}
       id="join"
       className="relative isolate min-h-[100dvh] overflow-hidden bg-black"
-      onPointerMove={(event) => {
-        if (reduce) return;
-        const rect = event.currentTarget.getBoundingClientRect();
-        x.set(((event.clientX - rect.left) / rect.width) * 100);
-        y.set(((event.clientY - rect.top) / rect.height) * 100);
-      }}
     >
       <h1 className="sr-only">{t("hero.srTitle")}</h1>
-      <motion.div className="absolute inset-0 will-change-transform" style={{ y: frameY, scale: frameScale }}>
+      <motion.div className="absolute inset-0" style={{ y: frameY, scale: frameScale }}>
         <TvStage
           fill
           bare
