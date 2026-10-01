@@ -261,7 +261,11 @@
       "devices": "Devices",
       "staff": "Staff"
     },
-    "lang": { "label": "Language", "vi": "VI", "en": "EN" },
+    "lang": {
+      "label": "Language",
+      "vi": "VI",
+      "en": "EN"
+    },
     "hotel": {
       "select": "Hotel",
       "empty": "No hotel yet",
@@ -333,12 +337,14 @@
       "pairMethodLink": "Copy link",
       "pairMethodLabel": "Pairing method",
       "copyLink": "Copy link",
-      "linkHint": "Open this link on the TV (player browser). No PIN. Every TV in this room shows the same content{count}.",
+      "linkHint": "On the TV, open a browser and go to {url}, then paste this link. No PIN needed. Every TV in this room shows the same content{count}.",
       "linkHintCount": " ({count} TVs now)",
       "linkLabel": "Pairing link",
       "linkBusy": "Creating link…",
-      "pinHint": "Each TV opens the player for its own PIN, then pair it to this room. Every TV shows the same content{count}.",
+      "pinHint": "On the TV, open a browser and go to {url} to get its own PIN, then pair it to this room. Every TV shows the same content{count}.",
       "pinLabel": "PIN on the TV",
+      "playerUrlLabel": "Address to open on the TV",
+      "playerUrlHint": "Type this address into the TV browser (usually Chrome). The screen will show a PIN to pair with.",
       "copied": "Copied the pairing link for room {code}. Open it on the TV.",
       "paired": "Paired a TV to room {code}. This room now has {count} TVs on the same content.",
       "linkError": "Could not create a pairing link.",

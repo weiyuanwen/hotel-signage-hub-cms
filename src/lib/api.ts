@@ -127,6 +127,7 @@ export type HotelBranding = {
   background_kind: "image" | "video" | null;
   wifi_ssid: string | null;
   wifi_password: string | null;
+  player_url: string | null;
 };
 
 export type Room = {

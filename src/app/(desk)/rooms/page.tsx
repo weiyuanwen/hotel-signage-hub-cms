@@ -10,7 +10,7 @@ import { RoomBackgroundDialog } from "@/components/RoomBackgroundDialog";
 import { TemplatePicker } from "@/components/TemplatePicker";
 import { DeskEmpty, DeskError, DeskHeader, DeskMain, DeskNotice, DeskPager, DeskSkeleton } from "@/components/desk/ui";
 import { useDeskLocale } from "@/components/desk/desk-i18n";
-import { api, apiErrorMessage, hotelQuotaLabel, type Device, type Room, type WelcomeTemplate, type WelcomeTemplateList } from "@/lib/api";
+import { api, apiErrorMessage, hotelQuotaLabel, type Device, type HotelBranding, type Room, type WelcomeTemplate, type WelcomeTemplateList } from "@/lib/api";
 import { canManageRooms } from "@/lib/roles";
 import { R2_PUBLIC } from "@/lib/r2Public";
 import { useSession } from "@/lib/session";
@@ -51,6 +51,7 @@ function RoomsBody() {
   const [notice, setNotice] = useState<string | null>(null);
   const [pairLink, setPairLink] = useState<string | null>(null);
   const [pairMethod, setPairMethod] = useState<"pin" | "link">("pin");
+  const [playerUrl, setPlayerUrl] = useState<string>("");
   const [query, setQuery] = useState("");
   const [occupancy, setOccupancy] = useState<"all" | "occupied" | "vacant">("all");
   const [simTarget, setSimTarget] = useState<0 | 50 | 100>(0);
@@ -69,13 +70,15 @@ function RoomsBody() {
     const requestedHotelId = hotelId;
     setError(null);
     try {
-      const [roomsRes, devicesRes] = await Promise.all([
+      const [roomsRes, devicesRes, brandingRes] = await Promise.all([
         api<{ data: Room[] }>(`/cms/hotels/${requestedHotelId}/rooms`),
         api<{ data: Device[] }>(`/cms/hotels/${requestedHotelId}/devices`).catch(() => ({ data: [] as Device[] })),
+        api<{ data: HotelBranding }>(`/cms/hotels/${requestedHotelId}`).catch(() => null),
       ]);
       if (hotelIdRef.current !== requestedHotelId) return;
       setRooms(roomsRes.data);
       setDevices(devicesRes.data);
+      setPlayerUrl(brandingRes?.data.player_url ?? "");
     } catch {
       if (hotelIdRef.current !== requestedHotelId) return;
       setError(t("rooms.loadError"));
@@ -655,7 +658,7 @@ function RoomsBody() {
               ) : null}
               {pairMethod === "link" && canCopyLink ? (
                 <>
-                  <p className="text-sm text-muted">{t("rooms.linkHint", { count: pairCountHint })}</p>
+                  <p className="text-sm text-muted">{t("rooms.linkHint", { count: pairCountHint, url: playerUrl })}</p>
                   <label className="block space-y-1.5">
                     <span className="text-sm font-medium">{t("rooms.linkLabel")}</span>
                     <input
@@ -667,7 +670,7 @@ function RoomsBody() {
                 </>
               ) : (
                 <>
-                  <p className="text-sm text-muted">{t("rooms.pinHint", { count: pairCountHint })}</p>
+                  <p className="text-sm text-muted">{t("rooms.pinHint", { count: pairCountHint, url: playerUrl })}</p>
                   <label className="block space-y-1.5">
                     <span className="text-sm font-medium">{t("rooms.pinLabel")}</span>
                     <input
@@ -680,6 +683,19 @@ function RoomsBody() {
                   </label>
                 </>
               )}
+              {playerUrl ? (
+                <div className="space-y-1.5 rounded-xl border border-line bg-surface/50 p-3">
+                  <p className="text-sm font-medium">{t("rooms.playerUrlLabel")}</p>
+                  <input
+                    value={playerUrl}
+                    readOnly
+                    onFocus={(e) => e.currentTarget.select()}
+                    className="desk-field font-mono text-sm"
+                    aria-label={t("rooms.playerUrlLabel")}
+                  />
+                  <p className="text-xs text-muted">{t("rooms.playerUrlHint")}</p>
+                </div>
+              ) : null}
             </>
           ) : (
             <>

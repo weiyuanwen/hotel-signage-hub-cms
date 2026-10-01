@@ -261,7 +261,11 @@
       "devices": "Thiết bị",
       "staff": "Nhân viên"
     },
-    "lang": { "label": "Ngôn ngữ", "vi": "VI", "en": "EN" },
+    "lang": {
+      "label": "Ngôn ngữ",
+      "vi": "VI",
+      "en": "EN"
+    },
     "hotel": {
       "select": "Khách sạn",
       "empty": "Chưa có khách sạn",
@@ -333,12 +337,14 @@
       "pairMethodLink": "Sao chép link",
       "pairMethodLabel": "Cách ghép TV",
       "copyLink": "Sao chép link",
-      "linkHint": "Mở link này trên TV (trình duyệt player). Không cần gõ mã. Mọi TV cùng phòng hiện chung nội dung{count}.",
+      "linkHint": "Mở trình duyệt trên TV, vào {url} rồi dán link này. Không cần gõ mã. Mọi TV cùng phòng hiện chung nội dung{count}.",
       "linkHintCount": " (hiện {count} TV)",
       "linkLabel": "Link ghép TV",
       "linkBusy": "Đang tạo link…",
-      "pinHint": "Mỗi TV mở player để lấy PIN riêng, rồi ghép vào cùng phòng này. Mọi TV hiện chung nội dung{count}.",
+      "pinHint": "Trên TV, mở trình duyệt và vào {url} để lấy mã PIN riêng, rồi ghép vào cùng phòng này. Mọi TV hiện chung nội dung{count}.",
       "pinLabel": "Mã PIN trên TV",
+      "playerUrlLabel": "Địa chỉ mở trên TV",
+      "playerUrlHint": "Nhập địa chỉ này vào trình duyệt của TV (thường là Chrome). Màn hình sẽ hiện mã PIN để ghép.",
       "copied": "Đã sao chép link ghép cho phòng {code}. Mở link đó trên TV.",
       "paired": "Đã ghép TV vào phòng {code}. Phòng này đang có {count} TV, cùng một nội dung.",
       "linkError": "Không tạo được link ghép.",
