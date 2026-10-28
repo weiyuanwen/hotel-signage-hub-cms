@@ -22,6 +22,7 @@ export async function MarketingJsonLd({
   const node = treeNode(section);
   const pagePath = node ? getPathname({ locale: loc, href: node.href }) : "/";
   const pageUrl = `${base}${pagePath}`;
+  const currency = loc === "vi" ? "VND" : "USD";
 
   const software = {
     "@type": "SoftwareApplication",
@@ -30,11 +31,29 @@ export async function MarketingJsonLd({
     operatingSystem: "Web",
     url: base,
     description: t("meta.description"),
-    offers: {
-      "@type": "Offer",
-      priceCurrency: loc === "vi" ? "VND" : "USD",
-      price: loc === "vi" ? "15000" : "3",
-    },
+    offers: [
+      {
+        "@type": "Offer",
+        name: t("pricing.freeName"),
+        priceCurrency: currency,
+        price: "0",
+        description: t("pricing.freeNote"),
+      },
+      {
+        "@type": "Offer",
+        name: t("pricing.threeName"),
+        priceCurrency: currency,
+        price: loc === "vi" ? "15000" : "3",
+        description: `${t("pricing.threePairing")} ${t("pricing.threeNote")}`,
+      },
+      {
+        "@type": "Offer",
+        name: t("pricing.manyName"),
+        priceCurrency: currency,
+        price: loc === "vi" ? "50000" : "5",
+        description: `${t("pricing.manyPairing")} ${t("pricing.manyNote")}`,
+      },
+    ],
   };
 
   const website = {
@@ -103,5 +122,12 @@ export async function MarketingJsonLd({
     });
   }
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }) }} />;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c"),
+      }}
+    />
+  );
 }

@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { AppShell } from "@/components/AppShell";
 import { DeskI18n } from "@/components/desk/desk-i18n";
 import type { DeskLocale } from "@/lib/desk-locale";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function DeskLayout({ children }: { children: React.ReactNode }) {
   const jar = await cookies();

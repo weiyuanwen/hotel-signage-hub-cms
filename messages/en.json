@@ -2,20 +2,20 @@
   "meta": {
     "title": "Hotel welcome TV software | SignageHub",
     "titleTemplate": "%s · SignageHub",
-    "description": "Hotel welcome TV software. Front desk types a guest name; the room TV updates greeting and Wi-Fi instantly. 3 screens at $3 a month.",
+    "description": "Personalized hotel welcome TV software. Staff enter a guest name in the CMS; the room TV updates its greeting and Wi-Fi. One TV is free; paid plans start at $3/month.",
     "homeTitle": "SignageHub",
-    "productTitle": "16:9 hotel welcome TV software for the front desk",
-    "productDescription": "Hotel welcome TV software: type the guest name in the CMS and every paired room TV updates the greeting, Wi-Fi, and 16:9 template.",
+    "productTitle": "Personalized guest greetings on hotel room TVs",
+    "productDescription": "Enter a guest name in the CMS and every TV paired to that room updates its greeting, Wi-Fi, and selected template.",
     "galleryTitle": "In-room hotel welcome TV templates",
     "galleryDescription": "Six 16:9 welcome looks for room TVs: Golden night, Soft morning, Harbor night, Tea garden, Warm stone, Vista. Pick one at check-in.",
     "pricingTitle": "Hotel welcome TV software pricing",
-    "pricingDescription": "SignageHub pricing: 3 screens at $3 a month, many screens at $5. Player runs on Android TV, Chrome, or Windows.",
+    "pricingDescription": "One TV is free. Three TVs cost $3/month; unlimited TVs cost $5/month. Runs on Android TV, Chrome, Windows, and Raspberry Pi.",
     "faqTitle": "Hotel welcome TV and pairing FAQ",
     "faqDescription": "Answers on welcome TVs vs ad screens, PIN or link pairing, MP4/YouTube backgrounds, plans, and desk accounts.",
     "joinTitle": "Open a hotel welcome TV desk",
-    "joinDescription": "Email us to open a SignageHub desk. Start 3 welcome TVs at $3 a month.",
+    "joinDescription": "Create a hotel manager account by email. Start free with one TV and upgrade when you need more screens.",
     "directoryTitle": "Site map",
-    "directoryDescription": "Directory of SignageHub: product, welcome templates, pricing, FAQ, and how to open a hotel desk.",
+    "directoryDescription": "Browse SignageHub pages about the product, welcome templates, pricing, FAQs, and hotel account signup.",
     "loginTitle": "Sign in to the SignageHub desk"
   },
   "nav": {
@@ -37,8 +37,8 @@
   "pages": {
     "relatedTitle": "Related pages",
     "product": {
-      "h1": "Welcome TV software for the hotel desk",
-      "lead": "SignageHub is 16:9 hotel welcome TV software. Front desk types a name in the CMS. Every screen paired to that room shows the greeting, Wi-Fi, and template."
+      "h1": "Personalized guest greetings on room TVs",
+      "lead": "Enter the guest name in the CMS. TVs paired to the room update the greeting, Wi-Fi, and selected template at check-in."
     },
     "gallery": {
       "h1": "In-room hotel welcome TV templates",
@@ -46,15 +46,15 @@
     },
     "pricing": {
       "h1": "Hotel welcome TV software pricing",
-      "lead": "Two monthly plans. 3 screens at $3. Many screens at $5. The player opens on Android TV, Chrome, Windows, or Raspberry Pi."
+      "lead": "Start free with one TV. The 3-TV plan is $3/month; the unlimited plan is $5/month. Works on Android TV, Chrome, Windows, and Raspberry Pi."
     },
     "faq": {
       "h1": "Hotel welcome TV questions",
       "lead": "How this differs from ad screens, PIN or link pairing, photo and video backgrounds, plan prices, and who can sign in."
     },
     "join": {
-      "h1": "Open a hotel welcome TV desk",
-      "lead": "Send a hotel email. SignageHub creates a manager account and mails it over. Start with 3 TVs at $3 a month."
+      "h1": "Create a hotel TV manager account",
+      "lead": "Sign up with a hotel email to receive a manager account. Start free with one TV."
     },
     "directory": {
       "h1": "SignageHub site map",
@@ -63,7 +63,7 @@
   },
   "hero": {
     "srTitle": "Hotel welcome TV software. 3 screens, $3 a month. Guest names on the TV at once.",
-    "headline": "3 TVs, $3 a month.",
+    "headline": "3 TVs for $3/month.",
     "guests": [
       "Welcome, Ms. Lan.",
       "Welcome, Mr. Minh.",
@@ -71,7 +71,8 @@
       "Welcome, Ms. Mai.",
       "Welcome, Mr. Khoa.",
       "Welcome, Ms. Ha."
-    ]
+    ],
+    "valueProp": "Personalized guest greetings on hotel TVs"
   },
   "templates": {
     "dusk": "Golden night",
@@ -86,8 +87,8 @@
     "body": "Each template is a different night on the same 16:9 TV."
   },
   "proof": {
-    "label": "Hotels running SignageHub",
-    "title": "On room TVs in",
+    "label": "Example hotel TV screens",
+    "title": "Sample greetings by destination",
     "cities": {
       "song-han": "Da Nang",
       "an-vien": "Hoi An",
@@ -100,79 +101,79 @@
     }
   },
   "product": {
-    "title": "Desk types a name. The TV changes.",
-    "body": "Check in on the CMS. Every screen paired to that room shows the same greeting, Wi-Fi, and template.",
+    "title": "Enter a guest name. The TV updates.",
+    "body": "Check guests in through the CMS. TVs paired to the same room show its greeting, Wi-Fi, and selected template.",
     "step1Title": "Check in",
-    "step1Body": "Type the name, pick a look. No slides. No wait for IT.",
+    "step1Body": "Enter the guest name and choose a template. No slides to build and no IT ticket.",
     "step2Title": "TVs follow the room",
-    "step2Body": "Every screen on the same room code shows one greeting.",
+    "step2Body": "Every TV paired to the room shows the same greeting.",
     "step3Title": "Player on the TV you have",
-    "step3Body": "Open a browser on Android TV, Chrome, Windows, or Raspberry Pi. No extra box."
+    "step3Body": "Open the player in a browser on Android TV, Chrome, Windows, or Raspberry Pi. No extra box required."
   },
   "lounge": {
     "title": "The corner of the screen is still service.",
-    "wifi": "SSID sits bottom left, from the Hotel page. Guests stop asking the desk.",
-    "weather": "Weather follows the region set in the CMS. The player reads coordinates, not the hotel name.",
-    "media": "House default background. VIP rooms can differ: photo, MP4, YouTube, Vimeo.",
+    "wifi": "The TV displays the hotel Wi-Fi details saved in the CMS.",
+    "weather": "Weather follows the region selected in the CMS.",
+    "media": "Use one hotel-wide background or choose an image, MP4, YouTube, or Vimeo background for each room.",
     "photoAlt": "Hotel lounge with warm lamps"
   },
   "quote": {
-    "body": "Guests see their name on the TV before they open a suitcase. The desk stops apologizing for a generic slide.",
-    "by": "Tran Hanh, shift manager, Saigon Pearl (demo)"
+    "body": "Guests see a greeting with their name as soon as they enter the room.",
+    "by": "Tran Hanh, shift manager at Saigon Pearl (illustrative copy)"
   },
   "pricing": {
-    "title": "One TV free. Pay monthly when you need more.",
-    "body": "Free for 1 TV. 3 screens at $3 a month. Many screens at $5. Pay by Vietnam bank transfer.",
+    "title": "Start free. Add TVs when you need them.",
+    "body": "One TV is free. The 3-TV plan is $3/month; unlimited TVs cost $5/month.",
     "freeName": "1 TV free",
     "freePrice": "$0",
-    "freePairing": "Try one screen. Pair with a PIN. No expiry.",
-    "freeNote": "Enough for one desk or one room. Upgrade when you add TVs.",
+    "freePairing": "Use one TV for free and pair it with a PIN. No expiry.",
+    "freeNote": "A simple way to start with one room or shared space.",
     "freeCta": "Start 1 TV",
     "threeName": "3 screens",
     "threePrice": "$3/month",
-    "threePairing": "Lobby and a few rooms. Pair with the PIN on the TV.",
-    "threeNote": "Pay by Vietnam bank transfer. TVs stop when the month ends.",
+    "threePairing": "Up to 3 TVs, paired by PIN. Set a background for each room.",
+    "threeNote": "$3/month. The plan expires at the end of the paid month.",
     "threeCta": "Buy 3 TVs",
     "manyName": "Many screens",
     "manyPrice": "$5/month",
-    "manyPairing": "No screen cap. Pair with a link. No PIN to type.",
-    "manyNote": "Same MP4 or YouTube backgrounds. No TV limit.",
+    "manyPairing": "Unlimited TVs. Pair by PIN or link.",
+    "manyNote": "$5/month. Set a background for each room.",
     "manyCta": "Buy many TVs"
   },
   "faq": {
     "title": "FAQ",
     "items": [
       {
-        "q": "How is SignageHub different from ad screens?",
-        "a": "This is a per-room, per-guest welcome. Front desk checks in on the CMS and the room TV updates the name and template at once. No slide playlist."
+        "q": "How is SignageHub different from advertising screens?",
+        "a": "SignageHub shows a greeting for each room and guest. Staff check guests in through the CMS, and the paired TV updates the name and selected template."
       },
       {
-        "q": "What if one room has several TVs?",
-        "a": "Every TV paired to that room shows the same content: guest name, Wi-Fi, weather, background. Change the room on the CMS once."
+        "q": "What if a room has several TVs?",
+        "a": "TVs paired to the same room show the same guest name, Wi-Fi, weather, and background. Staff update the room once in the CMS."
       },
       {
-        "q": "Where do photos and video live?",
-        "a": "The hotel default is on the Hotel page. Each room can set its own: image, MP4/WebM, or a YouTube/Vimeo link."
+        "q": "Can I use photos or videos as backgrounds?",
+        "a": "Yes. Set one hotel-wide background, or use a room-specific image, MP4/WebM video, or YouTube/Vimeo link on eligible plans."
       },
       {
-        "q": "Which welcome templates ship?",
-        "a": "Six presets: Golden night, Soft morning, Harbor night, Tea garden, Warm stone, Vista. Managers enable or hide them and set a default. Front desk picks at check-in."
+        "q": "Which welcome templates are available?",
+        "a": "There are six templates: Golden Night, Soft Morning, Harbor Night, Tea Garden, Warm Stone, and Vista. Managers can enable templates and set a default."
       },
       {
-        "q": "How long does TV pairing take?",
-        "a": "On the 3-screen plan the TV shows a PIN and the desk types it into the room. On many screens the desk copies a link and the TV opens it. No code to type."
+        "q": "How do I pair a TV with a room?",
+        "a": "The free and 3-TV plans use a PIN shown on the TV. The unlimited plan supports pairing by PIN or link."
       },
       {
-        "q": "What does it cost?",
-        "a": "1 TV is free. 3 screens at $3 a month. Many screens at $5. The Vietnamese site shows 15,000 dong and 50,000 dong for the paid plans."
+        "q": "How much do the plans cost?",
+        "a": "One TV is free. The 3-TV plan costs $3/month; the unlimited plan costs $5/month."
       },
       {
-        "q": "Who can sign in?",
-        "a": "The join form emails a hotel-manager account to the address you enter. Front desk staff are added later by that manager."
+        "q": "Who can sign in to the CMS?",
+        "a": "The hotel manager receives an account at the signup email and can add front desk accounts later."
       },
       {
         "q": "How do I contact support?",
-        "a": "Email nguyenduy0170@gmail.com. That is the SignageHub support inbox."
+        "a": "Email nguyenduy0170@gmail.com to reach SignageHub support."
       }
     ]
   },

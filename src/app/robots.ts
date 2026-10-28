@@ -8,7 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/rooms", "/devices", "/hotel", "/templates", "/staff", "/cms/", "/device/"],
+        // CMS pages declare noindex in their route-group metadata. Let crawlers
+        // fetch that directive; keep API/player endpoints out of crawl paths.
+        disallow: ["/cms/", "/device/"],
       },
     ],
     sitemap: `${base}/sitemap.xml`,

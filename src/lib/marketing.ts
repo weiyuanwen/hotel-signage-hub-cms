@@ -45,11 +45,11 @@ export const faqs = [
   },
   {
     q: "Ghép TV mất bao lâu?",
-    a: "Gói miễn phí: TV hiện mã PIN, lễ tân nhập vào phòng. Plus và Property: quầy gửi link, TV mở link là ghép, không gõ mã.",
+    a: "Gói miễn phí và gói 3 TV dùng mã PIN hiển thị trên TV. Gói không giới hạn hỗ trợ cả mã PIN và link ghép thiết bị.",
   },
   {
-    q: "3 TV miễn phí mãi là sao?",
-    a: "Ba màn đầu không hết hạn, không thẻ. Màn thứ tư trở đi tính từ $3 mỗi TV mỗi tháng. Player là trang web, chạy trên Android TV, Chrome, Windows hoặc Raspberry Pi.",
+    q: "Các gói có giá bao nhiêu?",
+    a: "Một TV miễn phí. Gói tối đa 3 TV giá 15.000đ/tháng; gói không giới hạn giá 50.000đ/tháng.",
   },
   {
     q: "Ai được đăng nhập?",

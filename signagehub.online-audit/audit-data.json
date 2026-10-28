@@ -1,0 +1,178 @@
+{
+  "summary": {
+    "health_score": 76,
+    "score_scope": "Provisional score for measured technical SEO, on-page and schema only; not a full SEO health score.",
+    "business_type": "Hotel welcome-TV SaaS",
+    "top_findings": [
+      "Unknown public URLs and unimplemented well-known endpoints return HTTP 500 instead of 404.",
+      "Disallowed CMS routes return HTTP 200 generic shells without crawler-visible noindex.",
+      "Production metadata, sitemap lastmod and SoftwareApplication offers differ from the current workspace source.",
+      "Production SoftwareApplication schema omits visible free and unlimited plans.",
+      "Public pages return private/no-store; CWV has not been measured."
+    ],
+    "quick_wins": [
+      "Fix unknown-route HTTP status to 404.",
+      "Verify anonymous CMS route behavior and prevent indexation without relying only on robots.txt.",
+      "Deploy the intended source and recheck live sitemap, titles and Offer schema."
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 65,
+      "what_works": [
+        "Robots and sitemap endpoints return 200.",
+        "Seven sitemap URLs include EN/VI/x-default alternates.",
+        "Public marketing pages return 200 and are server-rendered."
+      ],
+      "findings": [
+        {
+          "title": "Unknown paths return 500",
+          "severity": "High",
+          "description": "Random missing paths and multiple unimplemented well-known paths returned HTTP 500 in production.",
+          "recommendation": "Route missing paths to a real 404 and validate at root and locale-prefixed paths."
+        },
+        {
+          "title": "CMS routes are disallowed but lack noindex",
+          "severity": "High",
+          "description": "Five CMS paths returned 200 generic client shells without robots meta while robots.txt disallows them.",
+          "recommendation": "Enforce auth server-side and choose crawler-visible noindex or auth response; do not rely on robots alone."
+        },
+        {
+          "title": "Sitemap production/source mismatch",
+          "severity": "High",
+          "description": "Production reports 2026-09-23 lastmod for all seven URLs, while workspace contains uncommitted per-route dates on 2026-10-28.",
+          "recommendation": "Confirm intended deployment and only publish accurate lastmod values."
+        },
+        {
+          "title": "Public HTML is no-store",
+          "severity": "Medium",
+          "description": "Sampled public pages return Cache-Control private, no-cache, no-store; actual CWV impact is not measured.",
+          "recommendation": "Measure PSI/CrUX and TTFB before changing cache policy."
+        }
+      ]
+    },
+    {
+      "name": "On-page SEO",
+      "score": 91,
+      "what_works": [
+        "14 main EN/VI URLs have unique titles, descriptions and H1s.",
+        "Canonicals are self-referencing.",
+        "Hreflang alternates are reciprocal with x-default."
+      ],
+      "findings": [
+        {
+          "title": "Login hreflang points to noindex pages",
+          "severity": "Low",
+          "description": "Login URLs are noindex,nofollow but still emit language alternates.",
+          "recommendation": "Consider omitting hreflang for login URLs."
+        },
+        {
+          "title": "No movie detail page exists",
+          "severity": "Info",
+          "description": "The site is hotel welcome-TV SaaS; gallery has six cards without individual public detail URLs.",
+          "recommendation": "Audit template detail metadata only if dedicated pages are introduced."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 72,
+      "what_works": [
+        "Live JSON-LD parses as valid JSON.",
+        "Organization, WebSite, SoftwareApplication, BreadcrumbList, FAQPage and CollectionPage fit current site content."
+      ],
+      "findings": [
+        {
+          "title": "Production offers omit two real plans",
+          "severity": "Medium",
+          "description": "Production markup lists one unnamed $3/15,000 VND Offer while visible pricing and workspace schema contain free, 3-screen and unlimited plans.",
+          "recommendation": "Sync Offer names, price, currency and billing period with the localized pricing page."
+        },
+        {
+          "title": "FAQ rich result is unlikely",
+          "severity": "Low",
+          "description": "FAQ schema matches on-page content, but Google limits FAQ rich results regularly to authoritative government and health sites.",
+          "recommendation": "Keep markup for semantics only; do not forecast a FAQ SERP enhancement."
+        }
+      ]
+    },
+    {
+      "name": "Performance / Core Web Vitals",
+      "score": null,
+      "what_works": [],
+      "findings": [
+        {
+          "title": "Field and lab performance not measured",
+          "severity": "Info",
+          "description": "No CrUX, PageSpeed, or Search Console credentials/data were available in this audit.",
+          "recommendation": "Run PSI and CrUX for phone/desktop and inspect TTFB after resolving deployment parity."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": null,
+      "what_works": [
+        "Wildcard robots policy allows general crawling.",
+        "Homepage primary content is visible in raw HTML."
+      ],
+      "findings": [
+        {
+          "title": "Agent discovery files absent",
+          "severity": "Low",
+          "description": "llms.txt and ai-catalog.json return 404; markdown negotiation and AI-specific policy were not found.",
+          "recommendation": "Treat as optional; prioritize crawl/index and production parity first."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Next release",
+        "items": [
+          "Make missing routes return 404 instead of 500.",
+          "Fix anonymous CMS status/auth/index directives.",
+          "Confirm and deploy intended SEO source version."
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "After deployment parity",
+        "items": [
+          "Sync localized SoftwareApplication Offers with pricing page.",
+          "Replace permanent locale aliases using 307 with 308/301.",
+          "Measure CWV and TTFB before cache changes."
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "When SEO data is available",
+        "items": [
+          "Use Search Console index coverage and query/page data.",
+          "Review content depth and image accessibility/performance."
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Monitor 5xx and soft 404s.",
+          "Validate sitemap lastmod accuracy and canonicals after each release."
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "./",
+    "screenshots_dir": null
+  },
+  "measurement_limits": [
+    "No Search Console or GA4 data.",
+    "No CrUX/PageSpeed data.",
+    "No backlink or SERP tracking data.",
+    "No dedicated movie/template detail pages exist in the current project."
+  ]
+}

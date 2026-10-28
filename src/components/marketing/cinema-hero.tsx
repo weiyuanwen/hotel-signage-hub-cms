@@ -25,8 +25,6 @@ export function CinemaHero() {
   });
   const frameY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 140]);
   const frameScale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [1, 1.16]);
-  const dockY = useTransform(scrollYProgress, [0, 0.55], reduce ? [0, 0] : [0, 48]);
-  const dockFade = useTransform(scrollYProgress, [0, 0.4], reduce ? [1, 1] : [1, 0]);
 
   const x = useMotionValue(72);
   const y = useMotionValue(38);
@@ -102,7 +100,6 @@ export function CinemaHero() {
       id="join"
       className="relative isolate min-h-[100dvh] overflow-hidden bg-black"
     >
-      <h1 className="sr-only">{t("hero.srTitle")}</h1>
       <motion.div className="absolute inset-0" style={{ y: frameY, scale: frameScale }}>
         <TvStage
           fill
@@ -125,20 +122,22 @@ export function CinemaHero() {
         />
       )}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/55 to-transparent" />
-      <motion.div
+      <div
         className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pt-40"
-        style={{ y: dockY, opacity: dockFade }}
       >
         <div className="pointer-events-auto mx-auto grid max-w-[1400px] grid-cols-1 items-center justify-items-center gap-5 px-5 pb-7 text-center sm:px-8 lg:grid-cols-[1fr_auto_1fr] lg:items-end lg:gap-8 lg:px-12 lg:pb-10 lg:text-left">
-          <p className="max-w-[24ch] font-heading text-2xl leading-tight font-medium tracking-tight sm:text-3xl lg:justify-self-start">
-            {t("hero.headline")}
-          </p>
+          <div className="max-w-[30ch] lg:justify-self-start">
+            <h1 className="font-heading text-lg leading-tight font-medium tracking-tight sm:text-xl">
+              {t("hero.valueProp")}
+            </h1>
+            <p className="mt-1 text-sm text-white/75 sm:text-base">{t("hero.headline")}</p>
+          </div>
           <BrandMark variant="onDark" className="opacity-90 lg:mb-1" />
           <div className="w-full max-w-lg lg:justify-self-end">
             <WaitlistForm />
           </div>
         </div>
-      </motion.div>
+      </div>
       <div className="absolute top-1/2 right-4 hidden -translate-y-1/2 flex-col gap-2 lg:flex">
         {WELCOME_TEMPLATE_KEYS.map((key, i) => (
           <button

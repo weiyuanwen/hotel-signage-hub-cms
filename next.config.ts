@@ -63,6 +63,13 @@ const nextConfig: NextConfig = {
       { source: "/tham-gia", destination: "/vi/tham-gia", permanent: true },
       { source: "/dang-nhap", destination: "/vi/dang-nhap", permanent: true },
       { source: "/so-do-trang", destination: "/vi/so-do-trang", permanent: true },
+      { source: "/vi/product", destination: "/vi/san-pham", permanent: true },
+      { source: "/vi/gallery", destination: "/vi/mau-chao", permanent: true },
+      { source: "/vi/pricing", destination: "/vi/bang-gia", permanent: true },
+      { source: "/vi/faq", destination: "/vi/hoi-dap", permanent: true },
+      { source: "/vi/join", destination: "/vi/tham-gia", permanent: true },
+      { source: "/vi/login", destination: "/vi/dang-nhap", permanent: true },
+      { source: "/vi/directory", destination: "/vi/so-do-trang", permanent: true },
       { source: "/en", destination: "/", permanent: true },
       { source: "/en/:path*", destination: "/:path*", permanent: true },
     ];

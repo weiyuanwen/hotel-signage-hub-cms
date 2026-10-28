@@ -1,21 +1,21 @@
 {
   "meta": {
-    "title": "Phần mềm TV chào khách khách sạn | SignageHub",
+    "title": "TV chào mừng khách sạn | SignageHub",
     "titleTemplate": "%s · SignageHub",
-    "description": "Phần mềm TV chào khách 16:9 cho khách sạn. Lễ tân gõ tên, TV phòng đổi lời chào và Wi-Fi ngay. 3 thiết bị 15.000đ/tháng.",
+    "description": "Phần mềm hiển thị lời chào cá nhân hóa trên TV khách sạn. Lễ tân nhập tên khách; TV trong phòng cập nhật lời chào và Wi-Fi. Miễn phí 1 TV, gói trả phí từ 15.000đ/tháng.",
     "homeTitle": "SignageHub",
-    "productTitle": "Phần mềm TV chào khách 16:9 cho lễ tân",
-    "productDescription": "Phần mềm TV chào khách khách sạn: lễ tân gõ tên trên CMS, mọi TV trong phòng đổi lời chào, Wi-Fi và mẫu 16:9 ngay.",
-    "galleryTitle": "Mẫu chào khách trên TV phòng khách sạn",
-    "galleryDescription": "Sáu mẫu chào 16:9 cho TV phòng: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm, Tầm nhìn. Lễ tân chọn lúc nhận phòng.",
-    "pricingTitle": "Giá phần mềm TV chào khách khách sạn",
-    "pricingDescription": "Bảng giá SignageHub: 3 thiết bị 15.000đ/tháng, nhiều thiết bị 50.000đ/tháng. Player chạy trên Android TV, Chrome, Windows.",
+    "productTitle": "Phần mềm lời chào cá nhân hóa trên TV khách sạn",
+    "productDescription": "Lễ tân nhập tên khách trên CMS; TV ghép với phòng sẽ hiển thị lời chào, Wi-Fi và mẫu đã chọn.",
+    "galleryTitle": "Mẫu lời chào trên TV phòng khách sạn",
+    "galleryDescription": "Xem sáu mẫu lời chào tỷ lệ 16:9 dành cho TV khách sạn. Quản lý chọn mẫu mặc định; lễ tân có thể đổi mẫu khi nhận phòng.",
+    "pricingTitle": "Bảng giá phần mềm TV khách sạn | SignageHub",
+    "pricingDescription": "Một TV miễn phí. Gói 3 TV giá 15.000đ/tháng; gói không giới hạn giá 50.000đ/tháng. Dùng trên Android TV, trình duyệt Chrome, Windows hoặc Raspberry Pi.",
     "faqTitle": "Hỏi đáp TV chào khách và ghép màn hình",
     "faqDescription": "Giải đáp phần mềm TV chào khách: khác màn quảng cáo, ghép PIN hoặc link, nền MP4/YouTube, giá và tài khoản quầy.",
-    "joinTitle": "Mở quầy TV chào khách cho khách sạn",
-    "joinDescription": "Gửi email để mở quầy SignageHub. Bắt đầu 3 TV chào khách với 15.000đ một tháng.",
+    "joinTitle": "Đăng ký tài khoản quản lý SignageHub",
+    "joinDescription": "Đăng ký qua email để tạo tài khoản quản lý khách sạn. Bắt đầu miễn phí với 1 TV; nâng cấp khi cần thêm màn hình.",
     "directoryTitle": "Sơ đồ trang",
-    "directoryDescription": "Cây thư mục website SignageHub: sản phẩm, mẫu chào, bảng giá, hỏi đáp và mở quầy TV chào khách.",
+    "directoryDescription": "Sơ đồ các trang SignageHub: sản phẩm, mẫu lời chào, bảng giá, hỏi đáp và đăng ký tài khoản khách sạn.",
     "loginTitle": "Đăng nhập quầy SignageHub"
   },
   "nav": {
@@ -37,33 +37,33 @@
   "pages": {
     "relatedTitle": "Mục liên quan",
     "product": {
-      "h1": "Phần mềm TV chào khách cho quầy lễ tân",
-      "lead": "SignageHub là phần mềm TV chào khách 16:9 cho khách sạn. Lễ tân gõ tên trên CMS, mọi màn ghép cùng phòng hiện lời chào, Wi-Fi và mẫu đã chọn."
+      "h1": "Lời chào riêng cho từng khách, hiển thị trên TV phòng",
+      "lead": "Nhập tên khách trên CMS; TV ghép với phòng sẽ cập nhật lời chào, Wi-Fi và mẫu hiển thị ngay khi nhận phòng."
     },
     "gallery": {
-      "h1": "Mẫu chào khách trên TV phòng",
-      "lead": "Sáu mẫu chào 16:9 cho TV trong phòng: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm, Tầm nhìn. Quản lý bật tắt, lễ tân chọn lúc nhận phòng."
+      "h1": "Chọn mẫu lời chào cho TV phòng khách sạn",
+      "lead": "Sáu mẫu hiển thị tỷ lệ 16:9. Quản lý bật các mẫu muốn dùng và đặt mẫu mặc định; lễ tân chọn mẫu phù hợp khi nhận phòng."
     },
     "pricing": {
-      "h1": "Giá phần mềm TV chào khách",
-      "lead": "Hai gói theo tháng. 3 thiết bị 15.000đ. Nhiều thiết bị 50.000đ. Player mở trên Android TV, Chrome, Windows hoặc Raspberry Pi."
+      "h1": "Bảng giá TV chào khách sạn",
+      "lead": "Dùng miễn phí 1 TV. Gói 3 TV giá 15.000đ/tháng; gói không giới hạn giá 50.000đ/tháng. Hỗ trợ Android TV, Chrome, Windows và Raspberry Pi."
     },
     "faq": {
-      "h1": "Hỏi đáp TV chào khách khách sạn",
-      "lead": "Khác màn quảng cáo, ghép PIN hoặc link, nền ảnh và video, giá gói, và ai được vào quầy."
+      "h1": "Câu hỏi thường gặp về TV chào khách sạn",
+      "lead": "Thông tin về cách ghép TV, nội dung lời chào, hình nền, thiết bị hỗ trợ và các gói dịch vụ."
     },
     "join": {
-      "h1": "Mở quầy TV chào khách",
-      "lead": "Gửi email khách sạn. SignageHub tạo tài khoản quản lý và gửi về hộp thư. Bắt đầu với 3 TV, 15.000đ một tháng."
+      "h1": "Tạo tài khoản quản lý TV khách sạn",
+      "lead": "Đăng ký bằng email khách sạn để nhận tài khoản quản lý. Bạn có thể bắt đầu miễn phí với 1 TV."
     },
     "directory": {
       "h1": "Sơ đồ trang SignageHub",
-      "lead": "Cây thư mục để Google và người đọc đi từ trang chủ xuống từng mục: sản phẩm, mẫu chào, bảng giá, hỏi đáp, mở quầy."
+      "lead": "Các trang công khai của SignageHub gồm thông tin sản phẩm, thư viện mẫu, bảng giá, hỏi đáp và đăng ký."
     }
   },
   "hero": {
     "srTitle": "Phần mềm TV chào khách khách sạn. 3 thiết bị, 15.000đ một tháng. Tên khách lên TV ngay.",
-    "headline": "3 TV, 15.000đ một tháng.",
+    "headline": "Gói 3 TV: 15.000đ/tháng.",
     "guests": [
       "Chào mừng, chị Lan.",
       "Chào mừng, anh Minh.",
@@ -71,7 +71,8 @@
       "Chào mừng, chị Mai.",
       "Chào mừng, anh Khoa.",
       "Chào mừng, chị Hà."
-    ]
+    ],
+    "valueProp": "Lời chào cá nhân hóa trên TV khách sạn"
   },
   "templates": {
     "dusk": "Đêm vàng",
@@ -86,8 +87,8 @@
     "body": "Mỗi mẫu là một đêm khác nhau trên cùng một TV 16:9."
   },
   "proof": {
-    "label": "Khách sạn đang dùng SignageHub",
-    "title": "Đang mở trên TV tại",
+    "label": "Ví dụ giao diện TV khách sạn",
+    "title": "Mẫu lời chào theo điểm đến",
     "cities": {
       "song-han": "Đà Nẵng",
       "an-vien": "Hội An",
@@ -100,43 +101,43 @@
     }
   },
   "product": {
-    "title": "Lễ tân gõ tên. TV đổi ngay.",
-    "body": "Nhận phòng trên CMS. Mọi màn ghép cùng mã phòng hiện chung lời chào, Wi-Fi và mẫu đã chọn.",
+    "title": "Lễ tân nhập tên. TV cập nhật lời chào.",
+    "body": "Nhận phòng trên CMS. Các TV ghép với cùng phòng hiển thị lời chào, Wi-Fi và mẫu đã chọn.",
     "step1Title": "Nhận phòng",
-    "step1Body": "Gõ tên, chọn mẫu. Không soạn slide, không chờ IT.",
+    "step1Body": "Nhập tên khách và chọn mẫu. Không cần tạo slide hay chờ IT.",
     "step2Title": "TV theo phòng",
-    "step2Body": "Mọi màn cùng mã phòng chiếu một lời chào.",
+    "step2Body": "Các TV ghép với cùng phòng đều hiển thị một lời chào.",
     "step3Title": "Player trên TV sẵn có",
-    "step3Body": "Mở trình duyệt trên Android TV, Chrome, Windows hoặc Raspberry Pi. Không cần hộp rời."
+    "step3Body": "Mở trình phát bằng trình duyệt trên Android TV, Chrome, Windows hoặc Raspberry Pi. Không cần mua thêm hộp giải mã."
   },
   "lounge": {
     "title": "Góc màn hình cũng là dịch vụ.",
-    "wifi": "SSID góc trái, lấy từ trang Khách sạn. Khách không hỏi lại quầy.",
-    "weather": "Thời tiết theo khu đã chọn trên CMS. Player đọc tọa độ, không đoán từ tên khách sạn.",
-    "media": "Nền mặc định cả nhà. Phòng VIP có thể riêng: ảnh, MP4, YouTube, Vimeo.",
+    "wifi": "Tên và mật khẩu Wi-Fi hiển thị trên TV, lấy từ thông tin khách sạn trong CMS.",
+    "weather": "Thông tin thời tiết theo khu vực đã chọn trong CMS.",
+    "media": "Dùng hình nền chung cho khách sạn hoặc chọn ảnh, video MP4, YouTube hay Vimeo riêng cho từng phòng.",
     "photoAlt": "Sảnh nghỉ khách sạn ánh đèn ấm"
   },
   "quote": {
-    "body": "Khách thấy tên mình trên TV trước khi mở vali. Quầy hết phải xin lỗi vì slide generic.",
-    "by": "Trần Hạnh, quản lý ca, Saigon Pearl (demo)"
+    "body": "Khách nhìn thấy lời chào có tên mình trên TV ngay khi vào phòng.",
+    "by": "Trần Hạnh, quản lý ca tại Saigon Pearl (nội dung minh họa)"
   },
   "pricing": {
-    "title": "Một TV miễn phí. Trả tháng khi cần thêm.",
-    "body": "Miễn phí 1 TV. 3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ. Thanh toán chuyển khoản Việt Nam.",
+    "title": "Bắt đầu miễn phí. Thêm TV khi cần.",
+    "body": "Miễn phí 1 TV. Gói 3 TV giá 15.000đ/tháng; gói không giới hạn giá 50.000đ/tháng. Thanh toán theo tháng.",
     "freeName": "1 TV miễn phí",
     "freePrice": "0đ",
-    "freePairing": "Thử một màn. Ghép bằng mã PIN. Không hết hạn.",
-    "freeNote": "Đủ cho một quầy hoặc một phòng. Nâng cấp khi cần thêm TV.",
+    "freePairing": "Dùng miễn phí 1 TV, ghép thiết bị bằng mã PIN. Không hết hạn.",
+    "freeNote": "Phù hợp để bắt đầu với một phòng hoặc khu vực chung.",
     "freeCta": "Mở 1 TV",
     "threeName": "3 thiết bị",
     "threePrice": "15.000đ/tháng",
-    "threePairing": "Sảnh và vài phòng. Ghép bằng mã PIN trên TV.",
-    "threeNote": "Thanh toán chuyển khoản Việt Nam. Hết hạn thì TV ngừng chiếu.",
+    "threePairing": "Tối đa 3 TV, ghép bằng mã PIN. Có thể đặt hình nền riêng cho từng phòng.",
+    "threeNote": "15.000đ/tháng. Gói tự hết hạn khi kết thúc tháng đã thanh toán.",
     "threeCta": "Mua 3 TV",
     "manyName": "Nhiều thiết bị",
     "manyPrice": "50.000đ/tháng",
-    "manyPairing": "Bao nhiêu màn cũng được. Ghép bằng link, không gõ mã.",
-    "manyNote": "Cùng nền MP4 hoặc YouTube. Không trần số TV.",
+    "manyPairing": "Không giới hạn số TV. Hỗ trợ ghép bằng mã PIN hoặc link.",
+    "manyNote": "50.000đ/tháng. Có thể đặt hình nền riêng cho từng phòng.",
     "manyCta": "Mua nhiều TV"
   },
   "faq": {
@@ -144,35 +145,35 @@
     "items": [
       {
         "q": "SignageHub khác màn hình quảng cáo thế nào?",
-        "a": "Đây là lời chào theo phòng, theo khách. Lễ tân nhận phòng trên CMS, TV trong phòng đổi tên và mẫu ngay, không xếp lịch slide."
+        "a": "SignageHub hiển thị lời chào theo từng phòng và khách lưu trú. Lễ tân nhận phòng trên CMS, TV ghép với phòng cập nhật tên khách và mẫu đã chọn."
       },
       {
-        "q": "Một phòng nhiều TV thì sao?",
-        "a": "Mọi TV ghép cùng phòng chiếu chung một nội dung: tên khách, Wi-Fi, thời tiết, nền. Đổi phòng trên CMS là đủ."
+        "q": "Một phòng có nhiều TV thì sao?",
+        "a": "Các TV ghép với cùng phòng hiển thị chung tên khách, Wi-Fi, thời tiết và hình nền. Lễ tân chỉ cần cập nhật thông tin phòng trên CMS."
       },
       {
-        "q": "Nền ảnh và video chỉnh ở đâu?",
-        "a": "Mặc định lấy từ trang Khách sạn. Từng phòng có thể đặt nền riêng, gồm ảnh, file MP4/WebM, hoặc link YouTube/Vimeo."
+        "q": "Có thể dùng ảnh hoặc video làm hình nền không?",
+        "a": "Có. Khách sạn đặt hình nền chung; một số gói cho phép cài hình nền riêng cho từng phòng bằng ảnh, video MP4/WebM hoặc link YouTube/Vimeo."
       },
       {
-        "q": "Mẫu chào có những gì?",
-        "a": "Sáu preset: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm, Tầm nhìn. Quản lý bật/tắt và đặt mặc định. Lễ tân chọn lúc nhận phòng."
+        "q": "Có những mẫu lời chào nào?",
+        "a": "Có sáu mẫu: Đêm vàng, Sáng nhẹ, Cảng đêm, Vườn trà, Đá ấm và Tầm nhìn. Quản lý có thể bật/tắt mẫu và đặt mẫu mặc định."
       },
       {
-        "q": "Ghép TV mất bao lâu?",
-        "a": "Gói 3 thiết bị: TV hiện mã PIN, lễ tân nhập vào phòng. Gói nhiều thiết bị: quầy gửi link, TV mở link là ghép, không gõ mã."
+        "q": "Ghép TV với phòng bằng cách nào?",
+        "a": "Gói miễn phí và gói 3 TV dùng mã PIN hiển thị trên TV. Gói không giới hạn hỗ trợ cả mã PIN và link ghép thiết bị."
       },
       {
-        "q": "Giá thế nào?",
-        "a": "1 TV miễn phí. 3 thiết bị 15.000đ một tháng. Nhiều thiết bị 50.000đ. Tiếng Anh hiện $3 và $5 cho hai gói trả phí."
+        "q": "Các gói có giá bao nhiêu?",
+        "a": "Một TV miễn phí. Gói tối đa 3 TV giá 15.000đ/tháng; gói không giới hạn giá 50.000đ/tháng."
       },
       {
-        "q": "Ai được đăng nhập?",
-        "a": "Form mở quầy gửi tài khoản quản lý tới email vừa nhập. Lễ tân do quản lý thêm sau."
+        "q": "Ai có thể đăng nhập CMS?",
+        "a": "Quản lý khách sạn nhận tài khoản qua email đăng ký và có thể thêm tài khoản lễ tân sau đó."
       },
       {
-        "q": "Liên hệ hỗ trợ thế nào?",
-        "a": "Gửi email tới nguyenduy0170@gmail.com. Đó là hộp thư hỗ trợ SignageHub."
+        "q": "Liên hệ hỗ trợ bằng cách nào?",
+        "a": "Gửi email tới nguyenduy0170@gmail.com để liên hệ bộ phận hỗ trợ SignageHub."
       }
     ]
   },
@@ -184,7 +185,7 @@
     "hotelPlaceholder": "Nhà khách Sông Hàn",
     "emailLabel": "Email",
     "emailPlaceholder": "ban.le.tan@khachsan.vn",
-    "invalidEmail": "Nhập email làm việc của khách sạn.",
+    "invalidEmail": "Vui lòng nhập email bạn có thể nhận thư.",
     "sending": "Đang gửi…",
     "submit": "Mở 1 TV miễn phí",
     "existing": "Email này đã có quầy. Đăng nhập để tiếp tục.",

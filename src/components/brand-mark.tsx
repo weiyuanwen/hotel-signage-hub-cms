@@ -10,6 +10,8 @@ export function BrandMark({ variant = "lockup", className = "" }: BrandMarkProps
       <img
         src="/brand/mark.svg"
         alt="SignageHub"
+        width={64}
+        height={52}
         className={`size-8 ${className}`.trim()}
       />
     );
@@ -19,7 +21,7 @@ export function BrandMark({ variant = "lockup", className = "" }: BrandMarkProps
     return (
       <span className={`inline-flex items-center gap-2.5 ${className}`.trim()}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/mark.svg" alt="" className="h-7 w-auto" />
+        <img src="/brand/mark.svg" alt="" width={64} height={52} className="h-7 w-auto" />
         <span className="text-[15px] font-semibold tracking-tight text-white">
           Signage<span className="text-[#7DD3FC]">Hub</span>
         </span>
@@ -32,6 +34,8 @@ export function BrandMark({ variant = "lockup", className = "" }: BrandMarkProps
     <img
       src="/brand/logo.svg"
       alt="SignageHub"
+      width={280}
+      height={60}
       className={`h-7 w-auto ${className}`.trim()}
     />
   );
